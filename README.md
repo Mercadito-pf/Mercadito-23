@@ -1,6 +1,6 @@
 ## PASOS PARA TRABAJAR
 
-Primero clonar el repositorio ``git clone https://github.com/fllantada/ProyectoDarmas.git``
+Primero clonar el repositorio ``git clone https://github.com/Mercadito-pf/Mercadito-23.git ``
 
 Traerse la ultima actualización `` git pull``
 
