@@ -6,6 +6,8 @@ let initState={
 
 function reducer(state = initState, action){
     switch (action.type) {
+        // se modifica el estado global [url] para que los componentes suscritos a dicho estado 
+        // realicen una peticion a la api
         case UPDATE_URL:
             return{
                 ...state,

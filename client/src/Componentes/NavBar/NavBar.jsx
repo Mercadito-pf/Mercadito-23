@@ -18,6 +18,9 @@ export default function NavBar() {
             <a href="!#">Shopping car</a>
             </li>
         </ul>
+        <div>
+        <a href="!#">Categories</a>
+        </div>
         
     </nav>
   )
