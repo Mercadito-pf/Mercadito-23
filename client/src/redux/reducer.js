@@ -7,8 +7,10 @@ let initState={
 function reducer(state = initState, action){
     switch (action.type) {
         case GET_ALL_PRODUCTS:
-            
-            break;
+            return{
+                ...state,
+                products: action.payload
+            }
     
         default:
             return state;

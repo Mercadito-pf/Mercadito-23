@@ -1,0 +1,87 @@
+{
+  "products": [
+   {
+    "id": 1,
+    "name": "product 1",
+    "seller": "seller 1",
+    "description": "this is a product 1",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 2,
+    "name": "product 2",
+    "seller": "seller 2",
+    "description": "this is a product 2",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 3,
+    "name": "product 3",
+    "seller": "seller 3",
+    "description": "this is a product 3",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 4,
+    "name": "product 4",
+    "seller": "seller 4",
+    "description": "this is a product 4",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 5,
+    "name": "product 5",
+    "seller": "seller 5",
+    "description": "this is a product 5",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 6,
+    "name": "product 6",
+    "seller": "seller 6",
+    "description": "this is a product 6",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 7,
+    "name": "product 7",
+    "seller": "seller 7",
+    "description": "this is a product 7",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   },
+   {
+    "id": 8,
+    "name": "product 8",
+    "seller": "seller 8",
+    "description": "this is a product 8",
+    "price": 120,
+    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+    "stock": 10,
+    "sales": 30
+   }
+   
+   
+  ]
+ }
+ 
