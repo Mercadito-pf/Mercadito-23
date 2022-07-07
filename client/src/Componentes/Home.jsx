@@ -1,19 +1,23 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { get_all_products } from "../redux/actions";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 
 export default function Home() {
 
-    let { products } = useSelector(state => state)
-    let dispatch = useDispatch()
+    let [products, setProducts] = useState([])
+    let { url } = useSelector(state => state)
+    // let dispatch = useDispatch()
     useEffect(() => {
-        dispatch(get_all_products())
-    }, [])
+        (async function(){
+            let res = await fetch(url).then(res => res.json())
+            setProducts(res)
+        })()
+        
+    }, [url])
 
 
     return (
         <div>
-            <h1>Nav</h1>
             <br />
             <h1>Slider</h1>
 

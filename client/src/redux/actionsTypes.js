@@ -1,6 +1,5 @@
-const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
-
+const UPDATE_URL = "UPDATE_URL"
 
 export {
-    GET_ALL_PRODUCTS
+    UPDATE_URL
 }

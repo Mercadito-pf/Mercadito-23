@@ -1,26 +1,13 @@
-import { GET_ALL_PRODUCTS } from "./actionsTypes"
+import { UPDATE_URL } from "./actionsTypes"
 
-const URL ="  http://localhost:3001/products"
-function get_all_products() {
-    return (dispatch) => {
-        // dispatch({ type: IS_LOADING })
-        return fetch(URL)
-            .then(res => res.json())
-            .then(json => {
-                return dispatch({
-                    type: GET_ALL_PRODUCTS,
-                    payload: json
-                })
-            })
-            .catch((error) => {
-                // dispatch({
-                //     type: SET_ERROR
-                // })
-                console.log(error)
-            })
+// const URL ="  http://localhost:3001/products"
+function update_url(url) {
+    return{
+        type: UPDATE_URL,
+        payload: url
     }
 }
 
 export {
-    get_all_products
+    update_url
 }

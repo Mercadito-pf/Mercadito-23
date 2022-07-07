@@ -1,15 +1,15 @@
-import { GET_ALL_PRODUCTS } from "./actionsTypes";
+import { UPDATE_URL } from "./actionsTypes";
 
 let initState={
-    products:[]
+    url: "http://localhost:3001/products"
 }
 
 function reducer(state = initState, action){
     switch (action.type) {
-        case GET_ALL_PRODUCTS:
+        case UPDATE_URL:
             return{
                 ...state,
-                products: action.payload
+                url: action.payload
             }
     
         default:
