@@ -8,7 +8,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories1":[3,6,7,8]
    },
    {
     "id": 2,
@@ -18,7 +19,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories1":[3,2,1,5]
    },
    {
     "id": 3,
@@ -28,7 +30,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories1":[3,4,7,6]
    },
    {
     "id": 4,
@@ -38,7 +41,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories1":[1,6,5,7]
    },
    {
     "id": 5,
@@ -48,7 +52,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories2":[10,12,14]
    },
    {
     "id": 6,
@@ -58,7 +63,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories2":[9, 10,12,13]
    },
    {
     "id": 7,
@@ -68,7 +74,8 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories2":[9,11,13,14]
    },
    {
     "id": 8,
@@ -78,10 +85,13 @@
     "price": 120,
     "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
     "stock": 10,
-    "sales": 30
+    "sales": 30,
+    "categories2":[9, 10,11,12,13,14]
    }
    
    
-  ]
+  ],
+  "categories1":[1,2,3,4,5,6,7,8],
+  "categories2":[9, 10,11,12,13,14]
  }
  

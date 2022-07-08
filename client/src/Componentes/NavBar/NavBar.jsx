@@ -1,4 +1,5 @@
 import React from 'react'
+import Filter from '../Filter/Filter'
 import SearchBar from '../SearchBar/SearchBar'
 
 export default function NavBar() {
@@ -20,6 +21,7 @@ export default function NavBar() {
         </ul>
         <div>
         <a href="!#">Categories</a>
+        <Filter/>
         </div>
         
     </nav>
