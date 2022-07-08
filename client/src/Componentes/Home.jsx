@@ -33,13 +33,17 @@ export default function Home() {
                 // en el estado local
                 products && products.map(p => {
 
+
+                    // console.log(k)
                     return(
                         <>
                         <img src={p.image} alt={p.name} width="800" height='400'/>
-                        <p>Sales {p.sales}</p>
+                        <p>Ventas {p.sales}</p>
                         <h3>{p.name}</h3>
                         <p>{p.seller}</p>
-                        <p>${p.price}</p>
+                        <p>{p.price}</p>
+                        <p>categoria:</p>
+                        <p>{p.category.replaceAll("_", " ")}</p>
                         <br />
 
                         <hr />

@@ -20,7 +20,7 @@ export default function SearchBar() {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <input onChange={handleChange} value={input} type="text" placeholder='Search your favorites products...' />
+            <input onChange={handleChange} value={input} type="text" placeholder='Busque sus productos favoritos...' />
         </form>
     )
 }

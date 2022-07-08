@@ -1,14 +1,23 @@
 import React from 'react'
-import Category1 from './Category/Category1'
-import Category2 from './Category/Category2'
+import Muebles_y_Hogar from './Category/Muebles_y_Hogar'
+import Tecnology from './Category/Tecnology'
+// import Category1 from './Category/Category1'
+// import Category2 from './Category/Category2'
 
 export default function Filter() {
 
 
   return (
     <>
-    <Category1/>
-    <Category2/>
+    <ul>
+      <li>
+      <Tecnology/>
+      </li>
+      <li>
+      <Muebles_y_Hogar/>
+      </li>
+    </ul>
+    
     </>
   )
 }

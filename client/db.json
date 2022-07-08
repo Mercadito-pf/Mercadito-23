@@ -1,97 +1,567 @@
 {
-  "products": [
-   {
-    "id": 1,
-    "name": "product 1",
-    "seller": "seller 1",
-    "description": "this is a product 1",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories1":[3,6,7,8]
-   },
-   {
-    "id": 2,
-    "name": "product 2",
-    "seller": "seller 2",
-    "description": "this is a product 2",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories1":[3,2,1,5]
-   },
-   {
-    "id": 3,
-    "name": "product 3",
-    "seller": "seller 3",
-    "description": "this is a product 3",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories1":[3,4,7,6]
-   },
-   {
-    "id": 4,
-    "name": "product 4",
-    "seller": "seller 4",
-    "description": "this is a product 4",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories1":[1,6,5,7]
-   },
-   {
-    "id": 5,
-    "name": "product 5",
-    "seller": "seller 5",
-    "description": "this is a product 5",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories2":[10,12,14]
-   },
-   {
-    "id": 6,
-    "name": "product 6",
-    "seller": "seller 6",
-    "description": "this is a product 6",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories2":[9, 10,12,13]
-   },
-   {
-    "id": 7,
-    "name": "product 7",
-    "seller": "seller 7",
-    "description": "this is a product 7",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories2":[9,11,13,14]
-   },
-   {
-    "id": 8,
-    "name": "product 8",
-    "seller": "seller 8",
-    "description": "this is a product 8",
-    "price": 120,
-    "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
-    "stock": 10,
-    "sales": 30,
-    "categories2":[9, 10,11,12,13,14]
-   }
-   
-   
-  ],
-  "categories1":[1,2,3,4,5,6,7,8],
-  "categories2":[9, 10,11,12,13,14]
- }
- 
+	"products": [
+		{
+			"id": "0",
+			"name": "Sheedy",
+			"seller": "Lonnie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_mujer"
+		},
+		{
+			"id": "1",
+			"name": "Ogren",
+			"seller": "Rosanne",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: cocina"
+		},
+		{
+			"id": "2",
+			"name": "Gherardo",
+			"seller": "Kenna",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_mujer"
+		},
+		{
+			"id": "3",
+			"name": "Jillane",
+			"seller": "Lonnie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "4",
+			"name": "Munn",
+			"seller": "Raf",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: cocina"
+		},
+		{
+			"id": "5",
+			"name": "Eiser",
+			"seller": "Jennica",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_hombre"
+		},
+		{
+			"id": "6",
+			"name": "Wadell",
+			"seller": "Gertrud",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "7",
+			"name": "Mullane",
+			"seller": "Pollyanna",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: refrigeracion"
+		},
+		{
+			"id": "8",
+			"name": "Phaidra",
+			"seller": "Katleen",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "9",
+			"name": "Syd",
+			"seller": "Dania",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: lavado"
+		},
+		{
+			"id": "10",
+			"name": "Ardeha",
+			"seller": "Ricky",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: audio_y_video"
+		},
+		{
+			"id": "11",
+			"name": "Glovsky",
+			"seller": "Alexine",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "12",
+			"name": "Rogerio",
+			"seller": "Elmira",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: cocina"
+		},
+		{
+			"id": "13",
+			"name": "Stelle",
+			"seller": "Karina",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: laptops_y_computadores"
+		},
+		{
+			"id": "14",
+			"name": "Halsey",
+			"seller": "Mamie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: audio_y_video"
+		},
+		{
+			"id": "15",
+			"name": "Dulciana",
+			"seller": "Susette",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: refrigeracion"
+		},
+		{
+			"id": "16",
+			"name": "Socha",
+			"seller": "Addia",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: sala"
+		},
+		{
+			"id": "17",
+			"name": "Koehler",
+			"seller": "Queenie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "18",
+			"name": "Daegal",
+			"seller": "Agathe",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "19",
+			"name": "Wandie",
+			"seller": "Meriel",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: sala"
+		},
+		{
+			"id": "20",
+			"name": "Sundin",
+			"seller": "Annabela",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: escritorio"
+		},
+		{
+			"id": "21",
+			"name": "Devlen",
+			"seller": "Benita",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "22",
+			"name": "Muriel",
+			"seller": "Mignon",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_infantil"
+		},
+		{
+			"id": "23",
+			"name": "Merriott",
+			"seller": "Ariela",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: consolas_y_videojuegos"
+		},
+		{
+			"id": "24",
+			"name": "Vittoria",
+			"seller": "Ofilia",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: escritorio"
+		},
+		{
+			"id": "25",
+			"name": "Quent",
+			"seller": "Lonnie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_infantil"
+		},
+		{
+			"id": "26",
+			"name": "Terencio",
+			"seller": "Averyl",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "27",
+			"name": "Caitlin",
+			"seller": "Agnese",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: celulares"
+		},
+		{
+			"id": "28",
+			"name": "Revkah",
+			"seller": "Karlee",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_hombre"
+		},
+		{
+			"id": "29",
+			"name": "Stelle",
+			"seller": "Benita",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "30",
+			"name": "Tomasina",
+			"seller": "Therine",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: audio_y_video"
+		},
+		{
+			"id": "31",
+			"name": "Trinetta",
+			"seller": "Drucie",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: escritorio"
+		},
+		{
+			"id": "32",
+			"name": "Ethban",
+			"seller": "Janis",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_mujer"
+		},
+		{
+			"id": "33",
+			"name": "Hubert",
+			"seller": "Madelle",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "34",
+			"name": "Madelene",
+			"seller": "Nonnah",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: laptops_y_computadores"
+		},
+		{
+			"id": "35",
+			"name": "Katrine",
+			"seller": "Dorene",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: cocina"
+		},
+		{
+			"id": "36",
+			"name": "Hachmin",
+			"seller": "Jere",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_hombre"
+		},
+		{
+			"id": "37",
+			"name": "Mullane",
+			"seller": "Mady",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_mujer"
+		},
+		{
+			"id": "38",
+			"name": "Albertine",
+			"seller": "Emma",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: audio_y_video"
+		},
+		{
+			"id": "39",
+			"name": "Nance",
+			"seller": "Eve",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "tecnologia: audio_y_video"
+		},
+		{
+			"id": "40",
+			"name": "Percy",
+			"seller": "Gaylene",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: dormitorio"
+		},
+		{
+			"id": "41",
+			"name": "Kiyoshi",
+			"seller": "Meghann",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: cocina"
+		},
+		{
+			"id": "42",
+			"name": "Podvin",
+			"seller": "Chloris",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "43",
+			"name": "Colp",
+			"seller": "Bettine",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: lavado"
+		},
+		{
+			"id": "44",
+			"name": "Mozelle",
+			"seller": "Justinn",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: limpieza"
+		},
+		{
+			"id": "45",
+			"name": "Ardeha",
+			"seller": "Talya",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_mujer"
+		},
+		{
+			"id": "46",
+			"name": "Kirbee",
+			"seller": "Georgina",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "moda: moda_hombre"
+		},
+		{
+			"id": "47",
+			"name": "Birdella",
+			"seller": "Belva",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: escritorio"
+		},
+		{
+			"id": "48",
+			"name": "Cecile",
+			"seller": "Kimberley",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "electrodomesticos: refrigeracion"
+		},
+		{
+			"id": "49",
+			"name": "Maroney",
+			"seller": "Glynnis",
+			"price": 32,
+			"image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
+			"stock": 24,
+			"sales": 35,
+			"category": "muebles_y_hogar: dormitorio"
+		}
+	],
+	"categories": [
+		{
+			"tecnologia": [
+				{
+					"name": "celulares"
+				},
+				{
+					"name": "laptops_y_computadores"
+				},
+				{
+					"name": "consolas_y_videojuegos"
+				},
+				{
+					"name": "audio_y_video"
+				}
+			]
+		},
+		{
+			"electrodomesticos": [
+				{
+					"name": "refrigeracion"
+				},
+				{
+					"name": "lavado"
+				},
+				{
+					"name": "cocina"
+				},
+				{
+					"name": "limpieza"
+				}
+			]
+		},
+		{
+			"muebles_y_hogar": [
+				{
+					"name": "sala"
+				},
+				{
+					"name": "comedor"
+				},
+				{
+					"name": "dormitorio"
+				},
+				{
+					"name": "escritorio"
+				}
+			]
+		},
+		{
+			"moda": [
+				{
+					"name": "moda_hombre"
+				},
+				{
+					"name": "moda_mujer"
+				},
+				{
+					"name": "moda_infantil"
+				}
+			]
+		}
+	]
+}
