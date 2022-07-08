@@ -41,9 +41,9 @@ export default function Home() {
                         <p>Ventas {p.sales}</p>
                         <h3>{p.name}</h3>
                         <p>{p.seller}</p>
-                        <p>{p.price}</p>
+                        <p>Precio: ${p.price}</p>
                         <p>categoria:</p>
-                        <p>{p.category.replaceAll("_", " ")}</p>
+                        <li>{p.category.replaceAll("_", " ")}</li>
                         <br />
 
                         <hr />
