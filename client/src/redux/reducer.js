@@ -1,14 +1,24 @@
-import { GET_ALL_PRODUCTS } from "./actionsTypes";
+import { SET_CURRENT_PAGE, UPDATE_URL } from "./actionsTypes";
 
 let initState={
-    products:[]
+    url: `http://localhost:3001/products?_start=${0}&_limit=${8}`,
+    currentPage:1
 }
 
 function reducer(state = initState, action){
     switch (action.type) {
-        case GET_ALL_PRODUCTS:
-            
-            break;
+        // se modifica el estado global [url] para que los componentes suscritos a dicho estado 
+        // realicen una peticion a la api
+        case UPDATE_URL:
+            return{
+                ...state,
+                url: action.payload
+            }
+        case SET_CURRENT_PAGE:
+            return{
+                ...state,
+                currentPage: action.payload
+            }
     
         default:
             return state;
