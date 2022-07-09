@@ -1,8 +1,10 @@
-const {createPlace, findNameOrCreate, findName } = require('../routes/place/placeDao.js');
-const {createSize} = require('../routes/size/sizeDao.js');
-const {createUser} = require('../routes/user/userDao.js');
-const {findNameOrCreateCategory} = require("../routes/category/categoryDao.js");
-const { createProduct } = require('../routes/product/productDao.js');
+// Controllers
+const {findNameOrCreateCategory} = require("../helpers/categoryHelper");
+const {createPlace, findNameOrCreate, findName } = require('../helpers/placeHelper');
+const { createProduct } = require('../helpers/productHelper');
+const {createSize} = require('../helpers/sizeHelper');
+const {createUser} = require('../helpers/userHelper');
+
 
 const axios = require('axios');
 //https://www.datos.gov.co/resource/xdk5-pm3f.json

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const {createUser} = require('./userDao.js'); 
+const {createUser} = require('../helpers/userHelper'); 
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 

@@ -1,4 +1,4 @@
-const { Size } = require("../../db.js");
+const { Size } = require("../db.js");
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const {createSize, findName } = require('./sizeDao.js'); //class with supporting methods
+const {createSize, findName } = require('../helpers/sizeHelper'); //class with supporting methods
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 

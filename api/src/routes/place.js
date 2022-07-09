@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const { createPlace, findName } = require('./placeDao.js'); //class with supporting methods
+const { createPlace, findName } = require('../helpers/placeHelper'); //class with supporting methods
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 

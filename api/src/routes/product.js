@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const { createProduct, getAllProduct } = require('./productDao.js'); 
+const { createProduct, getAllProduct } = require('../helpers/productHelper'); 
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 
