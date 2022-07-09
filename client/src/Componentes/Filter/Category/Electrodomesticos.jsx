@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { update_url } from '../../../redux/actions'
+import { update_current_page, update_querys_filter, update_url } from '../../../redux/actions'
 
 
 export default function Electrodomesticos() {
@@ -19,7 +19,8 @@ export default function Electrodomesticos() {
     
    function handleClick(e, c){
     e.preventDefault()
-    dispatch(update_url(`http://localhost:3001/products?category=electrodomesticos: ${c}`))
+    dispatch(update_querys_filter(`category=electrodomesticos: ${c}`))
+    dispatch(update_url())
    }
     
   return (

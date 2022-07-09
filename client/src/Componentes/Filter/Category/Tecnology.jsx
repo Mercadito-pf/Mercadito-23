@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { update_url } from '../../../redux/actions'
+import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Tecnology() {
 
@@ -20,7 +20,8 @@ export default function Tecnology() {
     
    function handleClick(e, c){
     e.preventDefault()
-    dispatch(update_url(`http://localhost:3001/products?category=tecnologia: ${c}`))
+    dispatch(update_querys_filter(`category=tecnologia: ${c}`))
+    dispatch(update_url())
    }
     
   return (

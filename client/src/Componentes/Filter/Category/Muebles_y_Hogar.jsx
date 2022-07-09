@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { update_url } from '../../../redux/actions'
+import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Muebles_y_Hogar() {
     let [mh, setMh]= useState([])
@@ -16,7 +16,8 @@ export default function Muebles_y_Hogar() {
     
    function handleClick(e, c){
     e.preventDefault()
-    dispatch(update_url(`http://localhost:3001/products?category=muebles_y_hogar: ${c}`))
+    dispatch(update_querys_filter(`category=muebles_y_hogar: ${c}`))
+    dispatch(update_url())
    }
     
   return (
