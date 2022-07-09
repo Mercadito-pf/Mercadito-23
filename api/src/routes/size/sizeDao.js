@@ -1,16 +1,16 @@
-const { size } = require("../../db.js");
+const { Size } = require("../../db.js");
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 
  */
 
 /**
- * creates a size in the database 
+ * creates a Size in the database 
  */
  let createSize = async (sizeName) => {
     try {
         sizeName = sizeName.toUpperCase();
-        return await size.create({
+        return await Size.create({
             size: sizeName
         });
     } catch (error) {
@@ -20,13 +20,13 @@ const { size } = require("../../db.js");
 }
 
 /**
- * search for a size by name
+ * search for a Size by name
  * @param {*} name 
  * @returns 
  */
 let findName = async (sizeName) =>{
     try {
-        return await size.findOne({ 
+        return await Size.findOne({ 
             where: {
                 size: eliminarDiacriticos(sizeName).toUpperCase()
             } 
@@ -36,16 +36,16 @@ let findName = async (sizeName) =>{
     }
 }
 /**
- * Search for a size by name, if not, it creates it
+ * Search for a Size by name, if not, it creates it
  * @param {*} name 
  * @param {*} id 
  * @returns 
  */
 let findNameOrCreate = async (sizeName) =>{
     try {
-        return await size.findOrCreate({
+        return await Size.findOrCreate({
             where: {
-                size: eliminarDiacriticos(sizeName).toUpperCase()
+                Size: eliminarDiacriticos(sizeName).toUpperCase()
             }
           });
     } catch (error) {

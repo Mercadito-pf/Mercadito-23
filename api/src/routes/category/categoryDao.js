@@ -1,4 +1,4 @@
-const { category } = require("../../db.js");
+const { Category } = require("../../db.js");
 
 /**
  *  Creates categories in the database
@@ -8,7 +8,7 @@ const { category } = require("../../db.js");
 
 let createCategory = async (name) => {
   try {
-    return await category.create({
+    return await Category.create({
       name:name.toUpperCase(),
     });
   } catch (error) {
@@ -25,7 +25,7 @@ let createCategory = async (name) => {
 
  let findCategories = async () =>{
     try {
-        return await category.findAll({}); 
+        return await Category.findAll({}); 
     } catch (error) {
         console.log(error)
         return error.message;
@@ -34,7 +34,7 @@ let createCategory = async (name) => {
 
 let findName = async (name) => {
   try {
-    return await category.findOne({
+    return await Category.findOne({
       where: {
         name: eliminarDiacriticos(name).toUpperCase(),
       },
@@ -45,14 +45,14 @@ let findName = async (name) => {
 };
 
 /**
- * Function to create category if it does not exist
+ * Function to create Category if it does not exist
  *
  * @author Andres
  */
 
 let findNameOrCreateCategory = async (name, id) => {
   try {
-    return await category.findOrCreate({
+    return await Category.findOrCreate({
       where: {
         name: eliminarDiacriticos(name).toUpperCase(),
         subCategory: id ? id : null,

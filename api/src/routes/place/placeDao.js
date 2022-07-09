@@ -1,18 +1,18 @@
-const { place } = require("../../db.js");
+const { Place } = require("../../db.js");
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize 
  */
 /**
- * creates a place in the database based on two 
+ * creates a Place in the database based on two 
  * attributes that enter, name and id of the 
- * location where the place is located
+ * location where the Place is located
  */
 let createPlace = async (name, located) => {
     try {
         name = name.toUpperCase();
         located = located?.toUpperCase();
-        return await place.create({
+        return await Place.create({
             name,
             located
         });
@@ -22,13 +22,13 @@ let createPlace = async (name, located) => {
     }
 }
 /**
- * search for a place by name
+ * search for a Place by name
  * @param {*} name 
  * @returns 
  */
 let findName = async (name) =>{
     try {
-        return await place.findOne({ 
+        return await Place.findOne({ 
             where: {
                 name: eliminarDiacriticos(name).toUpperCase(),
             } 
@@ -38,14 +38,14 @@ let findName = async (name) =>{
     }
 }
 /**
- * Search for a place by name, if not, it creates it
+ * Search for a Place by name, if not, it creates it
  * @param {*} name 
  * @param {*} id 
  * @returns 
  */
 let findNameOrCreate = async (name, id) =>{
     try {
-        return await place.findOrCreate({
+        return await Place.findOrCreate({
             where: {
                 name: eliminarDiacriticos(name).toUpperCase(),
                 located: id

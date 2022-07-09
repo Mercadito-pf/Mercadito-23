@@ -1,14 +1,14 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const modelPlace = require('./models/place.js');
-const modelUser = require('./models/user.js');
-const modelProduct = require('./models/product.js');
-const modelCategory = require('./models/category.js');
-const modelComment = require('./models/comment.js');
-const modelOder = require('./models/order.js');
-const modelQualification = require('./models/qualification.js');
-const modelImg = require('./models/img.js');
-const modelSize = require('./models/size.js');
+const modelPlace = require('./models/Place.js');
+const modelUser = require('./models/User.js');
+const modelProduct = require('./models/Product.js');
+const modelCategory = require('./models/Category.js');
+const modelComment = require('./models/Comment.js');
+const modelOder = require('./models/Order.js');
+const modelQualification = require('./models/Qualification.js');
+const modelImg = require('./models/Img.js');
+const modelSize = require('./models/Size.js');
 /**
  * @author Nicolas Alejandro Suarez
  */
@@ -37,38 +37,38 @@ modelSize(sequelize);
 /**
  * create relationship
  */
-const {place,  product, category, comment, user, order, qualification, img, size } = sequelize.models;
+const {Place, Product, Category, Comment, User, Order, Qualification, Img, Size } = sequelize.models;
 
-place.hasMany(place,  {foreignKey: 'located'});
-user.belongsTo(place);
-place.hasMany(user);
-category.hasMany(category,  {foreignKey: 'subCategory'});
-product.hasMany(comment);
-comment.belongsTo(product);
+Place.hasMany(Place,  {foreignKey: 'located'});
+User.belongsTo(Place);
+Place.hasMany(User);
+Category.hasMany(Category,  {foreignKey: 'subCategory'});
+Product.hasMany(Comment);
+Comment.belongsTo(Product);
 
-product.hasMany(img);
-img.belongsTo(product);
+Product.hasMany(Img);
+Img.belongsTo(Product);
 
-product.belongsToMany(size, {through: 'Product_Size'});
-size.belongsToMany(product, {through: 'Product_Size'});
+Product.belongsToMany(Size, {through: 'Product_Size'});
+Size.belongsToMany(Product, {through: 'Product_Size'});
 
-user.hasMany(product);
-product.belongsTo(user);
+User.hasMany(Product);
+Product.belongsTo(User);
 
-user.belongsToMany(product, {through: 'shoppingcart'});
-product.belongsToMany(user, {through: 'shoppingcart'});
+User.belongsToMany(Product, {through: 'shoppingcart'});
+Product.belongsToMany(User, {through: 'shoppingcart'});
 
-user.belongsToMany(product, {through: 'favorites'});
-product.belongsToMany(user, {through: 'favorites'});
+User.belongsToMany(Product, {through: 'favorites'});
+Product.belongsToMany(User, {through: 'favorites'});
 
-product.belongsToMany(category, {through: 'Product_Category'});
-category.belongsToMany(product, {through: 'Product_Category'});
+Product.belongsToMany(Category, {through: 'Product_Category'});
+Category.belongsToMany(Product, {through: 'Product_Category'});
 
-user.belongsToMany(product, { through: order });
-product.belongsToMany(user, {through: order});
+User.belongsToMany(Product, { through: Order });
+Product.belongsToMany(User, {through: Order});
 
-user.belongsToMany(product, { through: qualification });
-product.belongsToMany(user, {through: qualification});
+User.belongsToMany(Product, { through: Qualification });
+Product.belongsToMany(User, {through: Qualification});
 
 module.exports = {
   ...sequelize.models, 

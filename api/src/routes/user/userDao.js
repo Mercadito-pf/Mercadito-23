@@ -1,4 +1,4 @@
-const { user } = require("../../db.js");
+const { User } = require("../../db.js");
 const { findName } = require('../place/placeDao.js');
 /**
  * @author Nicolas Alejandro Suarez
@@ -8,7 +8,7 @@ const { findName } = require('../place/placeDao.js');
 let createUser = async(name, lastname, password, dni, profile_picture, email, phone, typeUser, address, placeName) =>{
     try {
         let place = await findName(placeName);
-        return await user.create({
+        return await User.create({
             name: eliminarDiacriticos(name).toUpperCase(),
             lastname: eliminarDiacriticos(lastname).toUpperCase(),
             password: password,
@@ -26,13 +26,12 @@ let createUser = async(name, lastname, password, dni, profile_picture, email, ph
 }
 
 /**
- * find user per name
-
+ * find User per name
  */
 
  let searchUser = async(name) =>{
     try {
-        return await user.findOne({
+        return await User.findOne({
             where: {
                 name: eliminarDiacriticos(name).toUpperCase(),
             } 

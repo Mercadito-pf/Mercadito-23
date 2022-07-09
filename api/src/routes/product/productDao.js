@@ -1,4 +1,4 @@
-const { product, category, size, img } = require("../../db.js");
+const { Product, category, size, img } = require("../../db.js");
 const { searchUser } = require('../user/userDao.js')
 const { createImg } = require('../img/imgDao.js');
 const { findName } = require('../category/categoryDao.js');
@@ -18,7 +18,7 @@ let createProduct = async(name, description, unit_price, state, QUANTITY_STOCK, 
     let resp = await Promise.all(imgMap);
     let userID = await searchUser(user);
 
-    const newProduct = await product.create({
+    const newProduct = await Product.create({
         name: eliminarDiacriticos(name).toUpperCase(),
         description: eliminarDiacriticos(description).toUpperCase(),
         unit_price: unit_price,
@@ -47,7 +47,7 @@ let createProduct = async(name, description, unit_price, state, QUANTITY_STOCK, 
 
 let getAllProduct = async() => {
     try {
-        return await product.findAll({
+        return await Product.findAll({
             include: [{
                 model: category,
                 attributes: ["name"],

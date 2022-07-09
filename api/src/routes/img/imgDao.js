@@ -1,4 +1,4 @@
-const { img } = require("../../db.js");
+const { Img } = require("../../db.js");
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -7,7 +7,7 @@ const { img } = require("../../db.js");
 
 let createImg = async(path) =>{
     try{
-        return img.create({
+        return Img.create({
             path: path,
         })
      } catch (error) {
