@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { update_url } from '../../redux/actions'
+import { update_querys_filter, update_url } from '../../redux/actions'
 
 export default function SearchBar() {
 
@@ -16,7 +16,8 @@ export default function SearchBar() {
     // al dar enter se despacha la accion para modificar el estado global [url]
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(update_url(`http://localhost:3001/products?name=${input}`))
+        dispatch(update_querys_filter(`name=${input}`))
+        dispatch(update_url())
     }
     return (
         <form onSubmit={handleSubmit}>

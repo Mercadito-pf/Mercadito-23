@@ -1,23 +1,52 @@
-import { SET_CURRENT_PAGE, UPDATE_URL } from "./actionsTypes"
+import { GET_ALL_PRODUCTS, UPDATE_CURRENT_PAGE, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_URL } from "./actionsTypes"
 
-// se obtiene la url que debe enviar componente que despache esta accion y se pasa como payload
-// para modificar el estado global url
-function update_url(url) {
+function update_querys_filter(query) {
     return{
-        type: UPDATE_URL,
-        payload: url
+        type: UPDATE_QUERYS_FILTER,
+        payload: query
+    }
+}
+function update_querys_order(query) {
+    return{
+        type: UPDATE_QUERYS_ORDER,
+        payload: query
     }
 }
 
-function setCurrentPage(page){
+function update_querys_paginate(query) {
     return{
-        type:SET_CURRENT_PAGE,
+        type: UPDATE_QUERYS_PAGINATE,
+        payload: query
+    }
+}
+
+function update_url(){
+    return{
+        type:UPDATE_URL
+    }
+}
+
+function update_current_page(page){
+    return{
+        type:UPDATE_CURRENT_PAGE,
         payload:page
+
     }
 }
+function get_all_products(){
+    return{
+        type:GET_ALL_PRODUCTS
+    }
+}
+
+
 
 // exporto todas las funciones
 export {
     update_url,
-    setCurrentPage
+    update_querys_filter,
+    update_querys_order,
+    update_querys_paginate,
+    update_current_page,
+    get_all_products
 }
