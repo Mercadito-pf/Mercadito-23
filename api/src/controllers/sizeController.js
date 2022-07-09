@@ -10,7 +10,6 @@ exports.crearSize = async (req, res) => {
 
 exports.obtenerSize = async (req, res) => {
   let { size } = req.query;
-  console.log(size);
   let find = await findName(size);
   return find
     ? res.status(200).send(find)

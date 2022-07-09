@@ -1,4 +1,4 @@
-const { Product, category, Size, Img } = require("../db.js");
+const { Product, Category, Size, Img } = require("../db.js");
 const { searchUser } = require("./userHelper");
 const { createImg } = require("./imgHelper");
 const { findName } = require("./categoryHelper");
@@ -60,7 +60,7 @@ let getAllProduct = async () => {
     return await Product.findAll({
       include: [
         {
-          model: category,
+          model: Category,
           attributes: ["name"],
           through: {
             attributes: [],
