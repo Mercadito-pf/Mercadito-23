@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
  * @param {} sequelize 
  */
 module.exports = (sequelize) => {
-  sequelize.define('comment', {
+  sequelize.define('Comment', {
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,

@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
  * @param {} sequelize 
  */
 module.exports = (sequelize) => {
-  sequelize.define('qualification', {
+  sequelize.define('Qualification', {
     qualification: {
         type: DataTypes.INTEGER,
         allowNull: false,
