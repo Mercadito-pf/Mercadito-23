@@ -1,19 +1,22 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-//const videogamesRouter = require('./videoGames');
-//const genresRouter = require('./genres');
-//const platformsRouter = require('./platforms');
+const placesRouter = require('./place/place.js');
+const sizesRouter = require('./size/size.js');
+const userRouter = require('./user/user.js');
+const categoryRouter = require("./category/category.js")
+const productRouter = require('./product/product.js');
 
+/**
+ * @author Nicolas Alejandro Suarez
+ * @author Andres Guerrero
+ * @param {} sequelize 
+ */
 const router = Router();
-//rutas generales
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-//router.use('/videogames', videogamesRouter);
-//router.use('/genres', genresRouter);
-//router.use('/platforms', platformsRouter);
-//hago el pedido de video games ocomo genero
 
+router.use('/places', placesRouter);
+router.use('/sizes', sizesRouter);
+router.use('/users', userRouter);
+router.use('/categories', categoryRouter);
+router.use('/products', productRouter)
 
 
 module.exports = router;

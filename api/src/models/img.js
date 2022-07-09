@@ -1,20 +1,24 @@
 const { DataTypes } = require('sequelize');
+/**
+ * @author Nicolas Alejandro Suarez
+ * @param {} sequelize 
+ */
 module.exports = (sequelize) => {
-  sequelize.define('type_place', {
+  sequelize.define('img', {
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    type: {
-        type: DataTypes.ENUM('STATE', 'CITY', 'COUNTRY'),
-        allowNull: false,
-        validate: {
-          notNull: true, 
-        }
+    path: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true, 
+      }
     }
   }, {timeStamps: false,
-    createdAt: false,
+    createdAt: false, 
     updatedAt: false});
 };
