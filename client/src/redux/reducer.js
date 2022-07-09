@@ -1,9 +1,9 @@
-import { SET_CURRENT_PAGE, UPDATE_CURRENT_PAGE, UPDATE_QUERYS, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_PAGINATE, UPDATE_QUERYS_SEARCH, UPDATE_URL } from "./actionsTypes";
+import { GET_ALL_PRODUCTS, SET_CURRENT_PAGE, UPDATE_CURRENT_PAGE, UPDATE_QUERYS, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_QUERYS_SEARCH, UPDATE_URL } from "./actionsTypes";
 
 let initState={
     url: "",
     currentPage:0,
-    querys:[`_start=${0}&_limit=${8}`]
+    querys:[`_start=${0}&_limit=${16}`]
 }
 
 function reducer(state = initState, action){
@@ -26,7 +26,20 @@ function reducer(state = initState, action){
         case UPDATE_QUERYS_FILTER:
             return{
                 ...state,
-                querys: [`_start=${0}&_limit=${8}`, action.payload],
+                querys: [`_start=${0}&_limit=${16}`, action.payload],
+                currentPage:1
+            }
+
+        case UPDATE_QUERYS_ORDER:
+            let querysMap =  state.querys.map((q, i) => {
+                if (i > 0 && !q.includes("sort")) {
+                    return q
+                }
+                return `_start=${0}&_limit=${16}`
+            })
+            return{
+                ...state,
+                querys: [...querysMap, action.payload],
                 currentPage:1
             }
         case UPDATE_URL:
@@ -39,6 +52,11 @@ function reducer(state = initState, action){
             return{
                 ...state,
                 currentPage: action.payload
+            }
+        case GET_ALL_PRODUCTS:
+            return{
+                ...state,
+                url: `http://localhost:3001/products?_start=${0}&_limit=${16}`
             }
     
         default:

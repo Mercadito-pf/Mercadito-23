@@ -1,8 +1,14 @@
-import { UPDATE_CURRENT_PAGE, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_PAGINATE, UPDATE_URL } from "./actionsTypes"
+import { GET_ALL_PRODUCTS, UPDATE_CURRENT_PAGE, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_URL } from "./actionsTypes"
 
 function update_querys_filter(query) {
     return{
         type: UPDATE_QUERYS_FILTER,
+        payload: query
+    }
+}
+function update_querys_order(query) {
+    return{
+        type: UPDATE_QUERYS_ORDER,
         payload: query
     }
 }
@@ -27,13 +33,20 @@ function update_current_page(page){
 
     }
 }
+function get_all_products(){
+    return{
+        type:GET_ALL_PRODUCTS
+    }
+}
+
 
 
 // exporto todas las funciones
 export {
     update_url,
     update_querys_filter,
+    update_querys_order,
     update_querys_paginate,
-    update_current_page
-
+    update_current_page,
+    get_all_products
 }

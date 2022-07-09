@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { update_current_page, update_querys_filter, update_querys_paginate, update_url } from "../redux/actions";
+import { get_all_products, update_current_page, update_querys_filter, update_querys_paginate, update_url } from "../redux/actions";
 import Paginate from "./pagination/Paginate";
 // import s from './home.module.css'
 
 
 export default function Home() {
+
+    let[viewAllProducts, setViewAllProducts] = useState(false)
     let [products, setProducts] = useState([])
     let [productsAll, setProductsAll] = useState([])
     let [minLimit, setMinLimit] = useState(1)
     let [maxLimit, setMaxLimit] = useState(6)
-    // let [currentPage, setCurrentPage] = useState(1)
+    const [productsPerpage, setproductsPerpage] = useState(8)
 
     let dispatch = useDispatch()
 
@@ -28,12 +30,12 @@ export default function Home() {
                 setProducts(res)
                 return
             }
-            let res = await fetch(`http://localhost:3001/products?_start=${0}&_limit=${8}`).then(res => res.json())
+            let res = await fetch(`http://localhost:3001/products?_start=${0}&_limit=${productsPerpage}`).then(res => res.json())
             setProducts(res)
 
         })()
 
-    }, [url])
+    }, [url, productsPerpage])
 
     useEffect(() => {
 
@@ -47,13 +49,13 @@ export default function Home() {
 
 
 
-    const products_per_page = 8
+    
     const totalProducts = productsAll.length
-    const totalPages = Math.ceil(totalProducts / products_per_page)
-    const end = currentPage * products_per_page
-    const start = end - products_per_page
+    const totalPages = Math.ceil(totalProducts / productsPerpage)
+    const end = currentPage * productsPerpage
+    const start = end - productsPerpage
 
-    console.log(start)
+    // console.log(start)
 
 
     function handleClick(page) {
@@ -62,7 +64,7 @@ export default function Home() {
                 setMinLimit(1)
                 setMaxLimit(6)
                 dispatch(update_current_page(page))
-                dispatch(update_querys_paginate(`_start=${start}&_limit=${8}`))
+                dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
                 dispatch(update_url())
                 return
             }
@@ -70,7 +72,7 @@ export default function Home() {
                 setMinLimit(totalPages - 6)
                 setMaxLimit(totalPages - 1)
                 dispatch(update_current_page(page))
-                dispatch(update_querys_paginate(`_start=${start}&_limit=${8}`))
+                dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
                 dispatch(update_url())
                 return
             }
@@ -96,13 +98,19 @@ export default function Home() {
         }
 
         dispatch(update_current_page(page))
-        dispatch(update_querys_paginate(`_start=${start}&_limit=${8}`))
+        dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
         dispatch(update_url())
 
     }
 
 
-
+    function viewAll(e){
+        e.preventDefault()
+        setViewAllProducts(true)
+        dispatch(update_current_page(1))
+        dispatch(get_all_products())
+        setproductsPerpage(16)
+    }
 
     return (
         <div>
@@ -139,7 +147,11 @@ export default function Home() {
             }
             <br />
             <br />
-            {currentPage > 0 &&
+            {
+                 !viewAllProducts && <a onClick={viewAll} href="!#">Ver todos los productos</a>
+            }
+           
+            {viewAllProducts || currentPage>0?
             <div className="flex">
                 <Paginate
                     totalPages={totalPages}
@@ -147,7 +159,7 @@ export default function Home() {
                     maxLimit={maxLimit}
                     handleClick={handleClick}
                 />
-            </div>}
+            </div>:null}
             <h1>footer</h1>
         </div>
     )
