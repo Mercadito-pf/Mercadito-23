@@ -1,4 +1,8 @@
 const { DataTypes } = require('sequelize');
+/**
+ * @author Nicolas Alejandro Suarez
+ * @param {} sequelize 
+ */
 module.exports = (sequelize) => {
   sequelize.define('product', {
     id:{
@@ -41,6 +45,10 @@ module.exports = (sequelize) => {
         validate: {
           notNull: true, 
         }
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   }, {timeStamps: false,
     createdAt: false, // don't add createdAt attribute DECIMAL(20, 2)

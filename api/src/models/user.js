@@ -1,4 +1,8 @@
 const { DataTypes } = require('sequelize');
+/**
+ * @author Nicolas Alejandro Suarez
+ * @param {} sequelize 
+ */
 module.exports = (sequelize) => {
   sequelize.define('user', {
     id:{
@@ -69,6 +73,10 @@ module.exports = (sequelize) => {
       validate: {
         notNull: true, 
       }
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   }, {timeStamps: false,
     createdAt: false,

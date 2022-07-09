@@ -4,14 +4,14 @@ const { DataTypes } = require('sequelize');
  * @param {} sequelize 
  */
 module.exports = (sequelize) => {
-  sequelize.define('place', {
+  sequelize.define('size', {
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    size: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -19,6 +19,6 @@ module.exports = (sequelize) => {
       }
     }
   }, {timeStamps: false,
-    createdAt: false, // don't add createdAt attribute
+    createdAt: false, 
     updatedAt: false});
 };
