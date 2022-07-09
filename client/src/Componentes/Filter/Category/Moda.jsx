@@ -3,42 +3,45 @@ import { useDispatch } from 'react-redux'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Moda() {
-    let [moda, setModa]= useState([])
+    let [moda, setModa] = useState([])
 
     let dispatch = useDispatch()
-    useEffect(() =>{
-        (async function(){
+    useEffect(() => {
+        // se obtienen las categorias de productos
+        (async function () {
             let res = await fetch('http://localhost:3001/categories').then(res => res.json())
             // console.log(res[0].tecnologia[0].name)
             setModa(res)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
-    
-    
-   function handleClick(e, c){
-    e.preventDefault()
-    dispatch(update_querys_filter(`category=moda: ${c}`))
-    dispatch(update_url())
-   }
-    
-  return (
-    <div>
-    <a href="!#">Moda</a>
-    <ul>
-        
-       {
-        
-        moda.length && moda[3].moda.map((c, i)=> {
-            return(
-                <li key={i}>
-                    <a onClick={(e) => handleClick(e, c.name)} href="!#">{c.name.replaceAll("_", " ")}</a>
-                </li>
-            )
-        })
-       }
-    </ul>
-    </div>
-   
-  )
+
+    //  modifica el estado global [url] para que home haga una nueva peticion a la url del estado
+    // global
+    function handleClick(e, c) {
+        e.preventDefault()
+        dispatch(update_querys_filter(`category=moda: ${c}`))
+        dispatch(update_url())
+    }
+
+    return (
+        <div>
+            <a href="!#">Moda</a>
+            <ul>
+
+                {
+                    // el estado local [moda] tiene en la posicion 3 un objeto asi:
+                    // {moda:[tipos de moda]} 
+                    moda.length && moda[3].moda.map((c, i) => {
+                        return (
+                            <li key={i}>
+                                <a onClick={(e) => handleClick(e, c.name)} href="!#">{c.name.replaceAll("_", " ")}</a>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+
+    )
 }

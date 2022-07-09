@@ -7,6 +7,8 @@ export default function Price() {
     let dispatch = useDispatch()
      let orders = ["minimo", "maximo"]
 
+      //  modifica el estado global [url] para que home haga una nueva peticion a la url del estado
+    // global
      function handleClick(e, order){
         e.preventDefault()
         if (order === "minimo") {

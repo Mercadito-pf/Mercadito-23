@@ -6,6 +6,8 @@ export default function Alphabet() {
   let dispatch = useDispatch()
      let orders = ["ascendente", "descendente"]
 
+    //  modifica el estado global [url] para que home haga una nueva peticion a la url del estado
+    // global
      function handleClick(e, order){
         e.preventDefault()
         if (order === "ascendente") {

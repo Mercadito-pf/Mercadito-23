@@ -58,6 +58,7 @@ export default function Home() {
     // console.log(start)
 
 
+    // controla los datos que los datos que se renderizan en cada pagina
     function handleClick(page) {
         if (totalPages > maxLimit) {
             if (page > 0 && page < 4) {
@@ -103,7 +104,7 @@ export default function Home() {
 
     }
 
-
+    // hace que se mustren todos los productos en divididos en paginas de 16 productos
     function viewAll(e){
         e.preventDefault()
         setViewAllProducts(true)
@@ -148,6 +149,7 @@ export default function Home() {
             <br />
             <br />
             {
+                // opcion para ver todos los productos
                  !url.length && <a onClick={viewAll} href="!#">Ver todos los productos</a>
             }
            
