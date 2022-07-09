@@ -148,7 +148,7 @@ export default function Home() {
             <br />
             <br />
             {
-                 !viewAllProducts && <a onClick={viewAll} href="!#">Ver todos los productos</a>
+                 !url.length && <a onClick={viewAll} href="!#">Ver todos los productos</a>
             }
            
             {viewAllProducts || currentPage>0?
