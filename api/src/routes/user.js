@@ -1,23 +1,27 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const {createUser} = require('../helpers/userHelper'); 
 const userController = require("../controllers/userController")
+const Auth = require("../middleware/Auth")
 
 /**
- * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @author Andres 
  */
-/**
- * route to post a user
- */
-router.post('/', userController.crearUsuario);
 
 /**
- * route to get a user
+ * Crear un nuevo usuario
  */
-router.get('/', async (req, res) =>{
-    //crear get user
-});
+router.post('/signup', userController.signUp);
+
+/**
+ *  Permitir iniciar sesión
+ */
+router.post('/signin', userController.signIn);
+
+/**
+ * Permite traer obtener el usuario 
+ */
+router.get("/",Auth,userController.getUser)
+
 
 module.exports = router;
