@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Moul&display=swap');
+
+.nav {
+    background: #fff7f2;
+    padding: 0px 15px;
+}
+
+.logo {
+    align-content: center;
+    align-items: center;
+    text-align: justify;
+    list-style: none;
+    padding: 10px 25px 20px 25px;
+    flex: wrap;
+}
+.logo h1 {
+    font-family: 'Moul', cursive;
+    font-size: 2.2rem;
+    font-weight: 170;
+    flex: flex;
+}
+
+.logo h5 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -15px;
+    margin-left: 10px;
+
+}
+
+.contentButton {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.item {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    list-style: none;
+    padding: 10px;
+    
+}
+
+.item a:hover,
+.item a:hover::after {
+    color: rgb(219, 105, 43);
+}
+.item a {
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-items: center;
+}
+
+.item a img {
+    height: 25px;
+    margin: -5px 5px;
+}
+
+.categories {
+    width: 100%;
+    background: #ffceb0;
+    padding: 0px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categoria {
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
+
+.contentCategory {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+//para los subitems de categorias:
+// width: 100%;
+    // text-align: center;
+    // display: none;
+    // order: 3;

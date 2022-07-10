@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { update_querys_filter, update_url } from '../../redux/actions'
+import searchButton from '../icons/search.png'
+import './SearchBar.scss'
 
 export default function SearchBar() {
 
@@ -20,8 +22,13 @@ export default function SearchBar() {
         dispatch(update_url())
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <input onChange={handleChange} value={input} type="text" placeholder='Busque sus productos favoritos...' />
-        </form>
+        <div className='containerBar'>
+            <form onSubmit={handleSubmit} className='container'>
+                <input onChange={handleChange} value={input} className='input' type="text" placeholder='Busque sus productos favoritos...' />
+            </form>
+            <button type='submit' value=''>
+                    <img src={searchButton} alt=''/>
+            </button>
+        </div>
     )
 }
