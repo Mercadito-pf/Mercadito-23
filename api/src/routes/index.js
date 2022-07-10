@@ -3,7 +3,8 @@ const placesRouter = require('./place.js');
 const sizesRouter = require('./size.js');
 const userRouter = require('./user.js');
 const categoryRouter = require("./category.js")
-const productRouter = require('./product.js');
+const productRouter = require('./product.js')
+const favoriteRouter = require("./favorite")
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -17,5 +18,6 @@ router.use('/sizes', sizesRouter);
 router.use('/users', userRouter);
 router.use('/categories', categoryRouter);
 router.use('/products', productRouter)
+router.use("/favorite",favoriteRouter)
 
 module.exports = router;

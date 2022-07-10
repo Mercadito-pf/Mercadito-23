@@ -1,4 +1,4 @@
-const { Product, Category, Size, Img } = require("../db.js");
+const { Product, Category, Size, Img, User } = require("../db.js");
 const { searchUser } = require("./userHelper");
 const { createImg } = require("./imgHelper");
 const { findName } = require("./categoryHelper");
@@ -121,6 +121,36 @@ let getAllProductName = async (name) => {
   }
 };
 
+let getProduct = async (id) => {
+  try {
+    return await Product.findOne({
+      where: { id },
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: Img,
+          attributes: ["path"],
+        },
+        {
+          model: Size,
+          attributes: ["size"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+  } catch (error) {
+    return error.message;
+  }
+};
+
 function eliminarDiacriticos(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -129,4 +159,5 @@ module.exports = {
   createProduct,
   getAllProduct,
   getAllProductName,
+  getProduct,
 };
