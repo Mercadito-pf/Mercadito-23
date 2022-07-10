@@ -42,7 +42,7 @@ exports.signUp = async (req, res) => {
   });
 
   // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
-  let token = jwt.sign({ id: newUser.id }, process.env.SECRETE, {
+  let token = jwt.sign({ id: newUser.id }, process.env.SECRET, {
     expiresIn: "7d",
   });
 
@@ -68,11 +68,15 @@ exports.signIn = async(req,res)=>{
   // verificar la contraseña
   if (await bcrypt.compare(password, userLogin.password)) {
      // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
-    let token = jwt.sign({ id:userLogin.id }, process.env.SECRETE, {
+    let token = jwt.sign({ id:userLogin.id }, process.env.SECRET, {
       expiresIn: "7d",
     });
     res.json({ user: userLogin, token });
   } else {
     res.status(404).json({ msg: "Credenciales inválidas" });
   }
+}
+
+exports.getUser = (req,res)=>{
+  console.log("aqui")  
 }
