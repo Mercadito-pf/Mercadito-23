@@ -58,8 +58,8 @@ Product.belongsTo(User);
 User.belongsToMany(Product, {through: 'shoppingcart'});
 Product.belongsToMany(User, {through: 'shoppingcart'});
 
-User.belongsToMany(Product, {through: 'favorites'});
-Product.belongsToMany(User, {through: 'favorites'});
+User.belongsToMany(Product, {through: 'Favorites'});
+Product.belongsToMany(User, {through: 'Favorites'});
 
 Product.belongsToMany(Category, {through: 'Product_Category'});
 Category.belongsToMany(Product, {through: 'Product_Category'});
