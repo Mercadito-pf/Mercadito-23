@@ -29,7 +29,7 @@ let createUser = async (
       phone: phone,
       typeUser: typeUser,
       address: address,
-      placeId: place.dataValues.id,
+      PlaceId: place.dataValues.id,
     });
   } catch (error) {
     return error;
