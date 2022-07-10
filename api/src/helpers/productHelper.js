@@ -1,4 +1,4 @@
-const { Product, Category, Size, Img } = require("../db.js");
+const { Product, Category, Size, Img, User } = require("../db.js");
 const { searchUser } = require("./userHelper");
 const { createImg } = require("./imgHelper");
 const { findName } = require("./categoryHelper");
@@ -159,5 +159,5 @@ module.exports = {
   createProduct,
   getAllProduct,
   getAllProductName,
-  getProduct
+  getProduct,
 };

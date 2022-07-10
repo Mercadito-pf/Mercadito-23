@@ -8,9 +8,6 @@ const Auth = require("../middleware/Auth");
  *  @author Andres
  */
 
-// Obtener Favoritos
-router.post("/", Auth, favoriteController.obtenerFavoritos);
-
 // Añadir a favoritos
 router.post("/new/:id", Auth, favoriteController.añadirFavorito);
 

@@ -70,7 +70,7 @@ User.belongsToMany(Product, { through: "shoppingcart" });
 Product.belongsToMany(User, { through: "shoppingcart" });
 
 User.belongsToMany(Product, { as: "favorite", through: "Favorites" });
-Product.belongsToMany(User, { as: "favorite", through: "Favorites" });
+Product.belongsToMany(User, { through: "Favorites" });
 
 Product.belongsToMany(Category, { through: "Product_Category" });
 Category.belongsToMany(Product, { through: "Product_Category" });

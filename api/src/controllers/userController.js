@@ -1,4 +1,4 @@
-const { User, Place } = require("../db");
+const { User, Place, Product, Category, Size, Img } = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -91,8 +91,37 @@ exports.getUser = async (req, res) => {
   try {
     const user = await User.findOne({
       where: { id: req.usuario.id },
-      include: "favorite",
+      include: [
+        {
+          model: Product,
+          as: "favorite",
+          through: {
+            attributes: [],
+          },
+          include: [
+            {
+              model: Category,
+              attributes: ["name"],
+              through: {
+                attributes: [],
+              },
+            },
+            {
+              model: Img,
+              attributes: ["path"],
+            },
+            {
+              model: Size,
+              attributes: ["size"],
+              through: {
+                attributes: [],
+              },
+            },
+          ],
+        },
+      ],
     });
+    console.log(user);
     res.json(user);
   } catch (err) {
     console.log(err);
