@@ -91,7 +91,7 @@
 //      "categories":function(){
 //        const categories = ["tecnologia", "electrodomesticos", "muebles_y_hogar", "moda"]
    
-//        const tecnologia = ["celulares", "laptops_y_computadores", "consolas_y_videojuegos", "audio_y_video"]
+//        const tecnologia = ["celulares", "laptops_y_computadores", "consolas_de_videojuegos", "audio_y_video"]
    
 //        const electrodomesticos=["refrigeracion", "lavado", "cocina", "limpieza"]
    
