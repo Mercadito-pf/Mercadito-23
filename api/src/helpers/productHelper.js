@@ -3,6 +3,7 @@ const { searchUser } = require("./userHelper");
 const { createImg } = require("./imgHelper");
 const { findName } = require("./categoryHelper");
 const { findName: findSize } = require("./sizeHelper");
+const { Op } = require("sequelize");
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -34,7 +35,7 @@ let createProduct = async (
       unit_price: unit_price,
       state: state,
       QUANTITY_STOCK: QUANTITY_STOCK,
-      userId: userID.dataValues.id,
+      UserId: userID.dataValues.id,
     });
 
     resp.map(async (e) => await e.setProduct(newProduct));
@@ -84,6 +85,42 @@ let getAllProduct = async () => {
   }
 };
 
+/**
+ * @author Andres
+ * Método para filtrar por name los productos
+ * @param {} sequelize
+ */
+
+let getAllProductName = async (name) => {
+  try {
+    return await Product.findAll({
+      where: { name: { [Op.iLike]: `%${name}%` } },
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: Img,
+          attributes: ["path"],
+        },
+        {
+          model: Size,
+          attributes: ["size"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+  } catch (error) {
+    return error.message;
+  }
+};
+
 function eliminarDiacriticos(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -91,4 +128,5 @@ function eliminarDiacriticos(texto) {
 module.exports = {
   createProduct,
   getAllProduct,
+  getAllProductName,
 };
