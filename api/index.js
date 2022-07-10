@@ -5,7 +5,7 @@ const { Place } = require("./src/db");
 /**
  * @author Nicolas Alejandro Suarez
  */
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   let places = await Place.findAll();
   if (!places) {
     await chargue();
