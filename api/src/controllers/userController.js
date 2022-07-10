@@ -18,7 +18,7 @@ exports.signUp = async (req, res) => {
   } = req.body;
 
   try {
-    let user = await User.findOne({ where: { email } });
+    let user = await User.findOne({ where: { email }, include: "favorite" });
 
     // Se verifica la existencia de un email ya registrado
     if (user) {
@@ -64,10 +64,11 @@ exports.signIn = async (req, res) => {
     // verificar de la existencia del usuario
     let userLogin = await User.findOne({
       where: { email },
+      include: "favorite",
     });
 
     if (!userLogin) {
-      res.status(404).json({ msg: "Credenciales inválidas" });
+      return res.status(404).json({ msg: "Credenciales inválidas" });
     }
 
     // verificar la contraseña
@@ -76,9 +77,9 @@ exports.signIn = async (req, res) => {
       let token = jwt.sign({ id: userLogin.id }, process.env.SECRET, {
         expiresIn: "7d",
       });
-      res.json({ user: userLogin, token });
+      return res.json({ user: userLogin, token });
     } else {
-      res.status(404).json({ msg: "Credenciales inválidas" });
+      return res.status(404).json({ msg: "Credenciales inválidas" });
     }
   } catch (err) {
     console.log(err);
@@ -88,7 +89,10 @@ exports.signIn = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.usuario.id } });
+    const user = await User.findOne({
+      where: { id: req.usuario.id },
+      include: "favorite",
+    });
     res.json(user);
   } catch (err) {
     console.log(err);

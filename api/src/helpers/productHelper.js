@@ -121,6 +121,36 @@ let getAllProductName = async (name) => {
   }
 };
 
+let getProduct = async (id) => {
+  try {
+    return await Product.findOne({
+      where: { id },
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: Img,
+          attributes: ["path"],
+        },
+        {
+          model: Size,
+          attributes: ["size"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+  } catch (error) {
+    return error.message;
+  }
+};
+
 function eliminarDiacriticos(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -129,4 +159,5 @@ module.exports = {
   createProduct,
   getAllProduct,
   getAllProductName,
+  getProduct
 };

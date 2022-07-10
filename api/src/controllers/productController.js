@@ -2,7 +2,7 @@ const {
   createProduct,
   getAllProduct,
   getAllProductName,
-  getAllProductCategory,
+  getProduct,
 } = require("../helpers/productHelper");
 const { Product, Category, Img, Size } = require("../db");
 
@@ -69,29 +69,7 @@ exports.obtenerProducto = async (req, res) => {
   try {
     const { id } = req.params;
 
-    let product = await Product.findOne({
-      where: { id },
-      include: [
-        {
-          model: Category,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        },
-        {
-          model: Img,
-          attributes: ["path"],
-        },
-        {
-          model: Size,
-          attributes: ["size"],
-          through: {
-            attributes: [],
-          },
-        },
-      ],
-    });
+    let product = await getProduct(id);
 
     if (!product) {
       return res.status(404).send({ msg: "No se encontró ningún producto" });
