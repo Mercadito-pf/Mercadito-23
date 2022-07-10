@@ -11,7 +11,7 @@ const userController = require("../controllers/userController")
 /**
  * route to post a user
  */
-router.post('/', userController.crearUsuario);
+router.post('/signup', userController.crearUsuario);
 
 /**
  * route to get a user
