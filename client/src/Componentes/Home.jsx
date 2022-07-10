@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_all_products, update_current_page, update_querys_filter, update_querys_paginate, update_url } from "../redux/actions";
 import Paginate from "./pagination/Paginate";
+import Slider from "./Slider/Slider";
+import Footer from "./Footer/Footer";
 // import s from './home.module.css'
 
 
@@ -116,8 +118,7 @@ export default function Home() {
     return (
         <div>
             <br />
-            <h1>Slider</h1>
-
+            <Slider/>
             <hr />
             <br />
             {
@@ -162,7 +163,7 @@ export default function Home() {
                     handleClick={handleClick}
                 />
             </div>:null}
-            <h1>footer</h1>
+            <Footer/>
         </div>
     )
 }
