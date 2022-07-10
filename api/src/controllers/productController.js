@@ -36,25 +36,30 @@ exports.crearProducto = async (req, res) => {
 // Obtener todos los productos
 
 exports.obtenerProductos = async (req, res) => {
-  const { name } = req.query;
+  try {
+    const { name } = req.query;
 
-  let products = "";
+    let products = "";
 
-  if (name) {
-    products = await getAllProductName(name);
+    if (name) {
+      products = await getAllProductName(name);
+
+      if (!products) {
+        res.status(404).send({ msg: "No se encontró ningún producto" });
+      }
+
+      return res.status(200).send(products);
+    }
+
+    products = await getAllProduct();
 
     if (!products) {
       res.status(404).send({ msg: "No se encontró ningún producto" });
     }
 
-    return res.status(200).send(products);
+    res.status(200).send(products);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: "Algo ha ocurrido" });
   }
-
-  products = await getAllProduct();
-
-  if (!products) {
-    res.status(404).send({ msg: "No se encontró ningún producto" });
-  }
-
-  res.status(200).send(products);
 };

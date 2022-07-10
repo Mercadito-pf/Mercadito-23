@@ -12,9 +12,14 @@ exports.crearCategoria = async (req, res) => {
 
 // Obtiene todas las categorias
 exports.obtenerCategorias = async (req, res) => {
-  let response = await findCategories();
-  if (!response) {
-    res.status(400).send({ msg: response });
+  try {
+    let response = await findCategories();
+    if (!response) {
+      res.status(400).send({ msg: response });
+    }
+    res.status(200).send(response);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: "Algo ha ocurrido" });
   }
-  res.status(200).send(response);
 };
