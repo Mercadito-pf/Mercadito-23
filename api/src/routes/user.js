@@ -5,19 +5,17 @@ const {createUser} = require('../helpers/userHelper');
 const userController = require("../controllers/userController")
 
 /**
- * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @author Andres 
  */
-/**
- * route to post a user
- */
-router.post('/signup', userController.crearUsuario);
 
 /**
- * route to get a user
+ * Crear un nuevo usuario
  */
-router.get('/', async (req, res) =>{
-    //crear get user
-});
+router.post('/signup', userController.signUp);
+
+/**
+ *  Permitir iniciar sesión
+ */
+router.post('/signin', userController.signIn);
 
 module.exports = router;

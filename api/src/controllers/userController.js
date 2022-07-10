@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Permite el registro de nuevos usuarios
-exports.crearUsuario = async (req, res) => {
+exports.signUp = async (req, res) => {
   const {
     name,
     lastname,
@@ -52,4 +52,27 @@ exports.crearUsuario = async (req, res) => {
   });
 };
 
+// Permite la autenticación de usuarios
+exports.signIn = async(req,res)=>{
+  const { email, password } = req.body;
 
+  // verificar de la existencia del usuario
+  let userLogin = await User.findOne({
+    where: {email},
+  });
+
+  if (!userLogin) {
+    res.status(404).json({ msg: "Credenciales inválidas" });
+  }
+
+  // verificar la contraseña
+  if (await bcrypt.compare(password, userLogin.password)) {
+     // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
+    let token = jwt.sign({ id:userLogin.id }, process.env.SECRETE, {
+      expiresIn: "7d",
+    });
+    res.json({ user: userLogin, token });
+  } else {
+    res.status(404).json({ msg: "Credenciales inválidas" });
+  }
+}
