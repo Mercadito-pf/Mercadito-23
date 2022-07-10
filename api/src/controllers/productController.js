@@ -4,6 +4,7 @@ const {
   getAllProductName,
   getAllProductCategory,
 } = require("../helpers/productHelper");
+const { Product, Category, Img, Size } = require("../db");
 
 exports.crearProducto = async (req, res) => {
   const {
@@ -58,6 +59,45 @@ exports.obtenerProductos = async (req, res) => {
     }
 
     res.status(200).send(products);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: "Algo ha ocurrido" });
+  }
+};
+
+exports.obtenerProducto = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let product = await Product.findOne({
+      where: { id },
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: Img,
+          attributes: ["path"],
+        },
+        {
+          model: Size,
+          attributes: ["size"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+
+    if (!product) {
+      return res.status(404).send({ msg: "No se encontró ningún producto" });
+    }
+
+    res.status(200).send(product);
   } catch (err) {
     console.log(err);
     res.status(500).send({ error: "Algo ha ocurrido" });
