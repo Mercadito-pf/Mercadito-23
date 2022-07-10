@@ -14,7 +14,7 @@ const Auth = async (req, res, next) => {
       req.usuario = payload;
       next();
     } catch (err) {
-      log.error(err);
+      console.log(err)
       res.status(403).send({ message: "Sin autorización" });
     }
 };

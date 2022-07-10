@@ -77,6 +77,11 @@ exports.signIn = async(req,res)=>{
   }
 }
 
-exports.getUser = (req,res)=>{
-  console.log("aqui")  
+exports.getUser = async (req,res)=>{
+  try{  
+    const user = await User.findOne({where:{id:req.usuario.id}})
+    res.json(user)
+  }catch(err){
+    res.status(500).send({ error: "Algo ha ocurrido" });
+  }
 }
