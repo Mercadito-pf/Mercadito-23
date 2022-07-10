@@ -17,4 +17,9 @@ router.post("/", productController.crearProducto);
  */
 router.get("/", productController.obtenerProductos);
 
+/**
+ * @author Andres
+ */
+ router.get("/:id", productController.obtenerProducto);
+
 module.exports = router;
