@@ -7,7 +7,6 @@
 //             "price":function(){
 //                 return Math.floor(Math.random() * (100 - 0) + 0)
 //             },
-//                "image": "https://www.innovaconsulting.es/wp-content/uploads/2019/06/visual-studio-code-1280x640.jpg",
 //            "stock": function(){
 //             return Math.floor(Math.random() * (100 - 0) + 0)
 //         },
