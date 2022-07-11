@@ -5,6 +5,7 @@ import Paginate from "./pagination/Paginate";
 import Slider from "./Slider/Slider";
 import Footer from "./Footer/Footer";
 // import s from './home.module.css'
+import Cards from "./Card";
 
 
 export default function Home() {
@@ -124,27 +125,9 @@ export default function Home() {
             {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
-                products && products.map(p => {
-
-
-                    // console.log(k)
-                    return (
-                        <>
-                            <img src={p.image} alt={p.name} />
-                            <p>Ventas {p.sales}</p>
-                            <h3>{p.name}</h3>
-                            <p>{p.seller}</p>
-                            <p>Precio: ${p.price}</p>
-                            <p>categoria:</p>
-                            <li>{p.category.replaceAll("_", " ")}</li>
-                            <br />
-
-                            <hr />
-
-                            <br />
-                            <br />
-                        </>
-                    )
+                products && products.map((p) => {
+                    return <Cards image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
+                    // console.log(k)  
                 })
             }
             <br />
