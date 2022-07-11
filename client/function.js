@@ -71,7 +71,8 @@
 //             }
 //              return `${[keys]}: ${random2.name}`
             
-//            }
+//            },
+//            "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae."
 //          }),
 //      "categories":function(){
 //        const categories = ["tecnologia", "electrodomesticos", "moda"]
