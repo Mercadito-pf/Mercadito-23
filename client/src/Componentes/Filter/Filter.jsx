@@ -18,9 +18,9 @@ export default function Filter() {
       <li>
         <Electrodomesticos/>
       </li>
-      <li>
+      {/* <li>
       <Muebles_y_Hogar/>
-      </li>
+      </li> */}
       <li>
         <Moda/>
       </li>
