@@ -20,7 +20,7 @@ export default function Moda() {
     // global
     function handleClick(e, c) {
         e.preventDefault()
-        dispatch(update_querys_filter(`category=moda: ${c}`))
+        dispatch(update_querys_filter(`category=${c}`))
         dispatch(update_url())
     }
 

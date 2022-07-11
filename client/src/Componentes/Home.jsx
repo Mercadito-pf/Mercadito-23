@@ -125,9 +125,7 @@ export default function Home() {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
                 products && products.map(p => {
-
-
-                    // console.log(k)
+                   
                     return (
                         <>
                             <img src={p.image} alt={p.name} />
