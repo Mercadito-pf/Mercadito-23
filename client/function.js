@@ -47,22 +47,7 @@
 //                    }
 //                ]
 //            },
-//            {
-//                "muebles_y_hogar": [
-//                    {
-//                        "name": "sala"
-//                    },
-//                    {
-//                        "name": "comedor"
-//                    },
-//                    {
-//                        "name": "dormitorio"
-//                    },
-//                    {
-//                        "name": "escritorio"
-//                    }
-//                ]
-//            },
+
 //            {
 //                "moda": [
 //                    {
@@ -86,16 +71,15 @@
 //             }
 //              return `${[keys]}: ${random2.name}`
             
-//            }
+//            },
+//            "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae."
 //          }),
 //      "categories":function(){
-//        const categories = ["tecnologia", "electrodomesticos", "muebles_y_hogar", "moda"]
+//        const categories = ["tecnologia", "electrodomesticos", "moda"]
    
 //        const tecnologia = ["celulares", "laptops_y_computadores", "consolas_de_videojuegos", "audio_y_video"]
    
 //        const electrodomesticos=["refrigeracion", "lavado", "cocina", "limpieza"]
-   
-//        const muebles_y_hogar = ["sala", "comedor", "dormitorio", "escritorio"]
    
 //        const moda = ["moda_hombre", "moda_mujer", "moda_infantil"]
    
@@ -119,8 +103,7 @@
    
 //                case "moda":
 //                    return create("moda", moda)
-//                case "muebles_y_hogar":
-//                    return create("muebles_y_hogar", muebles_y_hogar)
+       
 //                default:
 //                    break;
 //            }

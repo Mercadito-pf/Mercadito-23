@@ -130,7 +130,7 @@ export default function Home() {
                     // console.log(k)
                     return (
                         <>
-                            <img src={p.image.img} alt={p.name} />
+                            <img src={p.image} alt={p.name} />
                             <p>Ventas {p.sales}</p>
                             <h3>{p.name}</h3>
                             <p>{p.seller}</p>
