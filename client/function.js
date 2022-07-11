@@ -69,7 +69,7 @@
 //                 random2 = random[key][Math.floor(Math.random() * (random[key].length - 0) + 0)];
 //                 keys = key
 //             }
-//              return `${[keys]}: ${random2.name}`
+//              return random2.name
             
 //            },
 //            "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, consequatur sit in modi rerum ipsa ipsam illum earum similique neque quasi, accusantium est maiores officiis reiciendis ut aliquid vel molestiae."

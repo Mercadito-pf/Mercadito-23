@@ -125,9 +125,11 @@ export default function Home() {
             {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
+
                 products && products.map((p) => {
                     return <Cards image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
                     // console.log(k)  
+
                 })
             }
             <br />

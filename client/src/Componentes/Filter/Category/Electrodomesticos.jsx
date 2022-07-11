@@ -22,7 +22,7 @@ export default function Electrodomesticos() {
     // global
    function handleClick(e, c){
     e.preventDefault()
-    dispatch(update_querys_filter(`category=electrodomesticos: ${c}`))
+    dispatch(update_querys_filter(`category=${c}`))
     dispatch(update_url())
    }
     
