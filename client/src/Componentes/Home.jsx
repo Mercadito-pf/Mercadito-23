@@ -7,10 +7,13 @@ import Footer from "./Footer/Footer";
 // import s from './home.module.css'
 import Cards from "./Card/Card";
 
+import { Link } from "react-router-dom";
+
+
 
 export default function Home() {
 
-    let[viewAllProducts, setViewAllProducts] = useState(false)
+    let [viewAllProducts, setViewAllProducts] = useState(false)
     let [products, setProducts] = useState([])
     let [productsAll, setProductsAll] = useState([])
     let [minLimit, setMinLimit] = useState(1)
@@ -22,24 +25,6 @@ export default function Home() {
     // traigo el estado global
     let { url, currentPage } = useSelector(state => state)
 
-    // se hara una peticion a la api cada vez que se monte el componente o se actualice el estado
-    // global [url]
-    useEffect(() => {
-
-        // autoinvoke function que hace una petcion a la api y la guarda en el estado  local
-        (async function () {
-            if (url.length) {
-                let res = await fetch(url).then(res => res.json())
-                setProducts(res)
-                return
-            }
-            let res = await fetch(`http://localhost:3001/products?_start=${0}&_limit=${productsPerpage}`).then(res => res.json())
-            setProducts(res)
-
-        })()
-
-    }, [url, productsPerpage])
-
     useEffect(() => {
 
         // autoinvoke function que hace una petcion a la api y la guarda en el estado  local
@@ -50,34 +35,50 @@ export default function Home() {
 
     }, [])
 
+    // se hara una peticion a la api cada vez que se monte el componente o se actualice el estado
+    // global [url]
+    useEffect(() => {
+        document.body.scrollIntoView();
+        // autoinvoke function que hace una petcion a la api y la guarda en el estado  local
+        (async function () {
+            if (url.length) {
+                let res = await fetch(url).then(res => res.json())
+                // console.log(url)
+                setProducts(res)
+                return
+            }
+            let random = Math.floor(Math.random() * ((productsAll.length-17) - 0) + 0);
+            let res = await fetch(`http://localhost:3001/products?_start=${random}&_limit=${productsPerpage}`).then(res => res.json())
+            setProducts(res)
+
+        })()
+
+    }, [url, productsPerpage, productsAll])
+
+   
 
 
-    
-    const totalProducts = productsAll.length
+    const totalProducts = url.length && !viewAll?products.length: productsAll.length
     const totalPages = Math.ceil(totalProducts / productsPerpage)
-    const end = currentPage * productsPerpage
-    const start = end - productsPerpage
-
-    // console.log(start)
 
 
     // controla los datos que los datos que se renderizan en cada pagina
     function handleClick(page) {
+        const end = page * productsPerpage
+        const start = end - productsPerpage
+        dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
+        dispatch(update_url())
         if (totalPages > maxLimit) {
             if (page > 0 && page < 4) {
                 setMinLimit(1)
                 setMaxLimit(6)
                 dispatch(update_current_page(page))
-                dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
-                dispatch(update_url())
                 return
             }
             if (page <= totalPages && page > (totalPages - 4)) {
                 setMinLimit(totalPages - 6)
                 setMaxLimit(totalPages - 1)
                 dispatch(update_current_page(page))
-                dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
-                dispatch(update_url())
                 return
             }
         }
@@ -102,13 +103,11 @@ export default function Home() {
         }
 
         dispatch(update_current_page(page))
-        dispatch(update_querys_paginate(`_start=${start}&_limit=${16}`))
-        dispatch(update_url())
 
     }
 
     // hace que se mustren todos los productos en divididos en paginas de 16 productos
-    function viewAll(e){
+    function viewAll(e) {
         e.preventDefault()
         setViewAllProducts(true)
         dispatch(update_current_page(1))
@@ -119,7 +118,7 @@ export default function Home() {
     return (
         <div>
             <br />
-            <Slider/>
+            <Slider />
             <hr />
             <br />
             {
@@ -127,7 +126,14 @@ export default function Home() {
                 // en el estado local
 
                 products && products.map((p) => {
-                    return <Cards key={p.id} id={p.id}image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
+
+
+                    return( 
+                        <Link to={`/detail/${p.id}`}>
+                         <Cards key={p.id} id={p.id}image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
+                        </Link>)
+                       
+
                     // console.log(k)  
 
                 })
@@ -136,19 +142,24 @@ export default function Home() {
             <br />
             {
                 // opcion para ver todos los productos
-                 !url.length && <a onClick={viewAll} href="!#">Ver todos los productos</a>
+                !url.length && (
+                <div onClick={viewAll}>
+                    <Link to="/">Ver todos los productos</Link>
+                </div>
+                
+                )
             }
-           
-            {viewAllProducts || currentPage>0?
-            <div className="flex">
-                <Paginate
-                    totalPages={totalPages}
-                    minLimit={minLimit}
-                    maxLimit={maxLimit}
-                    handleClick={handleClick}
-                />
-            </div>:null}
-            <Footer/>
+
+            {viewAllProducts || currentPage > 0 ?
+                <div className="flex">
+                    <Paginate
+                        totalPages={totalPages}
+                        minLimit={minLimit}
+                        maxLimit={maxLimit}
+                        handleClick={handleClick}
+                    />
+                </div> : null}
+            <Footer />
         </div>
     )
 }
