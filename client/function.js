@@ -24,7 +24,7 @@
 //                        "name": "laptops_y_computadores"
 //                    },
 //                    {
-//                        "name": "consolas_y_videojuegos"
+//                        "name": "consolas_de_videojuegos"
 //                    },
 //                    {
 //                        "name": "audio_y_video"

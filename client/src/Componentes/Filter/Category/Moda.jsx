@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Moda() {
@@ -35,7 +36,7 @@ export default function Moda() {
                     moda.length && moda[2].moda.map((c, i) => {
                         return (
                             <li key={i}>
-                                <a onClick={(e) => handleClick(e, c.name)} href="!#">{c.name.replaceAll("_", " ")}</a>
+                                <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>
                             </li>
                         )
                     })

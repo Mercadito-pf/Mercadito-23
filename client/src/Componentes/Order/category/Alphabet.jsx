@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { update_querys_order, update_url } from '../../../redux/actions'
 
 export default function Alphabet() {
@@ -24,10 +25,10 @@ export default function Alphabet() {
         <a href="!#">Nombre</a>
         <ul>
             {
-                orders.map(order =>{
+                orders.map((order, i) =>{
                     return(
-                        <li>
-                            <a onClick={(e) => handleClick(e, order)} href="!#">{order}</a>
+                        <li key={i} onClick={(e) => handleClick(e, order)}>
+                            <Link  to="/">{order}</Link>
                         </li>
                     )
                 })
