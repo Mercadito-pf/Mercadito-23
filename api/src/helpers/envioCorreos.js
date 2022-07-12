@@ -50,11 +50,11 @@ const emailRegistroEmpleado = async (email, nombre) => {
   await transporter.sendMail({
     from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
     to: `${email}`, // list of receivers
-    subject: "Bienvenido empleado",
+    subject: `Bienvenido ${nombre}`,
     html: `
               <h1>Proyecto Final Mercadito</h1>
               <br>
-              <p> Hola ${nombre}, gracias por unirte a la mayor red de marketplace de Latinoamérica, esperamos que tu estancia sea excelente.</p>
+              <p> Hola ${nombre},tu registro fue existo gracias por unirte a la mayor red de marketplace de Latinoamérica, esperamos que tu estancia sea excelente.</p>
               <br>
               <small>
               Mercadito 
@@ -66,7 +66,30 @@ const emailRegistroEmpleado = async (email, nombre) => {
   });
 };
 
+// Bienvida a nuevo empleado
+const emailInfoActualizada = async (email, nombre) => {
+    let transporter = transport();
+    await transporter.sendMail({
+      from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
+      to: `${email}`, // list of receivers
+      subject: "Actualización de datos",
+      html: `
+                <h1>Proyecto Final Mercadito</h1>
+                <br>
+                <p> Hola ${nombre},tu actulización de datos fue modificada correctamente.</p>
+                <br>
+                <small>
+                Mercadito 
+                   <br>
+                      Soy Henry
+                    <br>
+               </small>
+                `,
+    });
+  };
+
 module.exports = {
   emailOlvideContrasenia,
   emailRegistroEmpleado,
+  emailInfoActualizada
 };
