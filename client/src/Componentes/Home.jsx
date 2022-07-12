@@ -5,8 +5,10 @@ import Paginate from "./pagination/Paginate";
 import Slider from "./Slider/Slider";
 import Footer from "./Footer/Footer";
 // import s from './home.module.css'
-import Cards from "./Card";
+import Cards from "./Card/Card";
+
 import { Link } from "react-router-dom";
+
 
 
 export default function Home() {
@@ -124,11 +126,14 @@ export default function Home() {
                 // en el estado local
 
                 products && products.map((p) => {
+
+
                     return( 
                         <Link to={`/detail/${p.id}`}>
-                         <Cards image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price} />
+                         <Cards key={p.id} id={p.id}image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
                         </Link>)
                        
+
                     // console.log(k)  
 
                 })
