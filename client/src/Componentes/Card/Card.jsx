@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from "react-router-dom";
 
 const Cards = (products)=>{
     return (
@@ -17,6 +17,9 @@ const Cards = (products)=>{
                 </div>
                 
             </div>
+            <Link to={`/detail/${products.id}`}>
+                see more
+            </Link>
         </div>
     )
 }
