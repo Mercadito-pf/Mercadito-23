@@ -128,3 +128,8 @@ exports.getUser = async (req, res) => {
     res.status(500).send({ error: "Algo ha ocurrido" });
   }
 };
+
+exports.actualizarUsuario = async (req, res) => {};
+
+exports.olvideContrasenia = async (req, res) => {};
+exports.nuevaContrasenia = async (req, res) => {};
