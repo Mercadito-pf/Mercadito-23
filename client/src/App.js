@@ -13,6 +13,7 @@ function App() {
       {/* <Route path="/favorites" component={Favorites} /> */}
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       {/* <Route path="/shoping-car" component={ShopingCar} /> */}
+       {/* <Route path="/login" component={Login} /> */}
     </div>
   );
 }
