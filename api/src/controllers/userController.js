@@ -10,7 +10,7 @@ const { findUser } = require("../helpers/userHelper");
 
 // Permite el registro de nuevos usuarios
 exports.signUp = async (req, res) => {
-  const { name, lastname, password, email } = req.body;
+  const { name, lastname, password, email, google } = req.body;
 
   try {
     let user = await User.findOne({
@@ -24,14 +24,21 @@ exports.signUp = async (req, res) => {
       return res.status(401).json({ msg: "Usuario ya registrado" });
     }
 
-    // Se realiza hash a la contrase ante de guardarse
-    let passwordE = await bcrypt.hash(password, 10);
+    let passwordE;
+
+    // Se verifica si viene de google para no incluir contraseña
+    if (google) {
+      // Se realiza hash a la contrase ante de guardarse
+      passwordE = await bcrypt.hash(password, 10);
+    }
 
     // Se crea usuario
     let newUser = await User.create({
       ...req.body,
       password: passwordE,
     });
+
+    delete newUser.dataValues["password"];
 
     // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
     let token = jwt.sign({ id: newUser.id }, process.env.SECRET, {
@@ -70,7 +77,12 @@ exports.signIn = async (req, res) => {
       let token = jwt.sign({ id: userLogin.id }, process.env.SECRET, {
         expiresIn: "7d",
       });
+
+      // Elimino el campo de password para enviar a usuario como respuesta
+      delete userLogin.dataValues["password"];
+
       return res.json({ user: userLogin, token });
+
     } else {
       return res.status(404).json({ msg: "Credenciales inválidas" });
     }
@@ -83,7 +95,7 @@ exports.signIn = async (req, res) => {
 // Permite obtener un usuario
 exports.getUser = async (req, res) => {
   try {
-    // Se valida la existencia del usuario
+    // Se válida la existencia del usuario
     const user = await findUser(req.usuario.id);
 
     if (!user) {
@@ -102,14 +114,14 @@ exports.actualizarUsuario = async (req, res) => {
   const { name, lastname, password, dni, email, phone, place } = req.body;
 
   try {
-    // Se valida la existencia del usuario
+    // Se válida la existencia del usuario
     const user = await findUser(req.usuario.id);
 
     if (!user) {
       return res.status(404).json({ msg: "No se encontro ningun usuario" });
     }
 
-    // Se valida la existencia de un email previo registrado
+    // Se válida la existencia de un email previo registrado
     if (user.dataValues.email !== email) {
       const correoExistente = await User.findOne({
         where: { email: email },
@@ -121,7 +133,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
-    // Se valida la existencia de un DNI previo registrado
+    // Se válida la existencia de un DNI previo registrado
     if (user.dataValues.dni !== dni) {
       const dniExistente = await User.findOne({
         where: { dni: dni },
@@ -133,7 +145,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
-    // Se valida la existencia de un número previo registrado
+    // Se válida la existencia de un número previo registrado
     if (user.dataValues.phone !== phone) {
       const phoneExistente = await User.findOne({
         where: { phone: phone },
@@ -145,7 +157,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
-    // Se valida el intento de cambio de contraseña en ruta incorrecta
+    // Se válida el intento de cambio de contraseña en ruta incorrecta
     if (password) {
       return res.status(400).send({ message: "La password no es modificable" });
     }
@@ -228,7 +240,7 @@ exports.nuevaContrasenia = async (req, res) => {
     const { token } = req.params;
 
     // Se válida la autenticidad de token
-    const {id} = jwt.verify(token, process.env.SECRET);
+    const { id } = jwt.verify(token, process.env.SECRET);
 
     // Se válida la existencia del usuario
     const user = await findUser(id);
@@ -245,7 +257,7 @@ exports.nuevaContrasenia = async (req, res) => {
 
     await user.save();
 
-    emailInfoNuevacontrasenia(email,`${user.name} ${user.lastname}`)
+    emailInfoNuevacontrasenia(email, `${user.name} ${user.lastname}`);
 
     return res
       .status(201)
