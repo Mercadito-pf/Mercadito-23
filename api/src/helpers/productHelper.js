@@ -56,9 +56,19 @@ let createProduct = async (
   }
 };
 
-let getAllProduct = async () => {
+/**
+ * @author Nicolas Alejandro Suarez
+ * this method receives how many elements it wants per page and which page 
+ * it wants and returns the elements of that page along with the page number 
+ * and how many pages there are.
+ * @param {} sequelize
+ */
+
+
+let getAllProduct = async(offset=0, limit=10)=>{
   try {
-    return await Product.findAll({
+    const count = await Product.count({});
+    let products = await Product.findAll({
       include: [
         {
           model: Category,
@@ -79,21 +89,31 @@ let getAllProduct = async () => {
           },
         },
       ],
+     offset: offset*limit, 
+     limit: limit 
     });
+    return {
+      products: products,
+      numberPages: Math.ceil(count/limit),
+      currentPage: offset
+    }
   } catch (error) {
     return error.message;
   }
-};
+} 
 
 /**
  * @author Andres
  * Método para filtrar por name los productos
+ * @refactor Nicolas Suarez
  * @param {} sequelize
  */
 
-let getAllProductName = async (name) => {
+let getAllProductName = async (name, offset=0, limit=10) => {
   try {
-    return await Product.findAll({
+    const count = await Product.count({where: { name: { [Op.iLike]: `%${name}%` } }});
+    name = name.toUpperCase();
+    let products = await Product.findAll({
       where: { name: { [Op.iLike]: `%${name}%` } },
       include: [
         {
@@ -115,7 +135,14 @@ let getAllProductName = async (name) => {
           },
         },
       ],
+    offset: offset*limit, 
+     limit: limit 
     });
+    return {
+      products: products,
+      numberPages: Math.ceil(count/limit),
+      currentPage: offset
+    }
   } catch (error) {
     return error.message;
   }
