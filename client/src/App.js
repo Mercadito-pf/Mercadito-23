@@ -1,12 +1,11 @@
 import logo from './logo.svg';
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import './App.css';
 import Home from './Componentes/Home';
 import NavBar from './Componentes/NavBar/NavBar';
 
 import Detail from './Componentes/Detail/Detail.jsx'
 
-import { Route, useLocation } from 'react-router-dom'
 
 
 function App() {
