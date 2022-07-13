@@ -81,8 +81,10 @@ exports.signIn = async (req, res) => {
   }
 };
 
+// Permite obtener un usuario
 exports.getUser = async (req, res) => {
   try {
+    // Se valida la existencia del usuario
     const user = await findUser(req.usuario.id);
 
     if (!user) {
@@ -96,16 +98,20 @@ exports.getUser = async (req, res) => {
   }
 };
 
+// Actualiza los datos del usuario validando información sensible
 exports.actualizarUsuario = async (req, res) => {
-  const { name, lastname, password, dni, email, phone } = req.body;
+  const { name, lastname, password, dni, email, phone, place } = req.body;
 
   try {
+
+    // Se valida la existencia del usuario
     const user = await findUser(req.usuario.id);
 
     if (!user) {
       return res.status(404).json({ msg: "No se encontro ningun usuario" });
     }
 
+    // Se valida la existencia de un email previo registrado 
     if (user.dataValues.email !== email) {
       const correoExistente = await User.findOne({
         where: { email: email },
@@ -117,6 +123,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
+    // Se valida la existencia de un DNI previo registrado 
     if (user.dataValues.dni !== dni) {
       const dniExistente = await User.findOne({
         where: { dni: dni },
@@ -128,6 +135,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
+    // Se valida la existencia de un número previo registrado 
     if (user.dataValues.phone !== phone) {
       const phoneExistente = await User.findOne({
         where: { phone: phone },
@@ -139,13 +147,33 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
+    // Se valida el intento de cambio de contraseña en ruta incorrecta
     if (password) {
       return res.status(400).send({ message: "La password no es modificable" });
     }
 
-    user.set(req.body);
+    // Se busca el place para poder id en usuario actualizado
+    let placeResponse;
+
+    if (place) {
+      placeResponse = await Place.findOne({
+        where: {
+          name: place.toUpperCase(),
+        },
+      });
+      if (!placeResponse) {
+        return res.status(404).send({
+          message:
+            "No se encontro la existencia del lugar registrado en nuestra DB",
+        });
+      }
+    }
+
+    // Se actualiza los datos
+      user.set({ ...req.body, PlaceId: placeResponse?.dataValues.id });
     await user.save();
 
+    // Función para enviar email
     emailInfoActualizada(email, `${name} ${lastname}`);
 
     res.json(user);
@@ -155,9 +183,12 @@ exports.actualizarUsuario = async (req, res) => {
   }
 };
 
+// Envia email para modificar contraseña y crea token para su validez
 exports.olvideContrasenia = async (req, res) => {
   try {
     const { email } = req.body;
+
+    // Se busca la existencia del usuario
     const user = await User.findOne({
       where: { email: email },
       attributes: { exclude: ["password"] },
@@ -170,6 +201,7 @@ exports.olvideContrasenia = async (req, res) => {
       });
     }
 
+    // Se genera token para la vigencia para poder modificar la contraseña
     const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET, {
       expiresIn: "5m",
     });
@@ -184,7 +216,6 @@ exports.olvideContrasenia = async (req, res) => {
     res.status(200).send({
       message:
         "Se ha enviado las instrucciones al correo electrónico proporcionado",
-        token
     });
   } catch (err) {
     console.log(err);
@@ -192,6 +223,7 @@ exports.olvideContrasenia = async (req, res) => {
   }
 };
 
+// Permite modificar la contraseña del usuario
 exports.nuevaContrasenia = async (req, res) => {
   try {
     const nuevaContrasenia = req.body.nuevaContrasenia;
@@ -222,10 +254,3 @@ exports.nuevaContrasenia = async (req, res) => {
     res.status(500).send({ error: "Algo ha ocurrido" });
   }
 };
-
-/*     Se busca id de place para ser agregada al usuario
-    let placeResponse = await Place.findOne({
-      where: {
-        name: place.toUpperCase(),
-      },
-    }); */
