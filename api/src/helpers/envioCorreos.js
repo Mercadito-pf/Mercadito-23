@@ -44,8 +44,8 @@ const emailOlvideContrasenia = async (email, nombre, token) => {
   });
 };
 
-// Bienvida a nuevo empleado
-const emailRegistroEmpleado = async (email, nombre) => {
+// Bienvida a nuevo usuario
+const emailRegistroUsuario = async (email, nombre) => {
   let transporter = transport();
   await transporter.sendMail({
     from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
@@ -66,14 +66,14 @@ const emailRegistroEmpleado = async (email, nombre) => {
   });
 };
 
-// Bienvida a nuevo empleado
+// Email de confirmación de información actualizada
 const emailInfoActualizada = async (email, nombre) => {
-    let transporter = transport();
-    await transporter.sendMail({
-      from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
-      to: `${email}`, // list of receivers
-      subject: "Actualización de datos",
-      html: `
+  let transporter = transport();
+  await transporter.sendMail({
+    from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
+    to: `${email}`, // list of receivers
+    subject: "Actualización de datos",
+    html: `
                 <h1>Proyecto Final Mercadito</h1>
                 <br>
                 <p> Hola ${nombre},tu actulización de datos fue modificada correctamente.</p>
@@ -85,11 +85,34 @@ const emailInfoActualizada = async (email, nombre) => {
                     <br>
                </small>
                 `,
+  });
+};
+
+// Email de confirmación de información actualizada
+const emailInfoNuevacontrasenia = async (email, nombre) => {
+    let transporter = transport();
+    await transporter.sendMail({
+      from: `Proyecto Final Mercadito <${process.env.CORREO}>`, // sender address
+      to: `${email}`, // list of receivers
+      subject: "Contraseña Modificada",
+      html: `
+                  <h1>Proyecto Final Mercadito</h1>
+                  <br>
+                  <p> Hola ${nombre},tu actulización de contraseñia fue modificada correctamente.</p>
+                  <br>
+                  <small>
+                  Mercadito 
+                     <br>
+                        Soy Henry
+                      <br>
+                 </small>
+                  `,
     });
   };
 
 module.exports = {
   emailOlvideContrasenia,
-  emailRegistroEmpleado,
-  emailInfoActualizada
+  emailRegistroUsuario,
+  emailInfoActualizada,
+  emailInfoNuevacontrasenia
 };

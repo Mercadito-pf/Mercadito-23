@@ -2,7 +2,7 @@ const { User, Place, Product, Category, Size, Img } = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {
-  emailRegistroEmpleado,
+  emailRegistroUsuario,
   emailInfoActualizada,
   emailOlvideContrasenia,
 } = require("../helpers/envioCorreos");
@@ -38,7 +38,7 @@ exports.signUp = async (req, res) => {
       expiresIn: "7d",
     });
 
-    emailRegistroEmpleado(email, `${name} ${lastname}`);
+    emailRegistroUsuario(email, `${name} ${lastname}`);
 
     res.json({
       user: newUser,
@@ -244,6 +244,8 @@ exports.nuevaContrasenia = async (req, res) => {
     user.set({ password: newPassword });
 
     await user.save();
+
+    emailInfoNuevacontrasenia(email,`${user.name} ${user.lastname}`)
 
     return res
       .status(201)
