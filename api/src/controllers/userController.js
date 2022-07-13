@@ -58,7 +58,6 @@ exports.signIn = async (req, res) => {
     let userLogin = await User.findOne({
       where: { email },
       include: "favorite",
-      attributes: { exclude: ["password"] },
     });
 
     if (!userLogin) {
@@ -103,7 +102,6 @@ exports.actualizarUsuario = async (req, res) => {
   const { name, lastname, password, dni, email, phone, place } = req.body;
 
   try {
-
     // Se valida la existencia del usuario
     const user = await findUser(req.usuario.id);
 
@@ -111,7 +109,7 @@ exports.actualizarUsuario = async (req, res) => {
       return res.status(404).json({ msg: "No se encontro ningun usuario" });
     }
 
-    // Se valida la existencia de un email previo registrado 
+    // Se valida la existencia de un email previo registrado
     if (user.dataValues.email !== email) {
       const correoExistente = await User.findOne({
         where: { email: email },
@@ -123,7 +121,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
-    // Se valida la existencia de un DNI previo registrado 
+    // Se valida la existencia de un DNI previo registrado
     if (user.dataValues.dni !== dni) {
       const dniExistente = await User.findOne({
         where: { dni: dni },
@@ -135,7 +133,7 @@ exports.actualizarUsuario = async (req, res) => {
       }
     }
 
-    // Se valida la existencia de un número previo registrado 
+    // Se valida la existencia de un número previo registrado
     if (user.dataValues.phone !== phone) {
       const phoneExistente = await User.findOne({
         where: { phone: phone },
@@ -170,7 +168,7 @@ exports.actualizarUsuario = async (req, res) => {
     }
 
     // Se actualiza los datos
-      user.set({ ...req.body, PlaceId: placeResponse?.dataValues.id });
+    user.set({ ...req.body, PlaceId: placeResponse?.dataValues.id });
     await user.save();
 
     // Función para enviar email
@@ -203,7 +201,7 @@ exports.olvideContrasenia = async (req, res) => {
 
     // Se genera token para la vigencia para poder modificar la contraseña
     const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET, {
-      expiresIn: "5m",
+      expiresIn: "10m",
     });
 
     //Función para enviar correo
@@ -226,26 +224,27 @@ exports.olvideContrasenia = async (req, res) => {
 // Permite modificar la contraseña del usuario
 exports.nuevaContrasenia = async (req, res) => {
   try {
-    const nuevaContrasenia = req.body.nuevaContrasenia;
-    const tokenCuenta = req.params.reset;
-    if (!tokenCuenta) {
+    const { nuevaContrasenia } = req.body;
+    const { token } = req.params;
+
+    // Se válida la autenticidad de token
+    const {id} = jwt.verify(token, process.env.SECRET);
+
+    // Se válida la existencia del usuario
+    const user = await findUser(id);
+
+    if (!user) {
       return res
         .status(400)
         .send({ message: "No se puede cambiar la contraseña" });
     }
 
-    jwt.verify(tokenCuenta, process.env.SECR3T);
+    // Se generra la nueva contraseña y se guarda
+    let newPassword = await bcrypt.hash(nuevaContrasenia, 10);
+    user.set({ password: newPassword });
 
-    const usuario = await User.findOne({ tokenCuenta: tokenCuenta }).exec();
-    if (!usuario) {
-      log.info("No se puede cambiar la contraseña");
-      return res
-        .status(400)
-        .send({ message: "No se puede cambiar la contraseña" });
-    }
-    usuario.contrasenia = await bcrypt.hash(nuevaContrasenia, 10);
-    await usuario.save();
-    log.info("Se ha cambiado la contraseña éxitosamente");
+    await user.save();
+
     return res
       .status(201)
       .send({ message: "Se ha cambiado la contraseña éxitosamente" });

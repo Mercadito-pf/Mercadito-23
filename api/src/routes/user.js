@@ -33,4 +33,9 @@ router.put("/", Auth, userController.actualizarUsuario);
  */
 router.post("/olvide-contrasenia", userController.olvideContrasenia);
 
+/**
+ * Permite cambiar contraseña con el token enviado
+ */
+router.post("/nueva-contrasenia/:token", userController.nuevaContrasenia);
+
 module.exports = router;
