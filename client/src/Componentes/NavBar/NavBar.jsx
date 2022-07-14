@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Filter from '../Filter/Filter'
 import Order from '../Order/Order'
 import SearchBar from '../SearchBar/SearchBar'
-
+import { Link } from 'react-router-dom'
 import './NavBar.scss';
 import carrito from '../icons/carrito.png'
 import user from '../icons/user.png'
@@ -20,21 +20,23 @@ export default function NavBar() {
         <nav className='nav'> 
           <ul className='contentButton'>
               <li className='logo'>
+                <Link to="/">
                 <h1>Mercadito</h1>
                 <h5>COMPRA Y VENDE SEGURO</h5>
+                </Link>
               </li>
               <SearchBar />
               {/* <li className='item'>
                 <a href="!#">Crear cuenta</a>
               </li> */}
               <li className='item'>
-                <a href="!#"><img src={user}/>Iniciar sesion</a>
+                <Link to="/login"><img src={user}/>Iniciar sesion</Link>
               </li>
               <li className='item'>
-                <a href="!#"><img src={bag}/>Mis compras</a>
+                <Link to="/my-shoping"><img src={bag}/>Mis compras</Link>
               </li>
               <li className='item'>
-                <a href="!#"><img src={carrito}/>Carrito</a>
+                <Link to="/shoping-car"><img src={carrito}/>Carrito</Link>
               </li>
           </ul>
         </nav>

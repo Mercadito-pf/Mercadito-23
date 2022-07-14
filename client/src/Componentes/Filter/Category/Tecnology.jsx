@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Tecnology() {
@@ -22,7 +23,7 @@ export default function Tecnology() {
     // global
     function handleClick(e, c) {
         e.preventDefault()
-        dispatch(update_querys_filter(`category=tecnologia: ${c}`))
+        dispatch(update_querys_filter(`category=${c}`))
         dispatch(update_url())
     }
 
@@ -37,8 +38,8 @@ export default function Tecnology() {
                     // {tecnologia:[tipos de tecnologia]} 
                     tecnology.length && tecnology[0].tecnologia.map((c, i) => {
                         return (
-                            <li key={i}>
-                                <a onClick={(e) => handleClick(e, c.name)} href="!#">{c.name.replaceAll("_", " ")}</a>
+                            <li key={i} onClick={(e) => handleClick(e, c.name)}>
+                                <Link to="/">{c.name.replaceAll("_", " ")}</Link>
                             </li>
                         )
                     })

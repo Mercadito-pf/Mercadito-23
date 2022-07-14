@@ -1,8 +1,19 @@
-import { GET_ALL_PRODUCTS, SET_CURRENT_PAGE, UPDATE_CURRENT_PAGE, UPDATE_QUERYS, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_QUERYS_SEARCH, UPDATE_URL } from "./actionsTypes";
+import { GET_ALL_PRODUCTS,
+     SET_CURRENT_PAGE,
+      UPDATE_CURRENT_PAGE,
+       UPDATE_QUERYS, 
+       UPDATE_QUERYS_FILTER,
+        UPDATE_QUERYS_ORDER, 
+        UPDATE_QUERYS_PAGINATE, 
+        UPDATE_QUERYS_SEARCH, 
+        UPDATE_URL,
+        GET_PRODUCT_ID
+       } from "./actionsTypes";
 
 let initState={
     url: "",
     currentPage:0,
+    Detail:[],
     querys:[`_start=${0}&_limit=${16}`]
 }
 
@@ -58,7 +69,11 @@ function reducer(state = initState, action){
                 ...state,
                 url: `http://localhost:3001/products?_start=${0}&_limit=${16}`
             }
-    
+        case GET_PRODUCT_ID:
+            return{
+                ...state,
+                Detail: action.payload
+            }
         default:
             return state;
     }

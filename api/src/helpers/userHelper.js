@@ -1,4 +1,4 @@
-const { User } = require("../db.js");
+const { User, Product, Size, Category, Img } = require("../db.js");
 const { findName } = require("./placeHelper");
 /**
  * @author Nicolas Alejandro Suarez
@@ -52,6 +52,46 @@ let searchUser = async (name) => {
   }
 };
 
+async function findUser(id) {
+  try {
+    return await User.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Product,
+          as: "favorite",
+          through: {
+            attributes: [],
+          },
+          include: [
+            {
+              model: Category,
+              attributes: ["name"],
+              through: {
+                attributes: [],
+              },
+            },
+            {
+              model: Img,
+              attributes: ["path"],
+            },
+            {
+              model: Size,
+              attributes: ["size"],
+              through: {
+                attributes: [],
+              },
+            },
+          ],
+        },
+      ],
+      attributes: { exclude: ["password"] },
+    });
+  } catch (err) {
+    return err;
+  }
+}
+
 function eliminarDiacriticos(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -59,4 +99,5 @@ function eliminarDiacriticos(texto) {
 module.exports = {
   createUser,
   searchUser,
+  findUser,
 };

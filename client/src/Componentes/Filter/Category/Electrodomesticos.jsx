@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { update_current_page, update_querys_filter, update_url } from '../../../redux/actions'
 
 
@@ -22,7 +23,7 @@ export default function Electrodomesticos() {
     // global
    function handleClick(e, c){
     e.preventDefault()
-    dispatch(update_querys_filter(`category=electrodomesticos: ${c}`))
+    dispatch(update_querys_filter(`category=${c}`))
     dispatch(update_url())
    }
     
@@ -37,7 +38,7 @@ export default function Electrodomesticos() {
         electrodomesticos.length && electrodomesticos[1].electrodomesticos.map((c, i)=> {
             return(
                 <li key={i}>
-                    <a onClick={(e) => handleClick(e, c.name)} href="!#">{c.name.replaceAll("_", " ")}</a>
+                    <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>
                 </li>
             )
         })

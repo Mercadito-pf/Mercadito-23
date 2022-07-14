@@ -4,7 +4,6 @@ const {
   getAllProductName,
   getProduct,
 } = require("../helpers/productHelper");
-const { Product, Category, Img, Size } = require("../db");
 
 exports.crearProducto = async (req, res) => {
   const {
@@ -38,43 +37,33 @@ exports.crearProducto = async (req, res) => {
 
 exports.obtenerProductos = async (req, res) => {
   try {
-    const { name } = req.query;
-
+    const { name, offset, limit} = req.query;
     let products = "";
-
     if (name) {
-      products = await getAllProductName(name);
-
+      products = await getAllProductName(name, offset, limit);
       if (!products) {
         res.status(404).send({ msg: "No se encontró ningún producto" });
       }
-
       return res.status(200).send(products);
     }
-
-    products = await getAllProduct();
-
+    products = await getAllProduct(offset, limit);
     if (!products) {
       res.status(404).send({ msg: "No se encontró ningún producto" });
     }
-
     res.status(200).send(products);
   } catch (err) {
     console.log(err);
     res.status(500).send({ error: "Algo ha ocurrido" });
   }
-};
+} 
 
 exports.obtenerProducto = async (req, res) => {
   try {
     const { id } = req.params;
-
     let product = await getProduct(id);
-
     if (!product) {
       return res.status(404).send({ msg: "No se encontró ningún producto" });
     }
-
     res.status(200).send(product);
   } catch (err) {
     console.log(err);
