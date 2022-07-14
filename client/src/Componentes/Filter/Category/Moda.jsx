@@ -33,7 +33,7 @@ export default function Moda() {
                 {
                     // el estado local [moda] tiene en la posicion 3 un objeto asi:
                     // {moda:[tipos de moda]} 
-                    moda.length && moda[2].moda.map((c, i) => {
+                    moda?.length && moda[2].moda?.map((c, i) => {
                         return (
                             <li key={i}>
                                 <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>

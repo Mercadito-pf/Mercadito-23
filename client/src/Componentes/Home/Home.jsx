@@ -113,6 +113,8 @@ export default function Home() {
         setproductsPerpage(16)
     }
 
+    console.log(products.products)
+
     return (
         <div>
             <br />
@@ -123,7 +125,7 @@ export default function Home() {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
 
-                products && products.map((p) => {
+                products.products && products?.products.map((p) => {
 
 
                     return( 

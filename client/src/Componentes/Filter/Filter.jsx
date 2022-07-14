@@ -16,7 +16,7 @@ export default function Filter() {
       <Tecnology/>
       </li>
       <li>
-        <Electrodomesticos/>
+        {/*<Electrodomesticos/>*/}
       </li>
       {/* <li>
       <Muebles_y_Hogar/>
