@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { get_all_products, update_current_page, update_querys_filter, update_querys_paginate, update_url } from "../redux/actions";
-import Paginate from "./pagination/Paginate";
-import Slider from "./Slider/Slider";
-import Footer from "./Footer/Footer";
+import { get_all_products, update_current_page, update_querys_filter, update_querys_paginate, update_url } from "../../redux/actions";
+import Paginate from "../pagination/Paginate";
+import Slider from "../Slider/Slider";
+import Footer from "../Footer/Footer";
 // import s from './home.module.css'
-import Cards from "./Card";
+import Cards from "../Card/Card";
 
 
 export default function Home() {
