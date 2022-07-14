@@ -1,16 +1,98 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import clienteAxios from "../../config/axios";
+import Alerta from "../Alerta/Alerta";
 import LayoutAuth from "../Layout/LayoutAuth";
+import Spinner from "../Spinner/Spinner";
 
 const Login = () => {
+  const navigate = useHistory();
+
+  const [cargando, setCargando] = useState(false);
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [alerta, setAlerta] = useState({ msg: "", categoria: "" });
+
+  const { email, password } = usuario;
+
+  //const { setToken } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if ([email, password].includes("")) {
+        setAlerta({
+          msg: "Todos los campos son obligatorios",
+          categoria: "error",
+        });
+
+        setTimeout(() => {
+          setAlerta({ msg: "", categoria: "" });
+        }, 3000);
+
+        return;
+      }
+
+      setAlerta({ msg: "", categoria: "" });
+
+      setCargando(true);
+
+      const response = await clienteAxios.post(`/users/signin`, usuario);
+
+      //localStorage.setItem("tokenMercadito", data.token);
+
+      //setToken(data);
+
+      setCargando(false);
+
+      navigate("/home");
+    } catch (err) {
+      if (!err.response) {
+        setAlerta({
+          msg: "Fallas internas, por favor inténtelo más tarde.",
+          categoria: "error",
+        });
+      } else {
+        setAlerta({
+          msg: err.response.data.msg,
+          categoria: "error",
+        });
+      }
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+    }
+    setCargando(false);
+  };
+
+  console.log(alerta);
+
+  const { msg } = alerta;
+
   return (
     <LayoutAuth>
       <div className="form login">
         <div className="form-content">
           <header>Iniciar Sesión</header>
-          <form action="#">
+          {msg && <Alerta alerta={alerta} />}
+          <form onSubmit={handleSubmit}>
             <div className="field input-field">
-              <input type="email" placeholder="Email" className="input" />
+              <input
+                type="email"
+                placeholder="Email"
+                className="input"
+                name="email"
+                onChange={handleChange}
+                value={email}
+              />
             </div>
 
             <div className="field input-field">
@@ -18,6 +100,9 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="password"
+                name="password"
+                onChange={handleChange}
+                value={password}
               />
               <i className="bx bx-hide eye-icon"></i>
             </div>
@@ -27,10 +112,13 @@ const Login = () => {
                 ¿Olvidaste la contraseña?
               </Link>
             </div>
-
-            <div className="field button-field">
-              <button>Iniciar Sesión</button>
-            </div>
+            {cargando ? (
+              <Spinner />
+            ) : (
+              <div className="field button-field">
+                <button>Iniciar Sesión</button>
+              </div>
+            )}
           </form>
 
           <div className="form-link">

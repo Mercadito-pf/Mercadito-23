@@ -8,8 +8,8 @@ const { chargue } = require("./src/init/preChargueFile.js");
 
 connectionEmail()
 
-conn.sync({ force: true }).then(async () => {  
-  await chargue();
+conn.sync({ force: false }).then(async () => {  
+  //await chargue();
   server.listen(3001, () => {
     console.log("%s listening at 3001");
   });

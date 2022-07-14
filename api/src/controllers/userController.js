@@ -53,6 +53,7 @@ exports.signUp = async (req, res) => {
 // Permite la autenticación de usuarios
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
+
   try {
     // verificar de la existencia del usuario
     let userLogin = await User.findOne({
