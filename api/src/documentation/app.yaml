@@ -1,0 +1,39 @@
+components:
+  schemas:
+   Place:
+    type: object
+    properties:
+     id:
+      type: string
+      description: La identificación unica de place
+     name:
+      type: string
+      description: Nombre del lugar
+     located:
+      type: string
+      description: La identificación de la locación de donde se encuentra el lugar
+    required:
+     - name
+    example:
+     id: bbe23a8a-4656-48a4-97a2-7baf08931c6d,
+     name: TUNJA,
+     located: 789e09e2-e6e4-41ae-b98a-09110d49cfa7
+ 
+paths:
+  /places?name=tunja:
+   get:
+    tags: [Place]
+    parameters:
+    - in: query
+      name: name
+      schema:
+       type: string
+       description: Nombre del lugar para filtrar
+    summary: Retorna el lugar registrado
+    responses:
+       200:
+        description: Lugar filtrado por query (name)
+        content:
+         application/json:
+          schema:
+            $ref: '#/components/schemas/Place'
