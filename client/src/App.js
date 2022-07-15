@@ -28,15 +28,10 @@ function App() {
         {/* 
   <Route exact path="/" component={Home} /> */}
 
-        {pathname !== "/login" &&
-          pathname !== "/register" &&
-          pathname !== "/new-password" &&
-          pathname !== "/forgot-password" && <NavBar />}
-
         <Route exact path="/login" component={Login} />
-        <Route eaxct path="/register" component={Register} />
-        <Route eaxct path="/new-password" component={NewPassword} />
-        <Route eaxct path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/new-password/:token" component={NewPassword} />
+        <Route exact path="/forgot-password" component={ForgotPassword} />
 
         <Route exact path="/" component={Home} />
         <Route path="/detail/:id" component={Detail} />

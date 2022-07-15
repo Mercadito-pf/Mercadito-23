@@ -6,6 +6,7 @@ import Slider from "../Slider/Slider.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Cards from "../Card/Card.jsx";
 import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 
 
@@ -115,6 +116,7 @@ export default function Home() {
 
     return (
         <div>
+            <NavBar />
             <br />
             <Slider />
             <hr />

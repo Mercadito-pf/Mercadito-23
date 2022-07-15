@@ -74,7 +74,7 @@ const Register = () => {
       return;
     }
 
-    setAlerta({});
+    setAlerta({ msg: "", categoria: "" });
 
     try {
       setCargando(true);

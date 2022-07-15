@@ -5,6 +5,7 @@ const {
   emailRegistroUsuario,
   emailInfoActualizada,
   emailOlvideContrasenia,
+  emailInfoNuevacontrasenia,
 } = require("../helpers/envioCorreos");
 const { findUser } = require("../helpers/userHelper");
 
@@ -157,9 +158,7 @@ exports.actualizarUsuario = async (req, res) => {
         where: { dni: dni },
       });
       if (dniExistente) {
-        return res
-          .status(400)
-          .send({ msg: "El nuevo DNI ya está registrado" });
+        return res.status(400).send({ msg: "El nuevo DNI ya está registrado" });
       }
     }
 
@@ -191,8 +190,7 @@ exports.actualizarUsuario = async (req, res) => {
       });
       if (!placeResponse) {
         return res.status(404).send({
-          msg:
-            "No se encontro la existencia del lugar registrado en nuestra DB",
+          msg: "No se encontro la existencia del lugar registrado en nuestra DB",
         });
       }
     }
@@ -224,14 +222,13 @@ exports.olvideContrasenia = async (req, res) => {
 
     if (!user) {
       return res.status(400).send({
-        msg:
-          "No se ha enviado las instrucciones al correo electrónico proporcionado",
+        msg: "No se ha enviado las instrucciones al correo electrónico proporcionado",
       });
     }
 
     // Se genera token para la vigencia para poder modificar la contraseña
     const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET, {
-      expiresIn: "10m",
+      expiresIn: "1m",
     });
 
     //Función para enviar correo
@@ -242,8 +239,7 @@ exports.olvideContrasenia = async (req, res) => {
     );
 
     res.status(200).send({
-      msg:
-        "Se ha enviado las instrucciones al correo electrónico proporcionado",
+      msg: "Se ha enviado las instrucciones al correo electrónico proporcionado",
     });
   } catch (err) {
     console.log(err);
@@ -254,34 +250,34 @@ exports.olvideContrasenia = async (req, res) => {
 // Permite modificar la contraseña del usuario
 exports.nuevaContrasenia = async (req, res) => {
   try {
-    const { nuevaContrasenia } = req.body;
+    const { nuevaPassword } = req.body;
     const { token } = req.params;
 
     // Se válida la autenticidad de token
     const { id } = jwt.verify(token, process.env.SECRET);
 
+    if (!id) {
+      return res.status(400).send({ msg: "Token no válido" });
+    }
+
     // Se válida la existencia del usuario
     const user = await findUser(id);
 
     if (!user) {
-      return res
-        .status(400)
-        .send({ msg: "No se puede cambiar la contraseña" });
+      return res.status(400).send({ msg: "No se puede cambiar la contraseña" });
     }
 
     // Se generra la nueva contraseña y se guarda
-    let newPassword = await bcrypt.hash(nuevaContrasenia, 10);
+    let newPassword = await bcrypt.hash(nuevaPassword, 10);
     user.set({ password: newPassword });
 
     await user.save();
 
-    emailInfoNuevacontrasenia(email, `${user.name} ${user.lastname}`);
+    emailInfoNuevacontrasenia(user.email, `${user.name} ${user.lastname}`);
 
-    return res
-      .status(201)
-      .send({ msg: "Se ha cambiado la contraseña éxitosamente" });
+    res.status(201).send({ msg: "Se ha cambiado la contraseña éxitosamente" });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: "Algo ha ocurrido" });
+    res.status(500).json({ msg: err.message });
   }
 };
