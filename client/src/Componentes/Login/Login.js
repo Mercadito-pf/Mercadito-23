@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+// Google
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
+
 // Config
 import clienteAxios from "../../config/axios";
 
@@ -19,6 +23,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [cargando, setCargando] = useState(false);
+  const [cargandoGoogle, setCargandoGoogle] = useState(false);
   const [usuario, setUsuario] = useState({
     email: "",
     password: "",
@@ -30,6 +35,50 @@ const Login = () => {
 
   const handleChange = (e) => {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
+  };
+
+  const handleGoogle = async (responseGoogle) => {
+    const decoded = jwt_decode(responseGoogle.credential);
+
+    const { email, given_name, family_name, picture } = decoded;
+
+    try {
+      setCargandoGoogle(true);
+
+      const { data } = await clienteAxios.post(`/users/signup`, {
+        email,
+        name: given_name,
+        lastname: family_name,
+        picture,
+        google: true,
+        typeUser: "N",
+      });
+
+      localStorage.setItem("token", data.token);
+
+      dispatch(loginUser(data.user));
+
+      setCargandoGoogle(false);
+
+      setTimeout(() => {
+        navigate.push("/home");
+      }, 300);
+    } catch (err) {
+      if (!err.response) {
+        setAlerta({
+          msg: "Fallas internas, por favor inténtelo más tarde.",
+          categoria: "error",
+        });
+      } else {
+        setAlerta({
+          msg: err.response.data.msg,
+          categoria: "error",
+        });
+      }
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -147,10 +196,16 @@ const Login = () => {
         <div className="line"></div>
 
         <div className="media-options">
-          <a href="#" className="field google">
-            <img src="images/google.png" alt="" className="google-img" />
-            <span>Iniciar Sesión con Google</span>
-          </a>
+          <div className="google">
+            {cargandoGoogle ? (
+              <Spinner />
+            ) : (
+              <GoogleLogin
+                onSuccess={(response) => handleGoogle(response)}
+                onError={() => console.log("Error")}
+              />
+            )}
+          </div>
         </div>
       </div>
     </LayoutAuth>
