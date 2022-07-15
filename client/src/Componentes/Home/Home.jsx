@@ -56,7 +56,7 @@ export default function Home() {
    
 
 
-    const totalProducts = url.length && !viewAll?products.length: productsAll.length
+    const totalProducts = url?.length && !viewAll?products.length: productsAll.length
     const totalPages = Math.ceil(totalProducts / productsPerpage)
 
 
@@ -113,8 +113,6 @@ export default function Home() {
         setproductsPerpage(16)
     }
 
-    console.log(products.products)
-
     return (
         <div>
             <br />
@@ -142,7 +140,7 @@ export default function Home() {
             <br />
             {
                 // opcion para ver todos los productos
-                !url.length && (
+                !url?.length && (
                 <div onClick={viewAll}>
                     <Link to="/">Ver todos los productos</Link>
                 </div>

@@ -37,7 +37,8 @@ module.exports = (sequelize) => {
       },
       profile_picture: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue:
+          "https://i0.wp.com/researchictafrica.net/wp/wp-content/uploads/2016/10/default-profile-pic.jpg?fit=300%2C300&ssl=1",
       },
       email: {
         type: DataTypes.STRING,

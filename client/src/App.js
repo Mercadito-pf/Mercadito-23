@@ -9,9 +9,19 @@ import Login from "./Componentes/Login/Login";
 import Register from "./Componentes/Register/Register";
 import NewPassword from "./Componentes/NewPassword/NewPassword";
 import ForgotPassword from "./Componentes/ForgotPassword/ForgotPassword";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticate } from "./redux/user/userActions";
 
 function App() {
   let { pathname } = useLocation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authenticate());
+  }, []);
+
   return (
     <>
       <div>

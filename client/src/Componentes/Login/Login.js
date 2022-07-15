@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Config
 import clienteAxios from "../../config/axios";
@@ -10,9 +11,12 @@ import Spinner from "../Spinner/Spinner";
 
 // Layout
 import LayoutAuth from "../Layout/LayoutAuth";
+import { loginUser } from "../../redux/user/userActions";
 
 const Login = () => {
   const navigate = useHistory();
+
+  const dispatch = useDispatch();
 
   const [cargando, setCargando] = useState(false);
   const [usuario, setUsuario] = useState({
@@ -23,8 +27,6 @@ const Login = () => {
   const [alerta, setAlerta] = useState({ msg: "", categoria: "" });
 
   const { email, password } = usuario;
-
-  //const { setToken } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -51,13 +53,11 @@ const Login = () => {
 
       setCargando(true);
 
-      const response = await clienteAxios.post(`/users/signin`, usuario);
+      const { data } = await clienteAxios.post(`/users/signin`, usuario);
 
-      console.log(response);
+      localStorage.setItem("token", data.token);
 
-      //localStorage.setItem("tokenMercadito", data.token);
-
-      //setToken(data);
+      dispatch(loginUser(data.user));
 
       setCargando(false);
 
