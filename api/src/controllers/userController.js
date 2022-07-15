@@ -13,6 +13,8 @@ const { findUser } = require("../helpers/userHelper");
 exports.signUp = async (req, res) => {
   const { name, lastname, password, email, google, picture } = req.body;
 
+  let passwordE;
+
   try {
     let user = await User.findOne({
       where: { email },
@@ -21,14 +23,33 @@ exports.signUp = async (req, res) => {
     });
 
     // Iniciar Google
-    if (user && google) {
+    if (!user && google) {
+      // Se crea usuario
+      let newUser = await User.create({
+        ...req.body,
+        password: passwordE,
+        profile_picture: picture,
+      });
+
+      delete newUser.dataValues["password"];
+
       // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
-      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
+      let token = jwt.sign({ id: newUser.id }, process.env.SECRET, {
         expiresIn: "7d",
       });
 
       // Email de registro de usuario
       emailRegistroUsuario(email, `${name} ${lastname}`);
+
+      return res.json({
+        user: newUser,
+        token,
+      });
+    } else if (user && google) {
+      // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
+      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: "7d",
+      });
 
       return res.json({
         user: user,
@@ -41,19 +62,13 @@ exports.signUp = async (req, res) => {
       return res.status(401).json({ msg: "Usuario ya registrado" });
     }
 
-    let passwordE;
-
-    // Se verifica si viene de google para no incluir contraseña
-    if (!google) {
-      // Se realiza hash a la contrase ante de guardarse
-      passwordE = await bcrypt.hash(password, 10);
-    }
+    // Se realiza hash a la contrase ante de guardarse
+    passwordE = await bcrypt.hash(password, 10);
 
     // Se crea usuario
     let newUser = await User.create({
       ...req.body,
       password: passwordE,
-      profile_picture: picture,
     });
 
     delete newUser.dataValues["password"];

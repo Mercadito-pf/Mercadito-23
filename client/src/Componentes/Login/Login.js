@@ -78,6 +78,7 @@ const Login = () => {
       setTimeout(() => {
         setAlerta({ msg: "", categoria: "" });
       }, 3000);
+      setCargando(false);
     }
   };
 
