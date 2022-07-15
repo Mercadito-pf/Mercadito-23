@@ -132,6 +132,8 @@ a.google span{
 
 .google{
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .error{
