@@ -61,7 +61,7 @@ const Login = () => {
       setCargandoGoogle(false);
 
       setTimeout(() => {
-        navigate.push("/home");
+        navigate.push("");
       }, 300);
     } catch (err) {
       if (!err.response) {
@@ -116,7 +116,7 @@ const Login = () => {
       });
 
       setTimeout(() => {
-        navigate.push("/home");
+        navigate.push("");
       }, 300);
     } catch (err) {
       if (!err.response) {
