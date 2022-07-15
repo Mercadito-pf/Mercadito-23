@@ -10,6 +10,8 @@ import Spinner from "../Spinner/Spinner";
 
 // Layout
 import LayoutAuth from "../Layout/LayoutAuth";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/user/userActions";
 
 const Register = () => {
   const navigate = useHistory();
@@ -21,6 +23,8 @@ const Register = () => {
     password: "",
     passwordconf: "",
   });
+
+  const dispatch = useDispatch();
 
   const [alerta, setAlerta] = useState({});
   const [cargando, setCargando] = useState(false);
@@ -82,6 +86,10 @@ const Register = () => {
         password,
         typeUser: "N",
       });
+
+      localStorage.setItem("token", data.token);
+
+      dispatch(registerUser(data.user));
 
       setCargando(false);
 
