@@ -1,20 +1,12 @@
-import { GET_ALL_PRODUCTS,
-     SET_CURRENT_PAGE,
-      UPDATE_CURRENT_PAGE,
-       UPDATE_QUERYS, 
-       UPDATE_QUERYS_FILTER,
-        UPDATE_QUERYS_ORDER, 
-        UPDATE_QUERYS_PAGINATE, 
-        UPDATE_QUERYS_SEARCH, 
-        UPDATE_URL,
-        GET_PRODUCT_ID
-       } from "./actionsTypes";
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_FEATURES, GET_SUB, SET_CURRENT_PAGE, UPDATE_CURRENT_PAGE, UPDATE_QUERYS, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_QUERYS_SEARCH, UPDATE_URL } from "./actionsTypes";
 
 let initState={
     url: "",
     currentPage:0,
-    Detail:[],
-    querys:[`_start=${0}&_limit=${16}`]
+    querys:['page=${0}&limit=${16}'],
+    categories:[],
+    sub:[],
+    features:[]
 }
 
 function reducer(state = initState, action){
@@ -37,7 +29,7 @@ function reducer(state = initState, action){
         case UPDATE_QUERYS_FILTER:
             return{
                 ...state,
-                querys: [`_start=${0}&_limit=${16}`, action.payload],
+                querys: [`page=${0}&limit=${16}`, action.payload],
                 currentPage:1
             }
 
@@ -46,7 +38,7 @@ function reducer(state = initState, action){
                 if (i > 0 && !q.includes("sort")) {
                     return q
                 }
-                return `_start=${0}&_limit=${16}`
+                return `page=${0}&limit=${16}`
             })
             return{
                 ...state,
@@ -67,12 +59,23 @@ function reducer(state = initState, action){
         case GET_ALL_PRODUCTS:
             return{
                 ...state,
-                url: `http://localhost:3001/products?_start=${0}&_limit=${16}`
+                url: `http://localhost:3001/products?page=${0}&limit=${16}`
             }
-        case GET_PRODUCT_ID:
+        case GET_CATEGORIES:
             return{
                 ...state,
-                Detail: action.payload
+                categories:action.payload
+            }
+
+        case GET_SUB:
+            return{
+                ...state,
+                sub:action.payload
+            }
+        case GET_FEATURES:
+            return{
+                ...state,
+                features:action.payload
             }
         default:
             return state;

@@ -11,9 +11,9 @@ export default function Electrodomesticos() {
     useEffect(() =>{
         // se obtienen las categorias de productos
         (async function(){
-            let res = await fetch('http://localhost:3001/categories').then(res => res.json())
+            let electrodomesticos = await fetch('http://localhost:3001/categories').then(res => res.json())
             // console.log(res[0].tecnologia[0].name)
-            setElectrodomesticos(res)
+            setElectrodomesticos(electrodomesticos[1].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
@@ -29,13 +29,13 @@ export default function Electrodomesticos() {
     
   return (
     <div>
-    <a href="!#">Electrodomesticos</a>
+    <h3>Electrodomesticos</h3>
     <ul>
         
        {
         // el estado local [electrodomesticos] tiene en la posicion 1 un objeto asi:
         // {electrodomesticos:[tipos de electrodomesticos]} 
-        electrodomesticos.length && electrodomesticos[1].electrodomesticos.map((c, i)=> {
+        electrodomesticos.length && electrodomesticos.map((c, i)=> {
             return(
                 <li key={i}>
                     <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>

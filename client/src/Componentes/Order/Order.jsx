@@ -14,9 +14,9 @@ export default function Order() {
         <li>
             <Price/>
         </li>
-        <li>
+        {/* <li>
             <PointsSeller/>
-        </li>
+        </li> */}
     </ul>
     </>
   )

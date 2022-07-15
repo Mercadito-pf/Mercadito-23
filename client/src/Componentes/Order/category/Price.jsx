@@ -23,7 +23,7 @@ export default function Price() {
     }
     return (
         <div>
-            <a href="!#">Precio</a>
+            <h4>Precio</h4>
             <ul>
                 {
                     orders.map((order, i) => {

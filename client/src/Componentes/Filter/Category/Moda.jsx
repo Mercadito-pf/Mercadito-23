@@ -10,9 +10,9 @@ export default function Moda() {
     useEffect(() => {
         // se obtienen las categorias de productos
         (async function () {
-            let res = await fetch('http://localhost:3001/categories').then(res => res.json())
+            let moda = await fetch('http://localhost:3001/categories').then(res => res.json())
             // console.log(res[0].tecnologia[0].name)
-            setModa(res)
+            setModa(moda[2].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
@@ -27,13 +27,13 @@ export default function Moda() {
 
     return (
         <div>
-            <a href="!#">Moda</a>
+            <h3>Moda</h3>
             <ul>
 
                 {
                     // el estado local [moda] tiene en la posicion 3 un objeto asi:
                     // {moda:[tipos de moda]} 
-                    moda.length && moda[2].moda.map((c, i) => {
+                    moda.length && moda.map((c, i) => {
                         return (
                             <li key={i}>
                                 <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>

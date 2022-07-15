@@ -32,6 +32,9 @@ export default function NavBar() {
               <li className='item'>
                 <Link to="/login"><img src={user}/>Iniciar sesion</Link>
               </li>
+              <li>
+                <Link to="/create">Crear Producto</Link>
+              </li>
               <li className='item'>
                 <Link to="/my-shoping"><img src={bag}/>Mis compras</Link>
               </li>
@@ -44,12 +47,12 @@ export default function NavBar() {
         <div className='categories'>
           <ul className='contentCategory' >
             <li className='item'>
-              <a href="!#" className='categoria'>Categorias</a>
+              <h1 className='categoria'>Categorias</h1>
               <Filter />
             </li>
             { currentPage> 0 &&
             <li className='item'>
-              <a href="!#">Ordenar por:</a>
+              <h1>Ordenar por:</h1>
               <Order/>
             </li>
             }

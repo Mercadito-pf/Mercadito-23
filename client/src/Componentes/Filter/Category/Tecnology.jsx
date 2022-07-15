@@ -6,15 +6,14 @@ import { update_querys_filter, update_url } from '../../../redux/actions'
 export default function Tecnology() {
 
     // let {url} = useSelector(state => state)
-    let [tecnology, setTecnology] = useState([])
+    let [tecnologia, setTecnology] = useState([])
 
     let dispatch = useDispatch()
     useEffect(() => {
         // se obtienen las categorias de productos
         (async function () {
-            let res = await fetch('http://localhost:3001/categories').then(res => res.json())
-            console.log(res[0].tecnologia[0].name)
-            setTecnology(res)
+            let tecnologia = await fetch('http://localhost:3001/categories').then(res => res.json())
+            setTecnology(tecnologia[0].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
@@ -29,14 +28,14 @@ export default function Tecnology() {
 
     return (
         <div>
-            <a href="!#">tecnologia</a>
+            <h3>tecnologia</h3>
             <ul>
 
                 {
 
                     // el estado local [tecnology] tiene en la posicion 0 un objeto asi:
                     // {tecnologia:[tipos de tecnologia]} 
-                    tecnology.length && tecnology[0].tecnologia.map((c, i) => {
+                    tecnologia.length && tecnologia.map((c, i) => {
                         return (
                             <li key={i} onClick={(e) => handleClick(e, c.name)}>
                                 <Link to="/">{c.name.replaceAll("_", " ")}</Link>

@@ -1,13 +1,5 @@
-import axios from 'axios';
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_FEATURES, GET_SUB, UPDATE_CURRENT_PAGE, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_URL } from "./actionsTypes"
 
-import { GET_ALL_PRODUCTS, 
-    UPDATE_CURRENT_PAGE, 
-    UPDATE_QUERYS_FILTER, 
-    UPDATE_QUERYS_ORDER, 
-    UPDATE_QUERYS_PAGINATE, 
-    UPDATE_URL,
-    // GET_PRODUCT_ID
-} from "./actionsTypes"
 
 function update_querys_filter(query) {
     return{
@@ -48,21 +40,75 @@ function get_all_products(){
     }
 }
 
-// function get_id(id){
-//     try{
-//         return function (dispatch){
-//           const dbProduct =  axios.get(`http://localhost:3001/products/${id}`);
-//           return dispatch({
-//             type:GET_PRODUCT_ID,
-//             payload: dbProduct
-//           })
-//         }
-//     }
-//     catch(e){
-//         alert("Algo salio mal al traer producto")
-//         console.log("error al traer producto por id",e)
-//     }
-// }
+const URL = "http://localhost:3001/categories"
+function get_categories(){
+    return(dispatch)=>{
+        return fetch(URL)
+        .then(res => res.json())
+        .then(json =>{
+            return dispatch({
+                type: GET_CATEGORIES,
+                payload:json
+            })
+        })
+    }
+}
+
+function get_sub(value){
+    return(dispatch)=>{
+        return fetch(`${URL}?name=${value}`)
+        .then(res => res.json())
+        .then(json =>{
+            return dispatch({
+                type: GET_SUB,
+                payload:json.sub
+            })
+        })
+    }
+}
+
+let arr = [
+    "name",
+    "price",
+    "stock",
+    "description",
+    "image",
+    "almacenamiento",
+    "ram",
+    "marca",
+    "modelo",
+    "bateria",
+    "frecuencia",
+    "resolucion",
+    "duracion_bateria",
+    "potencia",
+    "litros",
+    "RPM",
+    "capacidad_de_lavado",
+    "tipo"
+]
+
+function get_features(query){
+    return(dispatch)=>{
+        return fetch(`http://localhost:3001/features?${query}`)
+        .then(res => res.json())
+        .then(json =>{
+            console.log(json)
+            let features=[]
+            for (const key in json) {
+                if (arr.includes(key)) {
+                    features.push(key)
+                }
+            }
+            return dispatch({
+                type: GET_FEATURES,
+                payload:features
+            })
+        })
+    }
+}
+
+
 
 
 // exporto todas las funciones
@@ -73,5 +119,7 @@ export {
     update_querys_paginate,
     update_current_page,
     get_all_products,
-    // get_id
+    get_categories,
+    get_sub,
+    get_features
 }
