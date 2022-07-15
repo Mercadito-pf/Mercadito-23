@@ -10,7 +10,7 @@ const { findUser } = require("../helpers/userHelper");
 
 // Permite el registro de nuevos usuarios
 exports.signUp = async (req, res) => {
-  const { name, lastname, password, email, google } = req.body;
+  const { name, lastname, password, email, google, picture } = req.body;
 
   try {
     let user = await User.findOne({
@@ -18,6 +18,22 @@ exports.signUp = async (req, res) => {
       include: "favorite",
       attributes: { exclude: ["password"] },
     });
+
+    // Iniciar Google
+    if (user && google) {
+      // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
+      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: "7d",
+      });
+
+      // Email de registro de usuario
+      emailRegistroUsuario(email, `${name} ${lastname}`);
+
+      return res.json({
+        user: user,
+        token,
+      });
+    }
 
     // Se verifica la existencia de un email ya registrado
     if (user) {
@@ -36,6 +52,7 @@ exports.signUp = async (req, res) => {
     let newUser = await User.create({
       ...req.body,
       password: passwordE,
+      profile_picture: picture,
     });
 
     delete newUser.dataValues["password"];
@@ -45,6 +62,7 @@ exports.signUp = async (req, res) => {
       expiresIn: "7d",
     });
 
+    // Email de registro de usuario
     emailRegistroUsuario(email, `${name} ${lastname}`);
 
     res.json({

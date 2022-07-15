@@ -122,6 +122,7 @@ const Register = () => {
       setTimeout(() => {
         setAlerta({ msg: "", categoria: "" });
       }, 3000);
+      setCargando(false);
     }
   };
 

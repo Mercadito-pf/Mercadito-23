@@ -9,12 +9,18 @@ import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
 import bag from "../icons/bag.png";
 import { logoutUser } from "../../redux/user/userActions";
+import { googleLogout } from "@react-oauth/google";
 
 export default function NavBar() {
   let { currentPage } = useSelector((state) => state);
   let { profile } = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
+
+  const logout = ()=>{
+    googleLogout()
+    dispatch(logoutUser())
+  }
 
   return (
     <div className="containerNavbar">
@@ -39,7 +45,7 @@ export default function NavBar() {
                 />
               </div>
               <li className="item">
-                <button onClick={() => dispatch(logoutUser())}>
+                <button onClick={logout}>
                   Cerrar Sesión
                 </button>
               </li>
