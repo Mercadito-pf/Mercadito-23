@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Google
 import { GoogleLogin } from "@react-oauth/google";
@@ -140,6 +140,9 @@ const Login = () => {
 
   const { msg } = alerta;
 
+  let { profile } = useSelector((state) => state.userReducer);
+
+  console.log(profile)
   return (
     <LayoutAuth>
       <div className="form login">
