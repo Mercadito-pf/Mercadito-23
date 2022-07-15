@@ -158,5 +158,19 @@ a.google span{
     margin: 1rem 0;
     padding: 0.5rem;
     color: white;
+    text-align: center;
     border-radius: 0.5rem;
+}
+
+.info{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: rgb(16, 165, 219);
+    margin: 1rem 0;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 0.5rem;
+    text-align: center;
 }

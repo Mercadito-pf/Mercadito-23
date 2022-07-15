@@ -26,7 +26,7 @@ function authenticate() {
         payload: data,
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       return dispatch({
         type: ERROR,
         payload: err.response.data.msg,

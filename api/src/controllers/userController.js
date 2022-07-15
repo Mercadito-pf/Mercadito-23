@@ -147,7 +147,7 @@ exports.actualizarUsuario = async (req, res) => {
       if (correoExistente) {
         return res
           .status(400)
-          .send({ message: "El nuevo correo ya está registrado" });
+          .send({ msg: "El nuevo correo ya está registrado" });
       }
     }
 
@@ -159,7 +159,7 @@ exports.actualizarUsuario = async (req, res) => {
       if (dniExistente) {
         return res
           .status(400)
-          .send({ message: "El nuevo DNI ya está registrado" });
+          .send({ msg: "El nuevo DNI ya está registrado" });
       }
     }
 
@@ -171,13 +171,13 @@ exports.actualizarUsuario = async (req, res) => {
       if (phoneExistente) {
         return res
           .status(400)
-          .send({ message: "El nuevo número ya está registrado" });
+          .send({ msg: "El nuevo número ya está registrado" });
       }
     }
 
     // Se válida el intento de cambio de contraseña en ruta incorrecta
     if (password) {
-      return res.status(400).send({ message: "La password no es modificable" });
+      return res.status(400).send({ msg: "La password no es modificable" });
     }
 
     // Se busca el place para poder id en usuario actualizado
@@ -191,7 +191,7 @@ exports.actualizarUsuario = async (req, res) => {
       });
       if (!placeResponse) {
         return res.status(404).send({
-          message:
+          msg:
             "No se encontro la existencia del lugar registrado en nuestra DB",
         });
       }
@@ -224,7 +224,7 @@ exports.olvideContrasenia = async (req, res) => {
 
     if (!user) {
       return res.status(400).send({
-        message:
+        msg:
           "No se ha enviado las instrucciones al correo electrónico proporcionado",
       });
     }
@@ -242,7 +242,7 @@ exports.olvideContrasenia = async (req, res) => {
     );
 
     res.status(200).send({
-      message:
+      msg:
         "Se ha enviado las instrucciones al correo electrónico proporcionado",
     });
   } catch (err) {
@@ -266,7 +266,7 @@ exports.nuevaContrasenia = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .send({ message: "No se puede cambiar la contraseña" });
+        .send({ msg: "No se puede cambiar la contraseña" });
     }
 
     // Se generra la nueva contraseña y se guarda
@@ -279,7 +279,7 @@ exports.nuevaContrasenia = async (req, res) => {
 
     return res
       .status(201)
-      .send({ message: "Se ha cambiado la contraseña éxitosamente" });
+      .send({ msg: "Se ha cambiado la contraseña éxitosamente" });
   } catch (err) {
     console.log(err);
     res.status(500).send({ error: "Algo ha ocurrido" });

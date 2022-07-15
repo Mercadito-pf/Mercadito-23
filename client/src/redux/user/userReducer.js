@@ -1,9 +1,15 @@
 // Types
-import { ERROR, GET_USER, LOGIN_USER, LOGOUT_USER, REGISTER_USER } from "../actionsTypes";
+import {
+  ERROR,
+  GET_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+  REGISTER_USER,
+} from "../actionsTypes";
 
 let initState = {
-  token: "",
   profile: "",
+  error: "",
 };
 
 function userReducer(state = initState, action) {
@@ -28,8 +34,8 @@ function userReducer(state = initState, action) {
     case ERROR:
       localStorage.removeItem("token");
       return {
-        token: "",
         profile: "",
+        error: action.payload,
       };
     default:
       return state;
