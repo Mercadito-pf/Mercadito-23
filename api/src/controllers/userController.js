@@ -27,7 +27,7 @@ exports.signUp = async (req, res) => {
     let passwordE;
 
     // Se verifica si viene de google para no incluir contraseña
-    if (google) {
+    if (!google) {
       // Se realiza hash a la contrase ante de guardarse
       passwordE = await bcrypt.hash(password, 10);
     }
@@ -83,7 +83,6 @@ exports.signIn = async (req, res) => {
       delete userLogin.dataValues["password"];
 
       return res.json({ user: userLogin, token });
-
     } else {
       return res.status(404).json({ msg: "Credenciales inválidas" });
     }

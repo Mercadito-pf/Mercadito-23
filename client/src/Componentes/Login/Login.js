@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+
+// Config
 import clienteAxios from "../../config/axios";
+
+// Components
 import Alerta from "../Alerta/Alerta";
-import LayoutAuth from "../Layout/LayoutAuth";
 import Spinner from "../Spinner/Spinner";
+
+// Layout
+import LayoutAuth from "../Layout/LayoutAuth";
 
 const Login = () => {
   const navigate = useHistory();
@@ -47,13 +53,22 @@ const Login = () => {
 
       const response = await clienteAxios.post(`/users/signin`, usuario);
 
+      console.log(response);
+
       //localStorage.setItem("tokenMercadito", data.token);
 
       //setToken(data);
 
       setCargando(false);
 
-      navigate("/home");
+      setUsuario({
+        email: "",
+        password: "",
+      });
+
+      setTimeout(() => {
+        navigate.push("/home");
+      }, 300);
     } catch (err) {
       if (!err.response) {
         setAlerta({
@@ -72,8 +87,6 @@ const Login = () => {
     }
     setCargando(false);
   };
-
-  console.log(alerta);
 
   const { msg } = alerta;
 

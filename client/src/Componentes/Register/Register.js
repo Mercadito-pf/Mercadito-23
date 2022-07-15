@@ -1,38 +1,193 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
+// Config
+import clienteAxios from "../../config/axios";
+
+// Components
+import Alerta from "../Alerta/Alerta";
+import Spinner from "../Spinner/Spinner";
+
+// Layout
 import LayoutAuth from "../Layout/LayoutAuth";
 
 const Register = () => {
+  const navigate = useHistory();
+
+  const [usuario, setUsuario] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    passwordconf: "",
+  });
+
+  const [alerta, setAlerta] = useState({});
+  const [cargando, setCargando] = useState(false);
+
+  const { name, lastname, email, password, passwordconf } = usuario;
+
+  const handleChange = (e) => {
+    setUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if ([name, lastname, email, password, passwordconf].includes("")) {
+      setAlerta({
+        msg: "Todos los campos son obligatorios",
+        categoria: "error",
+      });
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+      return;
+    }
+
+    if (password.length < 6) {
+      setAlerta({
+        msg: "La contraseñia debe ser mínimo de 6 caracteres",
+        categoria: "error",
+      });
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+      return;
+    }
+
+    if (password !== passwordconf) {
+      setAlerta({
+        msg: "Las contraseñias no son iguales ",
+        categoria: "error",
+      });
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+      return;
+    }
+
+    setAlerta({});
+
+    try {
+      setCargando(true);
+
+      const { data } = await clienteAxios.post(`/users/signup`, {
+        name,
+        lastname,
+        email,
+        password,
+        typeUser: "N",
+      });
+
+      setCargando(false);
+
+      setAlerta({
+        msg: "Usuario registrado correctamente",
+        categoria: "success",
+      });
+
+      setUsuario({
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+        passwordconf: "",
+      });
+
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 1000);
+
+      setTimeout(() => {
+        navigate.push("/");
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+      setAlerta({
+        msg: err.response.data.msg,
+        categoria: "error",
+      });
+      setTimeout(() => {
+        setAlerta({ msg: "", categoria: "" });
+      }, 3000);
+    }
+  };
+
+  const { msg } = alerta;
+
   return (
     <LayoutAuth>
       <div className="form signup">
         <div className="form-content">
           <header>Regístrate</header>
-          <form action="#">
+          {msg && <Alerta alerta={alerta} />}
+          <form onSubmit={handleSubmit}>
             <div className="field input-field">
-              <input type="email" placeholder="Email" className="input" />
+              <input
+                type="text"
+                placeholder="Nombre"
+                className="input"
+                name="name"
+                onChange={handleChange}
+                value={name}
+              />
             </div>
 
             <div className="field input-field">
               <input
-                type="password"
-                placeholder="Create password"
-                className="password"
+                type="text"
+                placeholder="Apellido"
+                className="input"
+                name="lastname"
+                onChange={handleChange}
+                value={lastname}
+              />
+            </div>
+
+            <div className="field input-field">
+              <input
+                type="email"
+                placeholder="Email"
+                className="input"
+                name="email"
+                onChange={handleChange}
+                value={email}
               />
             </div>
 
             <div className="field input-field">
               <input
                 type="password"
-                placeholder="Confirm password"
+                placeholder="Contraseña"
                 className="password"
+                name="password"
+                onChange={handleChange}
+                value={password}
+              />
+            </div>
+
+            <div className="field input-field">
+              <input
+                type="password"
+                placeholder="Confirmar Contraseña"
+                className="password"
+                name="passwordconf"
+                onChange={handleChange}
+                value={passwordconf}
               />
               <i className="bx bx-hide eye-icon"></i>
             </div>
-
-            <div className="field button-field">
-              <button>Regístrate</button>
-            </div>
+            {cargando ? (
+              <Spinner />
+            ) : (
+              <div className="field button-field">
+                <button>Regístrate</button>
+              </div>
+            )}
           </form>
 
           <div className="form-link">

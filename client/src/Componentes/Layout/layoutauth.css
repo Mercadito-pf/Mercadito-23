@@ -140,4 +140,17 @@ a.google span{
     padding: 0.5rem;
     color: white;
     border-radius: 0.5rem;
+    text-align: center;
+}
+
+.success{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: rgb(49, 193, 138);
+    margin: 1rem 0;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 0.5rem;
 }
