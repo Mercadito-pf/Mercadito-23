@@ -13,7 +13,7 @@ export default function CreateProduct() {
     sub: null,
     type: null
   })
-  let { features } = useSelector(state => state)
+  let { features } = useSelector(state => state.reducer)
   let [show, setShow] = useState(true)
   let [disable, setDisable] = useState(true)
   let dispatch = useDispatch()

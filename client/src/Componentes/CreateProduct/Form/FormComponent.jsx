@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 export default function FormComponent(handleInputChange, input) {
 
-  let { features } = useSelector(state => state)
+  let { features } = useSelector(state => state.reducer)
   return (
     <>
       {
