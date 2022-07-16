@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Home from './Componentes/Home';
-import NavBar from './Componentes/NavBar/NavBar';
+import Home from './Componentes/Home/Home.jsx';
+import NavBar from './Componentes/NavBar/NavBar.jsx';
 import { Route, useLocation } from 'react-router-dom'
 import CreateProduct from './Componentes/CreateProduct/CreateProduct';
 

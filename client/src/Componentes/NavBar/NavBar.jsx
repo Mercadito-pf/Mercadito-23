@@ -20,7 +20,7 @@ export default function NavBar() {
         <nav className='nav'> 
           <ul className='contentButton'>
               <li className='logo'>
-                <Link to="/">
+                <Link to="/" className='logo'>
                 <h1>Mercadito</h1>
                 <h5>COMPRA Y VENDE SEGURO</h5>
                 </Link>
@@ -32,8 +32,8 @@ export default function NavBar() {
               <li className='item'>
                 <Link to="/login"><img src={user}/>Iniciar Sesion</Link>
               </li>
-              <li>
-                <Link to="/create"> Vender producto</Link>
+              <li className='item'>
+                <Link to="/create">Vender</Link>
               </li>
               <li className='item'>
                 <Link to="/my-shoping"><img src={bag}/>Mis compras</Link>
