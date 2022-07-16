@@ -16,11 +16,13 @@ export default function CreateProduct() {
   let { features } = useSelector(state => state)
   let [show, setShow] = useState(true)
   let [disable, setDisable] = useState(true)
+  let [error, setError]=useState({})
   let dispatch = useDispatch()
 
   function handleClick(e) {
     e.preventDefault()
     setShow(false)
+    setDisable(true)
     if (select.type) {
       dispatch(get_features(`type=${select.type.value}`))
       return
@@ -65,9 +67,19 @@ export default function CreateProduct() {
   }
 
   function handleInputChange(e) {
-
-
     e.preventDefault()
+
+      setError(prev =>{
+        return{
+          ...prev,
+          [e.target.name]:e.target.value===""
+        }
+      })
+
+      for (const key in error) {
+        setDisable(error[key])
+      }
+    
     console.log(e.target.name)
     setInput(prev => {
       return {
@@ -114,6 +126,18 @@ export default function CreateProduct() {
       setDisable(true)
     }
   }, [select])
+
+  useEffect(()=>{
+    let obj = {}
+    let err = {}
+    features.forEach(feature =>{
+      obj[feature]=""
+      err[feature]=true
+    })
+    setInput(obj)
+    setError(err)
+  },[features])
+
   return (
     <>
       <Link to="/">Go To Home</Link>
@@ -149,7 +173,7 @@ export default function CreateProduct() {
               })
 
             }
-            <input type="submit" />
+            <input disabled={disable} type="submit" />
           </>
         }
       </form>
