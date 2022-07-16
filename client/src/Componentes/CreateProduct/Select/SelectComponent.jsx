@@ -8,7 +8,7 @@ export default function SelectComponent( {select, handleChange}) {
 
       let dispatch = useDispatch()
 
-      let {categories, sub} = useSelector(state => state)
+      let {categories, sub} = useSelector(state => state.reducer)
 
       let subCat = select.sub
     
