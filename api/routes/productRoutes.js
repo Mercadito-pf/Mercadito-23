@@ -11,7 +11,6 @@ router.post("/", proyectController.createProduct);
 // Get one product
 router.get("/:id", proyectController.getProduct);
 
-// Get Features
-router.get("/features", proyectController.getFeatures);
+
 
 module.exports = router;

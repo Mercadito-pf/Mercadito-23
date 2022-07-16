@@ -41,7 +41,7 @@ exports.getProducts = async (req, res) => {
         promiseProducts,
         promiseLength,
       ]);
-      let totalPages = Math.floor(length / limit);
+      let totalPages = Math.ceil(length / limit);
       return res.send({ data: { totalPages }, products });
     }
 
@@ -49,7 +49,7 @@ exports.getProducts = async (req, res) => {
       .find()
       .limit(Number(limit))
       .skip(Number(start))
-      .sort({datefield: -1})
+      .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
       .exec();
     let promiseLength = productModel.find().count().exec();
 
@@ -57,7 +57,7 @@ exports.getProducts = async (req, res) => {
       promiseProducts,
       promiseLength,
     ]);
-    let totalPages = Math.floor(length / limit);
+    let totalPages = Math.ceil(length / limit);
     res.send({ data: { totalPages }, products });
   } catch (error) {
     console.log(error);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { get_features } from '../../redux/actions'
 import FormComponent from './Form/FormComponent'
 import SelectComponent from './Select/SelectComponent'
@@ -114,47 +115,46 @@ export default function CreateProduct() {
     }
   }, [select])
   return (
-    <form onSubmit={handleSubmit}>
-      {
-        show && <>
-          <h3>Seleccione la categoria de su producto</h3>
-          <SelectComponent select={select} handleChange={handleChange} />
-          <button onClick={handleClick} disabled={disable}>Next</button>
-        </>
-      }
-      {
-        !show && <>
-          {
-            features.map(f => {
-              if (f === "description") {
+    <>
+      <Link to="/">Go To Home</Link>
+      <form onSubmit={handleSubmit}>
+        {
+          show && <>
+            <h3>Seleccione la categoria de su producto</h3>
+            <SelectComponent select={select} handleChange={handleChange} />
+            <button onClick={handleClick} disabled={disable}>Next</button>
+          </>
+        }
+        {
+          !show && <>
+            {
+              features.map(f => {
+                if (f === "description") {
+                  return (
+                    <div>
+                      <div>
+                        <label>Descripcion: </label>
+                      </div>
+                      <textarea name={f} onChange={handleInputChange} rows="4" cols="50"></textarea>
+                    </div>
+                  )
+                }
                 return (
                   <div>
-                    <div>
-                      <label>Descripcion: </label>
-                    </div>
-                    <textarea name={f} onChange={handleInputChange} rows="4" cols="50"></textarea>
+                    <label>{f[0].toUpperCase()+f.substring(1).replaceAll("_", " ")}</label>
+                    <input onChange={handleInputChange} type="text" name={f} />
                   </div>
+
                 )
-              }
-              return (
-                <div>
-                  <label>{f}</label>
-                  <input onChange={handleInputChange} type="text" name={f} />
-                </div>
+              })
 
-              )
-            })
+            }
+            <input type="submit" />
+          </>
+        }
+      </form>
+    </>
 
-          }
-          {/* <input onChange={handleInputChange} type="text" name="name" id="" /> */}
-          {/* <FormComponent handleInputChange={handleInputChange} input={input}/>
-        */}
-        <input type="submit" />
-        </>
-      }
-
-      
-    </form>
   )
 }
 

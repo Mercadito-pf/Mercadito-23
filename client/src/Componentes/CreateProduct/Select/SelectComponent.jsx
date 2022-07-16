@@ -31,7 +31,7 @@ export default function SelectComponent( {select, handleChange}) {
             <Select
                 name='category'
                 options={categories.map(c => {
-                    return { value: c.name, label: c.name }
+                    return { value: c.name, label: c.name[0].toUpperCase() + c.name.substring(1) }
                 })}
                 isClearable={true}
                 onChange={handleChange}
@@ -40,7 +40,7 @@ export default function SelectComponent( {select, handleChange}) {
             <Select
                 name='sub'
                 options={sub.map(c => {
-                    return { value: c.name, label: c.name.replaceAll("_", " ") }
+                    return { value: c.name, label: c.name[0].toUpperCase() + c.name.substring(1).replaceAll("_", " ") }
                 })}
                 isClearable={true}
                 onChange={handleChange}

@@ -30,10 +30,10 @@ export default function NavBar() {
                 <a href="!#">Crear cuenta</a>
               </li> */}
               <li className='item'>
-                <Link to="/login"><img src={user}/>Iniciar sesion</Link>
+                <Link to="/login"><img src={user}/>Iniciar Sesion</Link>
               </li>
               <li>
-                <Link to="/create">Crear Producto</Link>
+                <Link to="/create"> Vender producto</Link>
               </li>
               <li className='item'>
                 <Link to="/my-shoping"><img src={bag}/>Mis compras</Link>

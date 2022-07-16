@@ -13,6 +13,7 @@ app.use(express.json())
 // Routes
 app.use("/products", require("./routes/productRoutes"));
 app.use("/categories", require("./routes/categoryRoutes"));
+app.use('/features', require("./routes/featuresRoutes"))
 
 // Route Deploy
 app.get("/", function (req, res) {
