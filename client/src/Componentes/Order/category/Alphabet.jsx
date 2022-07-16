@@ -12,11 +12,11 @@ export default function Alphabet() {
      function handleClick(e, order){
         e.preventDefault()
         if (order === "ascendente") {
-            dispatch(update_querys_order("_sort=name&_order=asc"))
+            dispatch(update_querys_order("sort=name&order=asc"))
             dispatch(update_url())
         }
         if (order === "descendente") {
-            dispatch(update_querys_order("_sort=name&_order=desc"))
+            dispatch(update_querys_order("sort=name&order=desc"))
             dispatch(update_url())
         }
      }

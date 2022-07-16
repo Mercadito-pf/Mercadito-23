@@ -17,6 +17,7 @@ function App() {
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       {/* <Route path="/shoping-car" component={ShopingCar} /> */}
        {/* <Route path="/login" component={Login} /> */}
+       {/* gfvkhgfkhgf */}
        <Route path="/create" component={CreateProduct} />
     </div>
   );
