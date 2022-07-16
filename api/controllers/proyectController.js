@@ -5,9 +5,15 @@ exports.createProduct = async (req, res) => {
   product.price = Number(product.price);
   product.stock = Number(product.stock);
   console.log(product);
-  const p = new productModel(product);
-  await p.save();
+
+  try {
+    const product = new productModel(product);
+  await product.save();
   res.sendStatus(201);
+  } catch (error) {
+    console.log(error)
+  }
+  
 };
 
 exports.getProducts = async (req, res) => {
@@ -68,7 +74,7 @@ exports.getProduct = async (req, res) => {
   let { id } = req.params;
   console.log(id);
   try {
-    let product = await productModel.findOne({ _id: id }).exec();
+    let product = await productModel.findOne({ id }).exec();
     res.send(product);
   } catch (error) {
     console.log(error);
