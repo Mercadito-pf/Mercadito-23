@@ -1,0 +1,116 @@
+.principalContainer {
+    // margin:0;
+    // font-family: sans-serif;
+    // background: rgb(255, 247, 230);
+    display: flex;
+    //flex-wrap: wrap;
+    //width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.cardContent {
+    width: 20%;
+    min-width: 20%;
+    margin: 10px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    border-radius: 10px;
+    //cursor: pointer;
+    padding-top: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: -4s;
+    background: #ffffff;
+}
+
+.cardContent:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transform: translate(0px, -8px);
+}
+
+.image img {
+    width: 200px;
+    height: 250px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.cardText {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+.cardText h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 4px;
+    padding-top: 10px;
+    text-decoration: none;
+}
+
+.cardText h4 {
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-right: 6px;
+    padding-top: 10px;
+    text-decoration: none;
+}
+
+.cardText h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 6px;
+}
+
+.cardText p {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: left;
+    margin-left: 6px;
+}
+
+.detailsButton button{
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: rgb(243, 119, 42);
+}
+
+@media(max-width:1400px){
+    .cardContent {
+        width:25%;
+    }
+}
+
+@media(max-width:900px){
+    .cardContent {
+        width: 42%;
+    }
+}
+
+@media(max-width:490px){
+    .cardContent{
+        width: 90%;
+    }
+}
