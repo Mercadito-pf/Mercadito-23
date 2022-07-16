@@ -13,11 +13,11 @@ export default function Price() {
     function handleClick(e, order) {
         e.preventDefault()
         if (order === "minimo") {
-            dispatch(update_querys_order("_sort=price&_order=asc"))
+            dispatch(update_querys_order("sort=price&order=asc"))
             dispatch(update_url())
         }
         if (order === "maximo") {
-            dispatch(update_querys_order("_sort=price&_order=desc"))
+            dispatch(update_querys_order("sort=price&order=desc"))
             dispatch(update_url())
         }
     }

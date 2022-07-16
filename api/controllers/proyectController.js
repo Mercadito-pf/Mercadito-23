@@ -11,16 +11,27 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
-  const { category, sort, order } = req.query;
+  const { category, sort, order, name } = req.query;
   let page = req.query.page || 0;
   let limit = req.query.limit || 16;
   let start = page * limit;
 
-  try {
+  let query = {}
+
     if (category) {
-      let promiseLength = productModel.find({ category }).count().exec();
+        query.category = category
+    } else if (name) {
+      
+        query.name=new RegExp(`^${name}|\\s${name}`, "i")
+    }
+
+    // console.log(name)
+
+  try {
+    if (name || category) {
+      let promiseLength = productModel.find(query).count().exec();
       let promiseProducts = productModel
-        .find({ category })
+        .find(query)
         .limit(Number(limit))
         .skip(Number(start))
         .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
@@ -30,7 +41,7 @@ exports.getProducts = async (req, res) => {
         promiseProducts,
         promiseLength,
       ]);
-      let totalPages = Math.floor(length / limit);
+      let totalPages = Math.ceil(length / limit);
       return res.send({ data: { totalPages }, products });
     }
 
@@ -38,7 +49,7 @@ exports.getProducts = async (req, res) => {
       .find()
       .limit(Number(limit))
       .skip(Number(start))
-      .sort({ date: -1 })
+      .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
       .exec();
     let promiseLength = productModel.find().count().exec();
 
@@ -46,7 +57,7 @@ exports.getProducts = async (req, res) => {
       promiseProducts,
       promiseLength,
     ]);
-    let totalPages = Math.floor(length / limit);
+    let totalPages = Math.ceil(length / limit);
     res.send({ data: { totalPages }, products });
   } catch (error) {
     console.log(error);
@@ -86,8 +97,8 @@ let arr = [
 ];
 
 exports.getFeatures = async (req, res) => {
-  let q = req.query;
-  let product = await productModel.findOne(q).exec();
+  let query = req.query;
+  let product = await productModel.findOne(query).exec();
   let features = [];
   for (const key in product) {
     if (arr.includes(key)) {

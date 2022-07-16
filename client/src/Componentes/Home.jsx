@@ -68,7 +68,7 @@ export default function Home() {
     function handleClick(page) {
         // const end = page * productsPerpage
         // const start = end - productsPerpage
-        dispatch(update_querys_paginate(`page=${page}&limit=${16}`))
+        dispatch(update_querys_paginate(`page=${page-1}&limit=${16}`))
         dispatch(update_url())
         if (data.totalPages > maxLimit) {
             if (page > 0 && page < 4) {

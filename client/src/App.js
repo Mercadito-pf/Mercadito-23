@@ -10,13 +10,14 @@ function App() {
   return (
     <div >
       
-      {pathname !== "/login" && <NavBar/>}
+      {pathname !== "/login" && pathname!=="/create"&&<NavBar/>}
       <Route exact path="/" component={Home} />
       {/* <Route path="/detail/:id" component={Detail}/> */}
       {/* <Route path="/favorites" component={Favorites} /> */}
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       {/* <Route path="/shoping-car" component={ShopingCar} /> */}
        {/* <Route path="/login" component={Login} /> */}
+       {/* gfvkhgfkhgf */}
        <Route path="/create" component={CreateProduct} />
     </div>
   );

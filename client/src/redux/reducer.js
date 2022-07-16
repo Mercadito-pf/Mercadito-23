@@ -34,12 +34,7 @@ function reducer(state = initState, action){
             }
 
         case UPDATE_QUERYS_ORDER:
-            let querysMap =  state.querys.map((q, i) => {
-                if (i > 0 && !q.includes("sort")) {
-                    return q
-                }
-                return `page=${0}&limit=${16}`
-            })
+            let querysMap =  state.querys.filter((query) => !query.includes("sort"))
             return{
                 ...state,
                 querys: [...querysMap, action.payload],
