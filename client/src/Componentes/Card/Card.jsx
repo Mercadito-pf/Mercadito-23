@@ -1,14 +1,25 @@
 import React from 'react';
-
+import Fav from '../Fav/Fav.jsx'
 import {Link} from "react-router-dom";
 import './Card.scss'
-
+import { useSelector } from "react-redux";
 
 const Cards = (products)=>{
+    const {profile} = useSelector(state=>state.userRedcuer)
+    
+
     return (
-        <div className = 'principalContainer'>
-            
+
+        <div className = 'principalContainer'>     
             <div className = 'cardContent'>
+
+               {
+                profile?._id &&  
+                <div className="Favorito">
+                    <Fav id={products.id}></Fav>
+                </div>
+                }
+
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
