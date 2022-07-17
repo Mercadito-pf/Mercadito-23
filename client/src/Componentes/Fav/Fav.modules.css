@@ -1,0 +1,19 @@
+.gf{
+    position: relative;
+   border:0; 
+    background:rgba(255, 129, 3, 0.544);
+    border-radius: 90px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.gf:hoover{
+    background:rgb(255, 247, 172,.8)
+}
+
+.gf span{
+   display: block;
+   width: 20px;
+}
