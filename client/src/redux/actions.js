@@ -86,6 +86,7 @@ let arr = [
     "RPM",
     "capacidad_de_lavado",
     "tipo"
+    // "procesador"
 ]
 
 function get_features(query){
@@ -107,6 +108,7 @@ function get_features(query){
         })
     }
 }
+
 
 
 

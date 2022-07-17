@@ -25,16 +25,6 @@ export default function Home() {
     // traigo el estado global
     let { url, currentPage } = useSelector(state => state.reducer)
 
-    // useEffect(() => {
-
-    //     // autoinvoke function que hace una petcion a la api y la guarda en el estado  local
-    //     (async function () {
-    //         let res = await fetch(' http://localhost:3001/products').then(res => res.json())
-    //         setProductsAll(res)
-    //     })()
-
-    // }, [])
-
     // se hara una peticion a la api cada vez que se monte el componente o se actualice el estado
     // global [url]
     useEffect(() => {
@@ -47,7 +37,6 @@ export default function Home() {
                 setFetchData(res)
                 return
             }
-            // let random = Math.floor(Math.random() * (data.totalPages - 0) + 0);
             let res = await fetch(`http://localhost:3001/products?page=${0}&limit=${productsPerpage}`).then(res => res.json())
 
 
@@ -114,10 +103,8 @@ export default function Home() {
 
     return (
         <div>
-            <br />
             <Slider />
-            <hr />
-            <br />
+            
             {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
@@ -147,7 +134,7 @@ export default function Home() {
             {viewAllProducts || currentPage > 0 ?
                 <div className="flex">
                     <Paginate
-                        totalPages={data.totalPages}
+                        totalPages={data && data.totalPages}
                         minLimit={minLimit}
                         maxLimit={maxLimit}
                         handleClick={handleClick}

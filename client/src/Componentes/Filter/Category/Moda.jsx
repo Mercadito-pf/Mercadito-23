@@ -35,8 +35,8 @@ export default function Moda() {
                     // {moda:[tipos de moda]} 
                     moda.length && moda.map((c, i) => {
                         return (
-                            <li key={i}>
-                                <Link onClick={(e) => handleClick(e, c.name)} to="/">{c.name.replaceAll("_", " ")}</Link>
+                            <li key={i} onClick={(e) => handleClick(e, c.name)}>
+                                <Link to="/">{c.name.replaceAll("_", " ")}</Link>
                             </li>
                         )
                     })
