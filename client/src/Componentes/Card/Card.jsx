@@ -5,7 +5,8 @@ import './Card.scss'
 import { useSelector } from "react-redux";
 
 const Cards = (products)=>{
-    const {profile} = useSelector(state=>state.userRedcuer)
+    const {profile} = useSelector(state=>state.userReducer)
+    // console.log(profile)
     
 
     return (
@@ -14,10 +15,13 @@ const Cards = (products)=>{
             <div className = 'cardContent'>
 
                {
-                profile?._id &&  
+                profile?._id &&  !products.list &&
                 <div className="Favorito">
-                    <Fav id={products.id}></Fav>
+                    <Fav id={products.id} profile={profile}></Fav>
                 </div>
+                }
+                {
+                    products.list && <button >X</button>
                 }
 
                 <div className = 'image'>

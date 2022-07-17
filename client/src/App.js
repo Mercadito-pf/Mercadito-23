@@ -12,6 +12,7 @@ import Register from "./Componentes/Register/Register";
 import NewPassword from "./Componentes/NewPassword/NewPassword";
 import ForgotPassword from "./Componentes/ForgotPassword/ForgotPassword";
 import Detail from "./Componentes/detail/Detail";
+import ListFav from "./Componentes/Fav/ListFav";
 // import Detail from "./Componentes/detail/Detail";
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
       <Route exact path="/forgot-password" component={ForgotPassword} />
       <Route exact path="/" component={Home} />
       <Route path="/detail/:id" component={Detail}/>
-      {/* <Route path="/favorites" component={Favorites} /> */}
+      <Route path="/favorites" component={ListFav} />
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       {/* <Route path="/shoping-car" component={ShopingCar} /> */}
       {/* <Route path="/login" component={Login} /> */}

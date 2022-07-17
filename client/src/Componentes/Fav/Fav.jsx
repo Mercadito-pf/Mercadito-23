@@ -7,7 +7,7 @@ function Fav({id, profile}) {
   
   const handleClick = async ()=>{
       try{
-      const {data}= await clienteAxios.get(`/favorites/${id}?user=${profile}`)
+      const {data}= await clienteAxios.get(`/favorites/${id}?user=${profile.name}`)
         alert('se añadio a favoritos')
       }
       catch(e){

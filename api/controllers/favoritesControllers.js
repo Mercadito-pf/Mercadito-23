@@ -4,6 +4,8 @@ const { favoritesModel } = require('../schemas/favorites.schema')
 exports.createFavorites = async (req, res) => {
     let { id } = req.params
     let { user } = req.query
+
+    console.log(id, user)
     try {
         let product = await productModel.findOne({ id }).exec()
         delete product._id
