@@ -23,7 +23,7 @@ export default function Home() {
     let dispatch = useDispatch()
 
     // traigo el estado global
-    let { url, currentPage } = useSelector(state => state)
+    let { url, currentPage } = useSelector(state => state.reducer)
 
     // useEffect(() => {
 
@@ -60,14 +60,9 @@ export default function Home() {
    
 
 
-    // const totalProducts = url.length && !viewAll?products.length: productsAll.length
-    // const totalPages = Math.ceil(totalProducts / productsPerpage)
-
 
     // controla los datos que los datos que se renderizan en cada pagina
     function handleClick(page) {
-        // const end = page * productsPerpage
-        // const start = end - productsPerpage
         dispatch(update_querys_paginate(`page=${page-1}&limit=${16}`))
         dispatch(update_url())
         if (data.totalPages > maxLimit) {
