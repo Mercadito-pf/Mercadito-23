@@ -25,6 +25,7 @@ exports.signUp = async (req, res) => {
         password: passwordE,
         profile_picture: picture,
       });
+      await newUser.save()
 
       // Se crea el token como paylad el id del usuario creado y como secrete se usa variable de entorno
       let token = jwt.sign({ id: newUser.id }, process.env.SECRET, {

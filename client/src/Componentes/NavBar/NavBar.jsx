@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
 import Order from "../Order/Order";
@@ -8,11 +8,14 @@ import "./NavBar.scss";
 import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
 import bag from "../icons/bag.png";
-import { logoutUser } from "../../redux/user/userActions";
+import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
 
 export default function NavBar() {
   let { currentPage } = useSelector((state) => state.reducer);
+  useEffect(() => {
+    dispatch(authenticate());
+  }, []);
 
   let { profile } = useSelector((state) => state.userReducer);
 
@@ -60,18 +63,18 @@ export default function NavBar() {
           <li className="item">
             <Link to="/create">Vender</Link>
           </li>
-          <li className="item">
+          {/* <li className="item">
             <Link to="/my-shoping">
               <img src={bag} />
               Mis compras
             </Link>
-          </li>
-          <li className="item">
+          </li> */}
+          {/* <li className="item">
             <Link to="/shoping-car">
               <img src={carrito} />
               Carrito
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
 

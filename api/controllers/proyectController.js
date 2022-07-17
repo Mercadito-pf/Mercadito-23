@@ -1,14 +1,27 @@
 const { productModel } = require("../schemas/products.schema");
+const { v4: uuidv4 } = require('uuid');
 
 exports.createProduct = async (req, res) => {
   let product = req.body;
+  let {name, ram, modelo, marca, almacenamiento} = req.body
   product.price = Number(product.price);
   product.stock = Number(product.stock);
-  console.log(product);
+  product.id = uuidv4()
+  product.sales=0
+
+  let title 
+  if (ram && modelo) {
+    title = `${name} ${marca} ${modelo} ${ram}GB RAM ${almacenamiento}GB`
+  } else{
+    title = name
+  }
+
+  product.name = title
+  console.log(title)
 
   try {
-    const product = new productModel(product);
-  await product.save();
+    const productCreated = new productModel(product);
+  await productCreated.save();
   res.sendStatus(201);
   } catch (error) {
     console.log(error)
@@ -31,8 +44,6 @@ exports.getProducts = async (req, res) => {
         query.name=new RegExp(`^${name}|\\s${name}`, "i")
     }
 
-    // console.log(name)
-
   try {
     if (name || category) {
       let promiseLength = productModel.find(query).count().exec();
@@ -40,7 +51,8 @@ exports.getProducts = async (req, res) => {
         .find(query)
         .limit(Number(limit))
         .skip(Number(start))
-        .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
+        .sort({[sort]: order})
+        // .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
         .exec();
 
       let [products, length] = await Promise.all([
@@ -51,11 +63,12 @@ exports.getProducts = async (req, res) => {
       return res.send({ data: { totalPages }, products });
     }
 
+    
     let promiseProducts = productModel
       .find()
       .limit(Number(limit))
       .skip(Number(start))
-      .sort(order === "asc" ? sort : order === "desc" && { [sort]: -1 })
+      .sort({[sort||"createdAt"]: order||"desc"})
       .exec();
     let promiseLength = productModel.find().count().exec();
 

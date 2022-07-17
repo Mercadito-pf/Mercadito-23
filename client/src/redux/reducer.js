@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_FEATURES, GET_SUB, SET_CURRENT_PAGE, UPDATE_CURRENT_PAGE, UPDATE_QUERYS, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_QUERYS_SEARCH, UPDATE_URL } from "./actionsTypes";
+import { GET_ALL_PRODUCTS, GET_CATEGORIES, GET_FEATURES, GET_SUB, UPDATE_CURRENT_PAGE, UPDATE_QUERYS_FILTER, UPDATE_QUERYS_ORDER, UPDATE_QUERYS_PAGINATE, UPDATE_URL } from "./actionsTypes";
 
 let initState={
     url: "",
@@ -6,7 +6,8 @@ let initState={
     querys:['page=${0}&limit=${16}'],
     categories:[],
     sub:[],
-    features:[]
+    features:[],
+    path:"/"
 }
 
 function reducer(state = initState, action){
@@ -72,6 +73,7 @@ function reducer(state = initState, action){
                 ...state,
                 features:action.payload
             }
+        
         default:
             return state;
     }
