@@ -60,6 +60,10 @@ export default function NavBar() {
               </Link>
             </li>
           )}
+
+          <li className="item">
+            <Link to="/favorites">Favoritos</Link>
+          </li>
           <li className="item">
             <Link to="/create">Vender</Link>
           </li>

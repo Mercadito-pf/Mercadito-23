@@ -111,9 +111,10 @@ export default function Home() {
 
                 products && products.map((p) => {
                     return( 
-                        <Link to={`/detail/${p.id}`}>
+                        // <Link to={`/detail/${p.id}`}>
                          <Cards image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price} id={p.id} />
-                        </Link>)
+                        // </Link>)
+                    )
                        
                     // console.log(k)  
 
