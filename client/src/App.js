@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div>
+      {pathname !== "/login" && pathname!=="/create"&&pathname!=="/register"&&<NavBar/>}
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/new-password/:token" component={NewPassword} />
