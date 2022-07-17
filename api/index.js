@@ -20,12 +20,14 @@ app.use("/favorites", require("./routes/favoritesRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 
 // Route Deploy
-app.get("/", function (req, res) {
+app.get("/api", function (req, res) {
   res.json({ msg: "Servidor funcionando" });
 });
 
+const PORT = process.env.PORT || 3001;
+
 // Server
-app.listen(3001, async () => {
+app.listen(PORT, async () => {
   await mongoose.connect(process.env.MONGODB_URL);
   console.log("listening at port 3001");
 });
