@@ -49,7 +49,13 @@ export default function NavBar() {
                 />
               </div>
               <li className="item">
-                <button onClick={logout}>Cerrar Sesión</button>
+                <button onClick={logout}className="btn">
+            <span className="span1"></span>
+            <span className="span2"></span>
+            <span className="span3"></span>
+            <span className="span4"></span>
+               Cerrar Sesion
+              </button>
               </li>
             </>
           ) : (
@@ -65,7 +71,7 @@ export default function NavBar() {
             <Link to="/favorites">Favoritos</Link>
           </li> */}
           <li className="item">
-            <Link to="/create">Vender</Link>
+            <Link to="/create"className="i">Vender</Link>
           </li>
           {/* <li className="item">
             <Link to="/my-shoping">
