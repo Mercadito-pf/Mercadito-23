@@ -11,10 +11,11 @@ const Cards = (products)=>{
 
     return (
 
-        <div className = 'principalContainer'>     
+        <div className = 'principalContainer'>  
+        <Link to={`/detail/${products.id}`} className='detailsButton'>   
             <div className = 'cardContent'>
-
-               {/* {
+            
+                 {/* {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
                     <Fav id={products.id} profile={profile}></Fav>
@@ -36,9 +37,8 @@ const Cards = (products)=>{
                         <button>ver mas</button>
                     </Link>
                 </div>
-                
             </div>
-        
+            </Link>
         </div>
     )
 }

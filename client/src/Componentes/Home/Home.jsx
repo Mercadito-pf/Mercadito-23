@@ -19,7 +19,7 @@ export default function Home() {
     let [maxLimit, setMaxLimit] = useState(6)
     const [productsPerpage, setproductsPerpage] = useState(8)
 
-    let {data, products} = fetchData
+    let { data, products } = fetchData
 
     let dispatch = useDispatch()
 
@@ -47,13 +47,13 @@ export default function Home() {
 
     }, [url, productsPerpage])
 
-   
+
 
 
 
     // controla los datos que los datos que se renderizan en cada pagina
     function handleClick(page) {
-        dispatch(update_querys_paginate(`page=${page-1}&limit=${16}`))
+        dispatch(update_querys_paginate(`page=${page - 1}&limit=${16}`))
         dispatch(update_url())
         if (data.totalPages > maxLimit) {
             if (page > 0 && page < 4) {
@@ -105,22 +105,20 @@ export default function Home() {
     return (
         <div>
             <Slider />
-            
+
             <div className='cardGrid'>
                 {/*  se mapea lo que tenga el estado local y se crea una card por cada producto 
                 en el estado local  */}
-            {   products && products.map((p) => {  
-                    return( 
-                        <Link to={`/detail/${p.id}`}>
-                         <Cards key={p.id} id={p.id}image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
-                        </Link>
-                        )
-                    })
+                {products && products.map((p) => {
+                    return (
+                        <Cards key={p.id} id={p.id} image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price} />
+                    )
+                })
                 }
 
             </div>
 
-           {/* esto lo comente// maxi */}
+            {/* esto lo comente// maxi */}
             {/* {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
@@ -140,12 +138,12 @@ export default function Home() {
             {
                 // opcion para ver todos los productos
                 !url.length && (
-                <div onClick={viewAll} className='verProducts'>
-                    <Link to="/">
-                        <button>Ver todos los productos</button>
-                    </Link>
-                </div>
-                
+                    <div onClick={viewAll} className='verProducts'>
+                        <Link to="/">
+                            <button>Ver todos los productos</button>
+                        </Link>
+                    </div>
+
                 )
             }
 
