@@ -98,3 +98,14 @@
     // text-align: center;
     // display: none;
     // order: 3;
+
+.active{
+    transform: translate(-600px);
+}
+
+.opacity {
+    transition:all .5s ease;
+}
+.icono-menu{
+    cursor:pointer;
+}

@@ -25,10 +25,10 @@ export default function SearchBar() {
         <div className='containerBar'>
             <form onSubmit={handleSubmit} className='container'>
                 <input onChange={handleChange} value={input} className='input' type="text" placeholder='Busque sus productos favoritos...' />
-            </form>
-            <button type='submit' value=''>
+            <button className='button' type='submit' value=''>
                     <img src={searchButton} alt=''/>
             </button>
+            </form>
         </div>
     )
 }

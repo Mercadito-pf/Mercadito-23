@@ -1,0 +1,47 @@
+.general-contain{
+    width:70%;
+    margin: 0 auto;
+    align-content:center;
+    align-items: center;
+} 
+.GoHome button{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background: #ffffff;
+    cursor:pointer;
+    border-style: none;
+    padding:15px;
+}
+button:hover {
+    color:rgb(255, 111, 0)
+}
+
+
+.Next{
+    padding-top: 15px;
+}
+.f{
+    padding: 9px;
+}
+.f-input input{
+  background: orange;
+  width: 60%;
+  border-radius: 60px;
+  flex:1;
+  border: 0;
+  Outline:none;
+  font-size: 18px;
+  text-align:center;
+}
+
+.f-input  textarea{
+    background: orange;
+    border-radius: 10px;
+    width: 60%;
+    text-align:center;
+
+}
+.general{
+  
+}

@@ -1,21 +1,22 @@
 .containerBar {
-    width: 50%;
+    width: 440px;
     position: relative;
     background-position: center;
     background-size: cover;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    //align-items: center;
+    //justify-content: center;
 }
 
 .container {
+    //position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 560px;
     background: rgba(255, 94, 0, 0.504);
     display: flex;
-    align-items: center;
+    //align-items: left;
     border-radius: 68px;
-    padding: 6px 0px 6px 25px;
+    padding: 6px 0px 6px 20px;
 }
 
 .input {
@@ -23,9 +24,9 @@
     flex:1;
     border: 0;
     outline: none;
-    padding: 9px 0px;
-    font-size: 18px;
-    font-weight: bolder;
+    padding: 9px;
+    font-size: 17px;
+    font-weight: bold;
     color: #ffffff
 }
 
@@ -33,9 +34,9 @@
     color: #ffffff;
 }
 
-.containerBar button {
+.button {
     position: absolute;
-    margin-left: 61%;
+    margin-left: 85.5%;
     border: 0;
     border-radius: 50%;
     width: 40px;

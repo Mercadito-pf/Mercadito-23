@@ -61,9 +61,9 @@ export default function NavBar() {
             </li>
           )}
 
-          <li className="item">
+          {/* <li className="item">
             <Link to="/favorites">Favoritos</Link>
-          </li>
+          </li> */}
           <li className="item">
             <Link to="/create">Vender</Link>
           </li>

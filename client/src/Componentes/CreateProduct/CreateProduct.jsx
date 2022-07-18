@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { get_features } from '../../redux/actions'
 import FormComponent from './Form/FormComponent'
 import SelectComponent from './Select/SelectComponent'
-
+import "./Create.scss";
 
 export default function CreateProduct() {
   let [input, setInput] = useState({})
@@ -139,14 +139,19 @@ export default function CreateProduct() {
   },[features])
 
   return (
-    <>
-      <Link to="/">Go To Home</Link>
+    <div className="general-contain">
+      <div className="GoHome">
+      <Link to="/"><button >Go To Home</button></Link>
+      </div>
+      <div className=""></div>
       <form onSubmit={handleSubmit}>
         {
           show && <>
             <h3>Seleccione la categoria de su producto</h3>
             <SelectComponent select={select} handleChange={handleChange} />
+            <div className="Next">
             <button onClick={handleClick} disabled={disable}>Next</button>
+            </div>
           </>
         }
         {
@@ -159,14 +164,20 @@ export default function CreateProduct() {
                       <div>
                         <label>Descripcion: </label>
                       </div>
-                      <textarea name={f} onChange={handleInputChange} rows="4" cols="50"></textarea>
+                      <div className="f-input">
+                      <textarea className="f-input" name={f} onChange={handleInputChange} rows="4" cols="50"></textarea>
+                      </div>
                     </div>
                   )
                 }
                 return (
-                  <div>
+                  <div className="general">
+                    <div clasName="f">
                     <label>{f[0].toUpperCase()+f.substring(1).replaceAll("_", " ")}</label>
+                    </div>
+                    <div className="f-input">
                     <input onChange={handleInputChange} type="text" name={f} />
+                    </div>
                   </div>
 
                 )
@@ -177,7 +188,7 @@ export default function CreateProduct() {
           </>
         }
       </form>
-    </>
+    </div>
 
   )
 }

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Select from 'react-select'
 import { get_categories, get_sub } from '../../../redux/actions'
-
+import "./SelectComponent.scss";
+ 
 export default function SelectComponent( {select, handleChange}) {
 
 
@@ -27,7 +28,8 @@ export default function SelectComponent( {select, handleChange}) {
         { value: "equipos", label: "Equipos de sonido" }
       ]
     return (
-        <>
+        <div className="containerSelect">
+          <div className="select">
             <Select
                 name='category'
                 options={categories.map(c => {
@@ -36,7 +38,9 @@ export default function SelectComponent( {select, handleChange}) {
                 isClearable={true}
                 onChange={handleChange}
             />
-
+          </div>
+          <br/>
+          <div className="select">
             <Select
                 name='sub'
                 options={sub.map(c => {
@@ -46,6 +50,7 @@ export default function SelectComponent( {select, handleChange}) {
                 onChange={handleChange}
                 value={select.sub}
             />
+          </div>
 
             {
               subCat && subCat.value === "audio_y_video" && (
@@ -58,6 +63,6 @@ export default function SelectComponent( {select, handleChange}) {
             />
               )
             }
-        </>
+        </div>
     )
 }

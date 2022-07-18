@@ -69,12 +69,12 @@ const Slider=() =>{
                 {/* <div className='numbertext'>1/4</div> */}
             </div>
                     
-                <div className='dotsContainer'>
+                {/* <div className='dotsContainer'>
                     <span className='dot' onclick="currentSlide(1)"></span>
                     <span className='dot' onclick="currentSlide(2)"></span>
                     <span className='dot' onclick="currentSlide(3)"></span>
                     <span className='dot' onclick="currentSlide(4)"></span>
-                </div>
+                </div> */}
         </div>
 
 
