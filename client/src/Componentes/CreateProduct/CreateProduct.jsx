@@ -139,18 +139,19 @@ export default function CreateProduct() {
   },[features])
 
   return (
+    <div className="c">
     <div className="general-contain">
       <div className="GoHome">
       <Link to="/"><button >Go To Home</button></Link>
       </div>
       <div className=""></div>
-      <form onSubmit={handleSubmit}>
+      <form className="sele"onSubmit={handleSubmit}>
         {
           show && <>
-            <h3>Seleccione la categoria de su producto</h3>
-            <SelectComponent select={select} handleChange={handleChange} />
+            <h3>Seleccione la categoria de su producto:</h3>
+            <SelectComponent className="sele" select={select} handleChange={handleChange} />
             <div className="Next">
-            <button onClick={handleClick} disabled={disable}>Next</button>
+            <button className="sele2"onClick={handleClick} disabled={disable}>Next</button>
             </div>
           </>
         }
@@ -189,7 +190,7 @@ export default function CreateProduct() {
         }
       </form>
     </div>
-
+    </div>
   )
 }
 
