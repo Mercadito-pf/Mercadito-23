@@ -20,6 +20,7 @@ export default function Paginate(props) {
         
     } = props
 
+    console.log(totalPages)
 
     let {currentPage}= useSelector(state => state.reducer)
     
@@ -92,8 +93,8 @@ export default function Paginate(props) {
 
             <li className={s.li}>
                 <button
-                 className={currentPage === totalPages? `${s.btn} ${s.disable}`: s.btn}
-                    disabled={currentPage === totalPages}
+                 className={currentPage === totalPages || totalPages === 0? `${s.btn} ${s.disable}`: s.btn}
+                    disabled={currentPage === totalPages|| totalPages === 0}
                     onClick={() => handleClick(currentPage + 1)}>
                     Next</button>
             </li>
