@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 // import s from './home.module.css'
 import Cards from "../Card/Card";
 import { Link } from "react-router-dom";
+import './Home.scss'
 
 
 export default function Home() {
@@ -105,7 +106,22 @@ export default function Home() {
         <div>
             <Slider />
             
-            {
+            <div className='cardGrid'>
+                {/*  se mapea lo que tenga el estado local y se crea una card por cada producto 
+                en el estado local  */}
+            {   products && products.map((p) => {  
+                    return( 
+                        <Link to={`/detail/${p.id}`}>
+                         <Cards key={p.id} id={p.id}image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price}/>
+                        </Link>
+                        )
+                    })
+                }
+
+            </div>
+
+           {/* esto lo comente// maxi */}
+            {/* {
                 // se mapea lo que tenga el estado local y se crea una card por cada producto 
                 // en el estado local
 
@@ -119,21 +135,22 @@ export default function Home() {
                     // console.log(k)  
 
                 })
-            }
-            <br />
-            <br />
+            } */}
+
             {
                 // opcion para ver todos los productos
                 !url.length && (
-                <div onClick={viewAll}>
-                    <Link to="/">Ver todos los productos</Link>
+                <div onClick={viewAll} className='verProducts'>
+                    <Link to="/">
+                        <button>Ver todos los productos</button>
+                    </Link>
                 </div>
                 
                 )
             }
 
             {viewAllProducts || currentPage > 0 ?
-                <div className="flex">
+                <div className='paginateContent'>
                     <Paginate
                         totalPages={data && data.totalPages}
                         minLimit={minLimit}

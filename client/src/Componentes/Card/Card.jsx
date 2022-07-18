@@ -14,7 +14,7 @@ const Cards = (products)=>{
         <div className = 'principalContainer'>     
             <div className = 'cardContent'>
 
-               {
+               {/* {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
                     <Fav id={products.id} profile={profile}></Fav>
@@ -22,8 +22,7 @@ const Cards = (products)=>{
                 }
                 {
                     products.list && <button >X</button>
-                }
-
+                } */}
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
@@ -34,7 +33,7 @@ const Cards = (products)=>{
                     <h2>{products.seller}</h2>
                     <p>{products.sales} ventas</p>
                     <Link to={`/detail/${products.id}`} className='detailsButton'>
-                        <button>see more</button>
+                        <button>ver mas</button>
                     </Link>
                 </div>
                 
