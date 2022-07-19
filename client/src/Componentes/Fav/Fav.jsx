@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
 import './Fav.modules.css'
-import heart_t from '../icons/tranparente.png'
+import heart_t from '../icons/heart_t.png'
+import heart_a from '../icons/azul.png'
 
 // const {data}= await clienteAxios.get(`/favorites/${idproducto}?user=${profile?.name}`)
 function Fav({id}) {
+
+  let [agregate, setAgregate] = useState(false)
 
   const requestOptions = {
     headers: { 
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem("token")}`
   }
-
   };
 
   console.log(id)
@@ -19,16 +21,26 @@ function Fav({id}) {
   const handleClick = async ()=>{
     console.log('click')
       try{
-      const {data}= await clienteAxios.post(`/favorites/${id}`, {}, requestOptions)
-        alert('se añadio a favoritos')
+      
+      const {data} = await clienteAxios.get(`/favorites/${id}`)
+
+      if (data) {
+        await clienteAxios.delete(`/favorites/${data._id}`)
+        setAgregate(false)
+        // alert('se elimino de favoritos')
+        return
+      }
+      await clienteAxios.post(`/favorites/${id}`, {}, requestOptions)
+      setAgregate(true)
+        // alert('se añadio a favoritos')
       }
       catch(e){
         console.log(e)
       }}
   return (
-    <button onClick={handleClick}>
+    <button className="btn_fav" onClick={handleClick}>
         {/* <span aria-label='Fav-gif' role='img'>🧡</span> */}
-        <img src={heart_t}/>
+        <img src={agregate?heart_a:heart_t}/>
     </button>
   )
 }

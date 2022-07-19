@@ -8,6 +8,8 @@ router.get("/", Auth, favoritesController.getFavorites);
 
 router.delete('/:id', favoritesController.deleteFavorites)
 
+router.get("/:id", favoritesController.getfavoriteID)
+
 
 
 module.exports = router;

@@ -27,6 +27,8 @@ exports.getFavorites = async (req, res) => {
         let favorites = await favoritesModel.find({ user: id })
             .populate("product user")
             .exec()
+
+            
         res.send(favorites)
     } catch (error) {
         console.log(error)
@@ -39,11 +41,21 @@ exports.deleteFavorites = async (req, res) => {
     try {
         const favorite = await favoritesModel.findByIdAndDelete(req.params.id);
         if (!favorite) res.status(404).send("No item found");
-        res.status(200).send({msg:"deleted succesful"});
+        res.status(200).send({ msg: "deleted succesful" });
     } catch (error) {
         console.log(error)
     }
 
+}
+
+
+exports.getfavoriteID = async (req, res) => {
+    let id = req.params.id
+
+    let favorite = await favoritesModel.findOne({product:id})
+        .populate("product user")
+        .exec()
+    res.send(favorite)
 }
 
 
