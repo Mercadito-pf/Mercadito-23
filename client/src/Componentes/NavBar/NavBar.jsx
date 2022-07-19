@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
 import Order from "../Order/Order";
 import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./NavBar.scss";
 import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
@@ -12,6 +12,8 @@ import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
 
 export default function NavBar() {
+
+  let history = useHistory()
   let { currentPage } = useSelector((state) => state.reducer);
   useEffect(() => {
     dispatch(authenticate());
@@ -22,8 +24,12 @@ export default function NavBar() {
   const dispatch = useDispatch();
 
   const logout = () => {
+
     googleLogout();
     dispatch(logoutUser());
+    if (profile._id) {
+      history.push("/")
+    }
   };
 
   return (
@@ -67,9 +73,9 @@ export default function NavBar() {
             </li>
           )}
 
-          {/* <li className="item">
+         {profile?._id&& <li className="item">
             <Link to="/favorites">Favoritos</Link>
-          </li> */}
+          </li>}
 
 
           {profile?._id &&<li className="item">

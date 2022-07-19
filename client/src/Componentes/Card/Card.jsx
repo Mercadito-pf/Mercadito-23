@@ -12,18 +12,18 @@ const Cards = (products)=>{
     return (
 
         <div className = 'principalContainer'>  
-        <Link to={`/detail/${products.id}`} className='detailsButton'>   
+        {/* <Link to={`/detail/${products.id}`} className='detailsButton'>    */}
             <div className = 'cardContent'>
             
-                 {/* {
+                 {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
-                    <Fav id={products.id} profile={profile}></Fav>
+                    <Fav id={products._id} profile={profile}></Fav>
                 </div>
                 }
                 {
                     products.list && <button >X</button>
-                } */}
+                }
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
@@ -38,7 +38,7 @@ const Cards = (products)=>{
                     </Link>
                 </div>
             </div>
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }
