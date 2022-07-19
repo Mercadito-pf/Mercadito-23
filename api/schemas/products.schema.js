@@ -29,7 +29,8 @@ let productSchema = mongoose.Schema({
         linea:String,
         nucleos:Number,
         velocidad:String
-    }
+    },
+    
 },  { timestamps: true })
 
 const productModel = mongoose.model("Product", productSchema)

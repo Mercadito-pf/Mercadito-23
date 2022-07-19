@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const Auth = async (req, res, next) => {
   let token = req.header("Authorization");
 
+
   // Se válida sí existe token en header en bearer
   if (!token) return res.status(401).send({ message: "Sin autorización" });
 

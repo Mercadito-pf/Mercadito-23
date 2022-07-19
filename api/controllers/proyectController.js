@@ -2,6 +2,9 @@ const { productModel } = require("../schemas/products.schema");
 const { v4: uuidv4 } = require('uuid');
 
 exports.createProduct = async (req, res) => {
+
+  let id = req.usuario
+  console.log(id)
   let product = req.body;
   let {name, ram, modelo, marca, almacenamiento} = req.body
   product.price = Number(product.price);

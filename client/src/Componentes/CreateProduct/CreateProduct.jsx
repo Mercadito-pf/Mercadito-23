@@ -99,9 +99,14 @@ export default function CreateProduct() {
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...input, ...obj })
+      headers: { 
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+    },
+      body: JSON.stringify({ ...input, ...obj }),
+      
     };
+
     fetch('http://localhost:3001/products', requestOptions)
       .then(res => {
         if (res.status === 201) {
@@ -137,6 +142,11 @@ export default function CreateProduct() {
     setInput(obj)
     setError(err)
   },[features])
+
+  useEffect(()=>{
+    // setToken()
+    console.log()
+  },[])
 
   return (
     <div className="c">
