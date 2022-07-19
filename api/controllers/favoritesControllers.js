@@ -1,40 +1,49 @@
-const { productModel } = require('../schemas/products.schema')
-const { favoritesModel } = require('../schemas/favorites.schema')
+
+let { favoritesModel } = require("../schemas/favorites.schema")
 
 exports.createFavorites = async (req, res) => {
+
+    // res.send('post a /favorites'+req.params.id)
     let { id } = req.params
-    let { user } = req.query
+    let id_user = req.usuario.id
 
-    console.log(id, user)
     try {
-        let product = await productModel.findOne({ id }).exec()
-        delete product._id
-        const productCreated = new favoritesModel({ product, user });
-        await productCreated.save();
-        res.sendStatus(201)
+        let favorite = new favoritesModel({
+            product: id,
+            user: id_user
+        })
+        await favorite.save()
+        res.status(201).send({ msg: "create succesfull" })
     } catch (error) {
-
+        console.log(error)
     }
-
-    // res.send("get a /favorites/"+req.params.id+" "+req.query.user)
 
 }
 
 exports.getFavorites = async (req, res) => {
-   let {user}=req.query
+    let id = req.usuario.id
 
-   try {
-    let favorites = await favoritesModel.find({user}).exec()
-    // let favoriteMap = favorites.map(favorite => {
-    //     return {...favorite.product}
-    // })
+    try {
+        let favorites = await favoritesModel.find({ user: id })
+            .populate("product user")
+            .exec()
+        res.send(favorites)
+    } catch (error) {
+        console.log(error)
+    }
 
-    // console.log(favoriteMap)
-   res.send(favorites)
-   } catch (error) {
-    console.log(error)
-   }
-   
+}
+
+exports.deleteFavorites = async (req, res) => {
+
+    try {
+        const favorite = await favoritesModel.findByIdAndDelete(req.params.id);
+        if (!favorite) res.status(404).send("No item found");
+        res.status(200).send({msg:"deleted succesful"});
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 

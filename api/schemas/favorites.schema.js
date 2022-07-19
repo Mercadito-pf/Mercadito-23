@@ -1,17 +1,10 @@
 const mongoose = require('mongoose')
-const {productSchema} = require('./products.schema')
 
-const favoritesSchema = mongoose.Schema({
-    user:String,
-    product:{
-        type:productSchema,
-        default:{},
-        _id:false
-    }
+let favoritesSchema = mongoose.Schema({
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    user:{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
-let favoritesModel = mongoose.model('Favorites', favoritesSchema)
+const favoritesModel = mongoose.model("Favorite", favoritesSchema)
 
-module.exports = {
-    favoritesModel
-}
+module.exports = {favoritesModel}
