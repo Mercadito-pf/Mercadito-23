@@ -27,21 +27,21 @@ export default function Moda() {
 
     return (
         <div>
-            <h3>Moda</h3>
-            <ul>
+            <div className='category'>
+                <h3>Moda</h3>
 
                 {
                     // el estado local [moda] tiene en la posicion 3 un objeto asi:
                     // {moda:[tipos de moda]} 
                     moda.length && moda.map((c, i) => {
                         return (
-                            <li key={i} onClick={(e) => handleClick(e, c.name)}>
-                                <Link to="/">{c.name.replaceAll("_", " ")}</Link>
+                            <li key={i} onClick={(e) => handleClick(e, c.name)} className='sub-category'>
+                                <Link to="/" className='link'>{c.name.replaceAll("_", " ")}</Link>
                             </li>
                         )
                     })
                 }
-            </ul>
+            </div>
         </div>
 
     )

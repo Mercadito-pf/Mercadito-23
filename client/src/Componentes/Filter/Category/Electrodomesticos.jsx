@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { update_current_page, update_querys_filter, update_url } from '../../../redux/actions'
 
+import './Category.scss'
 
 export default function Electrodomesticos() {
     let [electrodomesticos, setElectrodomesticos] = useState([])
@@ -29,21 +30,21 @@ export default function Electrodomesticos() {
 
     return (
         <div>
-            <h3>Electrodomesticos</h3>
-            <ul>
+            <div className='category'>
+                <h3>Electrodomesticos</h3>
 
                 {
                     // el estado local [electrodomesticos] tiene en la posicion 1 un objeto asi:
                     // {electrodomesticos:[tipos de electrodomesticos]} 
                     electrodomesticos.length && electrodomesticos.map((c, i) => {
                         return (
-                            <li key={i} onClick={(e) => handleClick(e, c.name)}>
-                                <Link to="/">{c.name.replaceAll("_", " ")}</Link>
-                            </li>
+                            <div key={i} onClick={(e) => handleClick(e, c.name)} className='sub-category'>
+                                <Link to="/" className='link'>{c.name.replaceAll("_", " ")}</Link>
+                            </div>
                         )
                     })
                 }
-            </ul>
+            </div >
         </div>
 
     )

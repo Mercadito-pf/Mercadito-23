@@ -11,21 +11,23 @@ export default function Filter() {
 
 
   return (
-    <div className="categories">
-    <ul>
-      <li>
+    <div className='categorias'>
+    
+      <div className='categoria-sub'>
       <Tecnology/>
-      </li>
-      <li>
+      </div>
+      <br/>
+      <div className='categoria-sub'>
         <Electrodomesticos/>
-      </li>
-      {/* <li>
+      </div>
+      <br/>
+      {/* <div className='categoria-sub'>
       <Muebles_y_Hogar/>
-      </li> */}
-      <li>
+      </div> */}
+      <div className='categoria-sub'>
         <Moda/>
-      </li>
-    </ul>
+      </div>
+    
     </div>
     
   )

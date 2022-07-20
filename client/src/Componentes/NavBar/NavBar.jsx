@@ -8,6 +8,8 @@ import "./NavBar.scss";
 import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
 import bag from "../icons/bag.png";
+import hamburguesa from '../icons/menu.png';
+import dots from '../icons/dots.png'
 import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
 
@@ -92,18 +94,25 @@ export default function NavBar() {
 
       <div className="categories">
         <ul className="contentCategory">
-          <li className="item">
-            <h1 className="categoria">Categorias</h1>
-            <Filter />
-          </li>
+          <div className="dropdown">
+            <img src={hamburguesa}/>
+            <h4 className="categoria">Ver todas las categorias</h4>
+              <div className='dropdown-content' >
+                <Filter />
+              </div>
+          </div>
           {currentPage > 0 && (
-            <li className="item">
-              <h1>Ordenar por:</h1>
-              <Order />
-            </li>
+          <div className='order-category'>
+              <img src={dots}/>
+              <h2>Ordenar por</h2>
+                <div className='order'>
+                  <Order/>
+                </div>
+          </div>
           )}
         </ul>
       </div>
+
     </div>
   );
 }

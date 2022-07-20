@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { update_querys_order, update_url } from '../../../redux/actions'
 
+import './OrderCategory.scss'
+
 export default function Alphabet() {
   let dispatch = useDispatch()
      let orders = ["ascendente", "descendente"]
@@ -22,18 +24,18 @@ export default function Alphabet() {
      }
   return (
     <div>
-        <h4>Nombre</h4>
-        <ul>
+        <div className='category'>
+            <h4>Nombre</h4>
             {
                 orders.map((order, i) =>{
                     return(
-                        <li key={i} onClick={(e) => handleClick(e, order)}>
-                            <Link  to="/">{order}</Link>
-                        </li>
+                        <div key={i} onClick={(e) => handleClick(e, order)} className='sub-category'>
+                            <Link  to="/" className='link'>{order}</Link>
+                        </div>
                     )
                 })
             }
-        </ul>
+        </div>
     </div>
   )
 }
