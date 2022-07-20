@@ -13,7 +13,6 @@ import NewPassword from "./Componentes/NewPassword/NewPassword";
 import ForgotPassword from "./Componentes/ForgotPassword/ForgotPassword";
 import Detail from "./Componentes/detail/Detail";
 import ListFav from "./Componentes/Fav/ListFav";
-import CarritoList from "./Componentes/Carrito/CarritoList.jsx";
 // import Detail from "./Componentes/detail/Detail";
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/detail/:id" component={Detail}/>
       <Route path="/favorites" component={ListFav} />
-      <Route path="/carrito" component={CarritoList} />
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       {/* <Route path="/shoping-car" component={ShopingCar} /> */}
       {/* <Route path="/login" component={Login} /> */}

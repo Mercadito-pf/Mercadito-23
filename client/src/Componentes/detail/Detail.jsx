@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {get_id} from '../../redux/actions';
 import Footer from "../Footer/Footer.jsx";
-import Carrito from "../../Componentes/Carrito/Carrito";
 import './Detail.scss'
 
 export default function Detail () {

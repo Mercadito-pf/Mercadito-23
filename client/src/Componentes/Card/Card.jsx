@@ -1,6 +1,5 @@
 import React from 'react';
 import Fav from '../Fav/Fav.jsx'
-import Carrito from '../Carrito/Carrito.jsx';
 import {Link} from "react-router-dom";
 import './Card.scss'
 import { useSelector } from "react-redux";
@@ -28,7 +27,7 @@ const Cards = (products)=>{
                         products.list && <button  onClick={(e) => products.handleClick(e, products.id_fav) }>X</button>
                     }
 
-                { 
+                {/* { 
                     profile?._id && !products.list && 
                     <div>
                         <Carrito id={products._id} profile={profile}></Carrito>
@@ -36,7 +35,7 @@ const Cards = (products)=>{
                 }
                   {
                         products.list && <button  onClick={(e) => products.handleClick2(e, products.id_carrito) }>X</button>
-                    }
+                    } */}
 
 
 
