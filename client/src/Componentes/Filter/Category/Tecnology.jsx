@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
+import './Category.scss'
+
 export default function Tecnology() {
 
     // let {url} = useSelector(state => state)
@@ -28,22 +30,20 @@ export default function Tecnology() {
 
     return (
         <div>
-            <h3>tecnologia</h3>
-            <ul>
-
+            <div className='category'>
+                <h3 >Tecnología</h3>
                 {
-
                     // el estado local [tecnology] tiene en la posicion 0 un objeto asi:
                     // {tecnologia:[tipos de tecnologia]} 
                     tecnologia.length && tecnologia.map((c, i) => {
                         return (
-                            <li key={i} onClick={(e) => handleClick(e, c.name)}>
-                                <Link to="/">{c.name.replaceAll("_", " ")}</Link>
-                            </li>
+                            <div  key={i} onClick={(e) => handleClick(e, c.name)} className='sub-category'>
+                                <Link to="/" className='link'>{c.name.replaceAll("_", " ")}</Link>
+                            </div>
                         )
                     })
                 }
-            </ul>
+            </div>
         </div>
 
     )

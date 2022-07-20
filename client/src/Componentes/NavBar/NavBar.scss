@@ -152,8 +152,8 @@
 
 .categories {
     width: 100%;
-    background: #ffceb0;
-    padding: 0px 15px;
+    background: #ff7a28;
+    padding-left: 10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -161,11 +161,13 @@
 }
 
 .categoria {
-    font-size: 1.4rem;
-    font-weight: bolder;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px;
 }
 
 .contentCategory {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -194,4 +196,65 @@
 }
 .icono-menu{
     cursor:pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor:pointer;
+}
+
+.dropdown img {
+    width: 10%;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -10%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ff7a28;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 28px;
+    z-index:1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+// ordenar por:
+
+.order-category {
+    position: relative;
+    margin-left: 120px;
+    display: inline-block;
+    cursor: pointer;
+    
+    h2 {
+        font-size: 1.1em;
+    }
+    img {
+        width: 15%;
+        position: absolute;
+        margin-top: 5px;
+        margin-left: -21%;
+    }
+}
+
+
+.order {
+    display: none;
+    position: absolute;
+    background-color: #ff7a28;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 28px;
+    z-index:1;
+}
+
+.order-category:hover .order {
+    display: block;
 }
