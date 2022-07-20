@@ -17,6 +17,7 @@ app.use("/products", require("./routes/productRoutes"));
 app.use("/categories", require("./routes/categoryRoutes"));
 app.use("/features", require("./routes/featuresRoutes"));
 app.use("/favorites", require("./routes/favoritesRoutes"));
+app.use("/carrito", require("./routes/carritoRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/lugares", require('./routes/lugaresRoutes'))
 

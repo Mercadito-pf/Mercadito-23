@@ -90,6 +90,9 @@ export default function NavBar() {
               Mis compras
             </Link>
           </li> */}
+          {profile?._id && <li className="item">
+            <Link to="/carrito"> <img src={carrito} /></Link>
+            </li>}
           {/* <li className="item">
             <Link to="/shoping-car">
               <img src={carrito} />

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import clienteAxios from '../../config/axios'
 import Cards from '../Card/Card'
 import '../Home/Home.scss'
-
+import Carrito from '../Carrito/Carrito.jsx';
+import { useSelector } from "react-redux";
 export default function ListFav() {
-
+    const {profile} = useSelector(state=>state.userReducer)
     let [state, setState] = useState([])
     let[refres, setRefres]= useState(true)
 
@@ -44,6 +45,14 @@ export default function ListFav() {
                 }
             }):<h1>No tienes productos en tu seccion de favoritos</h1>
         }
+           { 
+                    profile?._id && state.map( p =>{
+                        if(p.product){
+                            return(
+                    <div>
+                        <Carrito id={p.product._id} profile={profile}></Carrito>
+                    </div>)}})
+                }
         </div>
     )
     
