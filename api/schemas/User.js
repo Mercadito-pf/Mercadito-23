@@ -14,7 +14,15 @@ let UserSchema = mongoose.Schema(
     email: String,
     phone: String,
     address: String,
-    isActive: Boolean
+    status: {
+      type: String,
+      enum : ['active','inactive'],
+      default: 'active'
+  },
+  admin:{
+    type:Boolean,
+    default:false
+  }
   },
   { timeStamps: true }
 );
