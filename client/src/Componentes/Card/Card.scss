@@ -31,8 +31,8 @@
 }
 
 .image img {
-    width: 200px;
-    height: 250px;
+    width: 100%;
+    height: 50%;
     text-align: center;
     margin: 0 auto;
     display: block;
@@ -42,6 +42,7 @@
     text-decoration: none;
     list-style: none;
     color: black;
+    height: 50%;
 }
 
 .cardText h3 {

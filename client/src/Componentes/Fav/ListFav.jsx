@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import clienteAxios from '../../config/axios'
 import Cards from '../Card/Card'
 import '../Home/Home.scss'
-
+import { useSelector } from "react-redux";
 export default function ListFav() {
-
+    const {profile} = useSelector(state=>state.userReducer)
     let [state, setState] = useState([])
     let[refres, setRefres]= useState(true)
 
@@ -14,6 +14,8 @@ export default function ListFav() {
         setRefres(!refres)
         alert("eliminado de fav")
     }
+
+    
 
     const requestOptions = {
         headers: { 
@@ -35,12 +37,12 @@ export default function ListFav() {
 
     return(
         <div className='cardGrid'>
+
         {
             state.length? state.map(p =>{
                 if (p.product) {
                     return(
-                        <Cards id_fav={p._id} list={true} handleClick={handleClick} image={p.product.image} name={p.product.name} seller={p.product.seller} sales={p.product.sales} price={p.product.price} id={p.product.id} />
-                    )
+                        <Cards id_fav={p._id} list={true} handleClick={handleClick} image={p.product.image} name={p.product.name} seller={p.product.seller} sales={p.product.sales} price={p.product.price} id={p.product.id} />                    )
                 }
             }):<h1>No tienes productos en tu seccion de favoritos</h1>
         }

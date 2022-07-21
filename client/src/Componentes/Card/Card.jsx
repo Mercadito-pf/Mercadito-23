@@ -20,6 +20,7 @@ const Cards = (products)=>{
         await clienteAxios.post(`/shoping/${products._id}`,{}, requestOptions)
         history.push("/shoping-car")
     }
+
     
     return (
 
@@ -33,10 +34,18 @@ const Cards = (products)=>{
                     <Fav id={products._id} profile={profile}></Fav>
                 </div>
                 }
-                {
-                    products.list && <button onClick={(e) => products.handleClick(e, products.id_fav)}>X</button>
+                    {
+                        products.list && <button  onClick={(e) => products.handleClick(e, products.id_fav) }>X</button>
+                    }
+
+                {/* { 
+                    profile?._id && !products.list && 
+                    <div>
+                        <Carrito id={products._id} profile={profile}></Carrito>
+                    </div>
                 }
                <button onClick={handleClick}>Agregar al carrito</button>
+
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>

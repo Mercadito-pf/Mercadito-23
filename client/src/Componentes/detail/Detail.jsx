@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {get_id} from '../../redux/actions';
 import Footer from "../Footer/Footer.jsx";
-
 import './Detail.scss'
 
 export default function Detail () {
     const dispatch = useDispatch();
     // const Detail = useSelector((state)=>state.Detail);
     const {id} = useParams();
-
     let [detail, setDetail] = useState({})
 
     useEffect(()=>{
