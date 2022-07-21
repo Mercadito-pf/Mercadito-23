@@ -18,10 +18,6 @@ let UserSchema = mongoose.Schema(
       type: String,
       enum : ['active','inactive'],
       default: 'active'
-  },
-  admin:{
-    type:Boolean,
-    default:false
   }
   },
   { timeStamps: true }

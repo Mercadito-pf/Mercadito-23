@@ -19,6 +19,8 @@ app.use("/features", require("./routes/featuresRoutes"));
 app.use("/favorites", require("./routes/favoritesRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/lugares", require('./routes/lugaresRoutes'))
+app.use("/admin", require("./routes/adminRoutes"))
+app.use("/shoping", require("./routes/shopingCarRoutes"))
 
 // Route Deploy
 app.get("/api", function (req, res) {
