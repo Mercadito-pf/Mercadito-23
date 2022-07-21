@@ -1,15 +1,26 @@
 import React from 'react';
 import Fav from '../Fav/Fav.jsx'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import './Card.scss'
 import { useSelector } from "react-redux";
 import clienteAxios from '../../config/axios.js';
 
 const Cards = (products)=>{
     const {profile} = useSelector(state=>state.userReducer)
+    let history = useHistory()
     // console.log(profile)
-    console.log(products.id_fav)
-    // console.log(products,"dddddddddddddddddddddddd")
+    const requestOptions = {
+        headers: { 
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+      };
+    async function handleClick(e){
+        e.preventDefault()
+        await clienteAxios.post(`/shoping/${products._id}`,{}, requestOptions)
+        history.push("/shoping-car")
+    }
+
     
     return (
 
@@ -33,14 +44,8 @@ const Cards = (products)=>{
                         <Carrito id={products._id} profile={profile}></Carrito>
                     </div>
                 }
-                  {
-                        products.list && <button  onClick={(e) => products.handleClick2(e, products.id_carrito) }>X</button>
-                    } */}
+               <button onClick={handleClick}>Agregar al carrito</button>
 
-
-
-
-                {/* {products.list && <button onClick={(e)=>products.handleClickcarrito(e,products.id_carrito)}>X</button>} */}
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>

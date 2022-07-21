@@ -20,6 +20,8 @@ app.use("/favorites", require("./routes/favoritesRoutes"));
 app.use("/carrito", require("./routes/carritoRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/lugares", require('./routes/lugaresRoutes'))
+app.use("/admin", require("./routes/adminRoutes"))
+app.use("/shoping", require("./routes/shopingCarRoutes"))
 
 // Route Deploy
 app.get("/api", function (req, res) {

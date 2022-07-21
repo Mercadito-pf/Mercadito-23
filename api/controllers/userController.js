@@ -24,6 +24,7 @@ exports.signUp = async (req, res) => {
         ...req.body,
         password: passwordE,
         profile_picture: picture,
+        // admin:true
       });
       await newUser.save()
 
@@ -278,3 +279,18 @@ exports.nuevaContrasenia = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
+
+exports.getUsers = async (req, res) =>{
+  let users = await User.find().exec()
+  res.send(users)
+}
+
+exports.deleteUser = async (req, res)=>{
+  try {
+    const user = await User.findByIdAndDelete(req.params.id).exec();
+    if (!user) res.status(404).send("No item found");
+    res.status(200).send({ msg: "deleted succesful" });
+} catch (error) {
+    console.log(error)
+}
+}

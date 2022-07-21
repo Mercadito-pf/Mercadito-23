@@ -75,6 +75,11 @@ export default function NavBar() {
             </li>
           )}
 
+          <li className="item">
+          <Link to="/shoping-car">Carrito</Link>
+          </li>
+          
+
          {profile?._id&& <li className="item">
             <Link to="/favorites">Favoritos</Link>
           </li>}

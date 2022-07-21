@@ -104,7 +104,7 @@ export default function Home() {
 
     return (
         <div>
-            <Slider />
+            {!url.includes("category")&&<Slider />}
 
             <div className='cardGrid'>
                 {/*  se mapea lo que tenga el estado local y se crea una card por cada producto 
