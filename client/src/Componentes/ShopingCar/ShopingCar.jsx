@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import clienteAxios from '../../config/axios';
+import { Link } from "react-router-dom";
 import CardShoping from './CardShoping';
 
 export default function ShopingCar() {
@@ -56,8 +57,7 @@ export default function ShopingCar() {
       <h3>Precio total: ${shoping.calc.totalPrice}</h3>
     </div>:<h1>no tienes productos en tu carrito</h1>
    }
-
-
+   <Link to="/FormBuy"> checkout</Link>
    </>
   )
 }
