@@ -3,28 +3,14 @@ import Fav from '../Fav/Fav.jsx'
 import {Link, useHistory} from "react-router-dom";
 import './Card.scss'
 import { useSelector } from "react-redux";
-import clienteAxios from '../../config/axios.js';
+import ButtonAddCart from '../ShopingCar/ButtonAddCart.jsx';
 
 const Cards = (products)=>{
     const {profile} = useSelector(state=>state.userReducer)
-    let history = useHistory()
-    // console.log(profile)
-    const requestOptions = {
-        headers: { 
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-      };
-    async function handleClick(e){
-        e.preventDefault()
-        await clienteAxios.post(`/shoping/${products._id}`,{}, requestOptions)
-        history.push("/shoping-car")
-    }
     
     return (
 
         <div className = 'principalContainer'>  
-        {/* <Link to={`/detail/${products.id}`} className='detailsButton'>    */}
             <div className = 'cardContent'>
             
                  {
@@ -36,7 +22,7 @@ const Cards = (products)=>{
                 {
                     products.list && <button onClick={(e) => products.handleClick(e, products.id_fav)}>X</button>
                 }
-               <button onClick={handleClick}>Agregar al carrito</button>
+               <ButtonAddCart id={products._id}/>
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
@@ -51,7 +37,6 @@ const Cards = (products)=>{
                     </Link>
                 </div>
             </div>
-            {/* </Link> */}
         </div>
     )
 }

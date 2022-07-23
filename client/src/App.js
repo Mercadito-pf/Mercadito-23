@@ -16,6 +16,8 @@ import ListFav from "./Componentes/Fav/ListFav";
 import ShopingCar from "./Componentes/ShopingCar/ShopingCar";
 // import Detail from "./Componentes/detail/Detail";
 
+
+
 function App() {
   
   let { pathname } = useLocation();
