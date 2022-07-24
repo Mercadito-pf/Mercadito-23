@@ -21,17 +21,23 @@ const Cards = (products)=>{
                     <Fav id={products._id} profile={profile}></Fav>
                 </div>
                 }
-                {
-                    products.list && <button onClick={(e) => products.handleClick(e, products.id_fav)}>X</button>
+                { products.list &&
+                    <div className='buttonX'>
+                    <button className='x' onClick={(e) => products.handleClick(e, products.id_fav)}>x</button>
+                    </div>
                 }
+
                <ButtonAddCart {...products}/>
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
+                <div className='namePro'>
+                    <h3>{products.name}</h3>
+                </div>
                 
                 <div className = 'cardText'>
-                    <h3>{products.name}</h3>
                     <h4>${products.price}.00</h4>
+                    <button className='add' onClick={handleClick}>Agregar al carrito</button>
                     <h2>{products.seller}</h2>
                     <p>{products.sales} ventas</p>
                     <Link to={`/detail/${products._id}`} className='detailsButton'>
