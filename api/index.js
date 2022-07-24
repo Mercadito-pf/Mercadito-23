@@ -21,7 +21,9 @@ app.use("/users", require("./routes/userRoutes"));
 app.use("/lugares", require('./routes/lugaresRoutes'))
 app.use("/admin", require("./routes/adminRoutes"))
 app.use("/shoping", require("./routes/shopingCarRoutes"))
+app.use("/paypal", require("./routes/paypalRoutes"))
 app.use("/FormBuy",require("./routes/formbuyRoute"))
+
 
 // Route Deploy
 app.get("/api", function (req, res) {

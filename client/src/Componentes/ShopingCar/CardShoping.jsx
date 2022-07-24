@@ -1,22 +1,22 @@
 import React from 'react'
 import clienteAxios from '../../config/axios'
 
-export default function CardShoping(props) {
-
+export default function CardShoping(product) {
+  console.log(product._id)
   return (
     <div>
-      <button onClick={()=> props.handleClick(props.idShoping)}>eliminar</button>
-      <h1>{props.name}</h1>
-      <h3>Precio: ${props.price}</h3>
-      <h3>Disponibles: {props.stock}</h3>
+      <button onClick={()=> product.handleClick(product._id)}>eliminar</button>
+      <h1>{product.name}</h1>
+      <h3>Precio: ${product.price}</h3>
+      <h3>Disponibles: {product.stock}</h3>
 
       <button 
-      disabled ={props.cantidad === 1} 
-      onClick={()=> props.updateCantidad(props.idShoping, props.cantidad-1)}>decrementar</button>
-      <h1>{props.cantidad}</h1>
+      disabled ={product.cantidad === 1} 
+      onClick={()=> product.updateCantidad(product.cantidad-1, product._id)}>decrementar</button>
+      <h1>{product.cantidad}</h1>
       <button 
-      disabled ={props.cantidad === props.stock} 
-      onClick={()=> props.updateCantidad(props.idShoping, props.cantidad+1)}>incrementar</button>
+      disabled ={product.cantidad === product.stock} 
+      onClick={()=> product.updateCantidad(product.cantidad+1, product._id)}>incrementar</button>
       <hr />
       <hr />
     </div>
