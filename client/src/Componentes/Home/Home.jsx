@@ -117,7 +117,6 @@ export default function Home() {
                         image={p.image} 
                         name={p.name} 
                         seller={p.seller} 
-                        sales={p.sales} 
                         price={p.price}
                         _id={p._id}
                         />

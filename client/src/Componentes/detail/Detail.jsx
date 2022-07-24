@@ -35,7 +35,6 @@ export default function Detail () {
                     <p className='description'> {detail.description}</p>
                     <h3><a>Categoria:</a> {detail.category}</h3>
                     <h3><a>En stock:</a> {detail.stock} unidades</h3>
-                    <h3><a>Vendedor:</a> {detail.seller}</h3>
                     <h3><a>Productos vendidos:</a> {detail.sales}</h3>
                 </div>
             </div>

@@ -76,7 +76,7 @@ export default function NavBar() {
           )}
 
           <li className="item">
-          <Link to="/shoping-car">Carrito</Link>
+          <Link to="/shoping-car"><img src={carrito} /></Link>
           </li>
           
 
