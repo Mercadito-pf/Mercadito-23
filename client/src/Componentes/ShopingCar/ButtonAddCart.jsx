@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import clienteAxios from '../../config/axios';
 
+import './ShopingCard.scss'
+
 export default function ButtonAddCart(product) {
     // const { profile } = useSelector(state => state.userReducer)
     let history = useHistory()
@@ -14,6 +16,8 @@ export default function ButtonAddCart(product) {
         // history.push("/shoping-car")
     }
     return (
-        <button onClick={handleClick}>Agregar al carrito</button>
+        <div className = 'cardText'>
+            <button className='add' onClick={handleClick}>Agregar al carrito</button>
+        </div>
     )
 }

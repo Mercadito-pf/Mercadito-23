@@ -6,17 +6,25 @@
     flex-wrap: wrap;
     padding: 50px 100px 40px 100px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 25px;
     grid-auto-rows: minmax(100px, auto);
     justify-content: center;
     align-items: center;
     margin: 0 auto;
 }
 
-@media(max-width:1300px){
+@media(max-width:1500px){
+    .cardGrid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 15px;
+        margin: 0 auto;
+    }
+}
+
+@media(max-width:1270px){
     .cardGrid {
         grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
+        grid-gap: 15px;
         margin: 10px 30px;
     }
 }
