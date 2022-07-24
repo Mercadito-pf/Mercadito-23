@@ -7,31 +7,25 @@ export default function ShopingCar() {
 
   let [shoping, setShoping]=useState({})
   let [refres, setRefres] = useState(true)
+  let id_cart = localStorage.getItem("id_cart")
 
-
-  async function handleClick(id){
-    await clienteAxios.delete(`/shoping/${id}`)
+  async function handleClick(_id){
+    console.log(_id)
+    await clienteAxios.delete(`/shoping/delet-product/${id_cart}`,{data: {_id}})
     setRefres(!refres)
   }
 
-  async function updateCantidad(id, cantidad){
+  async function updateCantidad(cantidad, id){
     await clienteAxios.put(`/shoping/${id}`, {
       cantidad
   })
     setRefres(!refres)
   }
-  const requestOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem("token")}`
-    }
-
-  };
 
   useEffect(() => {
-    (
+        (
       async function () {
-        const { data } = await clienteAxios.get(`/shoping`, requestOptions)
+        const { data } = await clienteAxios.get(`/shoping/${id_cart}`)
         setShoping(data)
       }
     )()
@@ -39,18 +33,15 @@ export default function ShopingCar() {
   return (
    <>
    {
-    shoping.cart &&  shoping.cart.map(p =>{
-      if (p.product) {
+    shoping.products &&  shoping.products.map(product =>{
         return(
-          <CardShoping updateCantidad={updateCantidad}  {...p.product} cantidad={p.cantidad} idShoping={p._id} handleClick={handleClick}/>
-          
+          <CardShoping updateCantidad={updateCantidad}  {...product}  handleClick={handleClick}/>
         )
-      }
     })
    }
 
    {
-    shoping.cart && shoping.cart.length? <div>
+    shoping.calc? <div>
       <h3> Total de productos: {shoping.calc.totalProducts}</h3>
       <h3>Subtotal: ${shoping.calc.subTotal}</h3>
       <h3>Impuestos (15%) ${shoping.calc.impuestos}</h3>

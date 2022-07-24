@@ -2,7 +2,7 @@ function calc(car) {
     let subTotal = 0
     let totalProducts = 0
     car.forEach(element => {
-        subTotal = (element.cantidad * element.product.price) + subTotal
+        subTotal = (element.cantidad * element.price) + subTotal
         totalProducts += element.cantidad
     });
     let info = { subTotal, totalProducts }

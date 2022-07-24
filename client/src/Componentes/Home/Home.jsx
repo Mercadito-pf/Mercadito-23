@@ -109,17 +109,10 @@ export default function Home() {
             <div className='cardGrid'>
                 {/*  se mapea lo que tenga el estado local y se crea una card por cada producto 
                 en el estado local  */}
-                {products && products.map((p) => {
+                {products && products.map((product) => {
                     return (
                         <Cards 
-                        key={p.id} 
-                        id={p.id} 
-                        image={p.image} 
-                        name={p.name} 
-                        seller={p.seller} 
-                        sales={p.sales} 
-                        price={p.price}
-                        _id={p._id}
+                        {...product}
                         />
                     )
                 })
