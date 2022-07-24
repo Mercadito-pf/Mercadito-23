@@ -26,7 +26,6 @@ const Cards = (products)=>{
         <div className = 'principalContainer'>  
         {/* <Link to={`/detail/${products.id}`} className='detailsButton'>    */}
             <div className = 'cardContent'>
-            
                  {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
