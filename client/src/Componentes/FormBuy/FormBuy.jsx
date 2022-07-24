@@ -7,7 +7,7 @@ import axios from 'axios';
 export var ordenP
 export default function FormBuy() {
     // const _id = _id
-    const [errors , setErrors] = useState(true);
+    const [errors, setErrors] = useState(true);
     let [form, setForm]=useState({})
     const [input,setInput]= useState({
         nombre:"",
@@ -21,28 +21,24 @@ export default function FormBuy() {
 
     })
 
-    function handleChange(e){
-        setInput({
-            ...input,
-            [e.target.name]:e.target.value
-        })
-        setErrors(validate({
-            ...input,
-            [e.target.name]:e.target.value
-        }))
-    }
-
     function validate(input){
         let regexheightWeight = /\d{1,2}/gi;
         let regexName = /[a-zA-Z0-9:-\s’']/;
         let regexDescription = /^.{1,300}$/;
-        
+
         let errors = {};
+
+
+
+
         
-        if(input.nombre.trim()){
-            errors.nombre = "*"
-        }else if(!regexName.test(input.nombre.trim())){
-            errors.nombre = "El campo de nombre solo acepta letras, números y caracteres"
+        const mandar= {shippingAddress:{...input}}
+        ordenP=mandar
+        
+        if(input.name.trim()){
+            errors.name = "*"
+        }else if(!regexName.test(input.name.trim())){
+            errors.name = "El campo de nombre solo acepta letras, números y caracteres"
         }
         if(input.apellido.trim()){
             errors.apellido = "*"
@@ -75,7 +71,6 @@ export default function FormBuy() {
         if(input.telefono.trim()){
             errors.telefono = "*"
         }
-        return errors
     }
     
     const requestOptions = {
@@ -85,7 +80,21 @@ export default function FormBuy() {
         }
     
       };
+    
+    async function sendDatos(){
 
+    }
+
+    function handleChange(e){
+        setInput({
+            ...input,
+            [e.target.name]:e.target.value
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name]:e.target.value
+        }))
+    }
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
@@ -99,16 +108,6 @@ export default function FormBuy() {
              return  alert("parametros requeridos")
             }
             await clienteAxios.post(`/FormBuy/`,input)
-            alert("Publicacion creada con exito")
-            setInput({
-                nombre:"",
-                apellido:"",
-                direccion:"",
-                codigoPostal:"",
-                ciudad:"",
-                pais:"",
-                telefono:""
-            })
         
     }
 
@@ -119,9 +118,9 @@ export default function FormBuy() {
             <h3>Nombre</h3>
             <input 
             type="text"
+            placeholder={errors.nombre}
             value={input.nombre}
             name="nombre"
-            placeholder={errors.nombre}
             onChange={e=>handleChange(e)}
             />
             <h3>Apellido</h3>
