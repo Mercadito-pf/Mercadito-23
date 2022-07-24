@@ -30,29 +30,68 @@
     transform: translate(0px, -8px);
 }
 
-.image img {
-    width: 100%;
-    height: 50%;
+.buttonX {
+    position: relative;
+    height: 0px;
+}
+
+.x {
+    width: 35.5px;
+    height: 35.5px;
+    margin-left: 230px;
+    background: #ffffffa3;
+    font-size: 1.5em;
+    font-weight: bolder;
+    align-items: center;
+    border-style: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.image {
+    width: 60%;
+    height: 250px;
+    margin: 0 auto;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image img {
+    width: 89%;
+    //height: 180px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
     display: block;
 }
 
+.namePro {
+    position: relative;
+    background-color: #ffffff;
+    height: 33px;
+}
+
+.namePro h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 4px;
+    padding-top: 0px;
+    text-decoration: none;
+}
 .cardText {
+    position: relative;
     text-decoration: none;
     list-style: none;
     color: black;
     height: 50%;
-}
-
-.cardText h3 {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 4px;
-    padding-top: 10px;
-    text-decoration: none;
+    background-color: #ffffff;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px;
 }
 
 .cardText h4 {
@@ -100,18 +139,30 @@
 
 @media(max-width:1150px){
     .cardContent {
-        width:55%;
+        width:72%;
     }
 }
 
-@media(max-width:800px){
+@media(max-width:1100px){
     .cardContent {
-        width: 55%;
+        width:85%;
+    }
+}
+
+@media(max-width:955px){
+    .cardContent {
+        width: 92%;
+    }
+}
+
+@media(max-width:900px){
+    .cardContent {
+        width: 50%;
     }
 }
 
 @media(max-width:490px){
     .cardContent{
-        width: 90%;
+        width: 99%;
     }
 }

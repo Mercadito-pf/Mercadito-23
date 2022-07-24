@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./NavBar.scss";
 import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
+import corazon from '../icons/heart_t.png'
 import bag from "../icons/bag.png";
 import hamburguesa from '../icons/menu.png';
 import dots from '../icons/dots.png'
@@ -48,22 +49,29 @@ export default function NavBar() {
           {/* <li className='item'>
                 <a href="!#">Crear cuenta</a>
               </li> */}
+
+          <li className="item">
+          <Link to="/shoping-car"><img src={carrito} />Carrito</Link>
+          </li>
+          
+
+         {profile?._id&& <li className="item">
+            <Link to="/favorites"><img src={corazon}/>Favoritos</Link>
+          </li>}
+
+
+          {profile?._id &&<li className="item">
+            <Link to="/create"><img src={bag}/>Vender</Link>
+          </li>}
+
           {profile?.profile_picture ? (
             <>
-              <div>
-                <img
-                  className="profile_picture"
-                  src={`${profile?.profile_picture}`}
-                />
-              </div>
               <li className="item">
-                <button onClick={logout}className="btn">
-            <span className="span1"></span>
-            <span className="span2"></span>
-            <span className="span3"></span>
-            <span className="span4"></span>
+                <Link onClick={logout}>
+                <img className="profile" src={`${profile?.profile_picture}`}
+                />
                Cerrar Sesion
-              </button>
+              </Link>
               </li>
             </>
           ) : (
@@ -74,6 +82,7 @@ export default function NavBar() {
               </Link>
             </li>
           )}
+
 
           <li className="item">
           <Link to="/shoping-car"><img src={carrito} /></Link>
@@ -89,15 +98,16 @@ export default function NavBar() {
             <Link to="/create"className="i">Vender</Link>
           </li>}
 
+
           {/* <li className="item">
             <Link to="/my-shoping">
               <img src={bag} />
               Mis compras
             </Link>
           </li> */}
-          {profile?._id && <li className="item">
+          {/* {profile?._id && <li className="item">
             <Link to="/carrito"> <img src={carrito} /></Link>
-            </li>}
+            </li>} */}
           {/* <li className="item">
             <Link to="/shoping-car">
               <img src={carrito} />

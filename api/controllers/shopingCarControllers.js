@@ -1,40 +1,34 @@
 
-const { default: mongoose, Model } = require("mongoose")
 const { calc } = require("../funciones/Calc")
 let { shopingCarModel } = require("../schemas/shopingCar.schema")
 
+// POST http://localhost:3001/shoping/
 exports.agregateToCar = async (req, res) => {
-
-    // res.send('post a /shoping'+req.params.id)
-    let { id } = req.params
-    let id_user = req.usuario.id
-
     try {
-        let shoping = new shopingCarModel({
-            product: id,
-            user: id_user
-        })
+        let shoping = new shopingCarModel()
         await shoping.save()
-        res.status(201).send({ msg: "create succesfull" })
+        res.status(201).send(shoping)
     } catch (error) {
         console.log(error)
     }
 
 }
 
+// GET  http://localhost:3001/shoping/:id-shoping-cart
 exports.getProductsInCar = async (req, res) => {
-    let id = req.usuario.id
+
+    let {id} = req.params
 
     try {
-        let cartProducts = await shopingCarModel.find({ user: id })
-            .populate("product")
+        let cartProducts = await shopingCarModel.findById(id)
             .exec()
 
-        if (cartProducts.length) {
-            let info = calc(cartProducts)
-        return res.send({cart:cartProducts, calc:info})
+        if (cartProducts.products.length) {
+            let info = calc(cartProducts.products)
+            return res.send({products:cartProducts.products, calc:info})
+            
         }
-        res.send({})
+        res.send(cartProducts)
         
     } catch (error) {
         console.log(error)
@@ -42,37 +36,43 @@ exports.getProductsInCar = async (req, res) => {
 
 }
 
-exports.deleteProductCar = async (req, res) => {
 
-    try {
-        const shoping = await shopingCarModel.findByIdAndDelete(req.params.id);
-        if (!shoping) res.status(404).send("No item found");
-        res.status(200).send({ msg: "deleted succesful" });
-    } catch (error) {
-        console.log(error)
-    }
+// DELETE http://localhost:3001/shoping/delet-product/:id-shoping-cart
+exports.deleteProductCar = async (req, res) => {
+    let {id} = req.params
+    let {_id} = req.body
+    let cart = await shopingCarModel.findById(id)
+    cart.products.pull(_id)
+    await cart.save()
+    res.send(cart)
 }
 
+// PUT http://localhost:3001/shoping/:id-product
 exports.updateShopingCar = async (req, res) =>{
-
-
-   let updated = await shopingCarModel.findOneAndUpdate({_id:req.params.id}, {
-    $set:{
-        cantidad:req.body.cantidad
-    }
-   })
-
+    let updated = await shopingCarModel.findOneAndUpdate({"products._id":req.params.id}, 
+    {'$set': {"products.$.cantidad": `${req.body.cantidad}`}},
+    {new:true})
    res.send(updated)
 }
 
 
-// exports.getProductCarID = async (req, res) => {
-//     let id = req.params.id
+// POST http://localhost:3001/shoping/insert-product/:id-shoping-cart
+exports.insertProductToCart = async (req, res) =>{
+    let {id} = req.params
+    let cart = await shopingCarModel.findById(id)
+    cart.products.push(req.body)
+    await cart.save()
+    res.send(cart)
+}
 
-//     let favorite = await favoritesModel.findOne({product:id})
-//         .populate("product user")
-//         .exec()
-//     res.send(favorite)
-// }
+// DELETE http://localhost:3001/shoping/delete-shoping-cart/:id-shoping-cart
+exports.deleteShopingCar = async (req, res)=>{
+    let {id} = req.params
+    await shopingCarModel.findByIdAndDelete(id)
+    res.send({msg:"delete succesful"})
+}
+
+
+
 
 

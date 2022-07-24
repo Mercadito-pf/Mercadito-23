@@ -3,53 +3,48 @@ import Fav from '../Fav/Fav.jsx'
 import {Link, useHistory} from "react-router-dom";
 import './Card.scss'
 import { useSelector } from "react-redux";
-import clienteAxios from '../../config/axios.js';
+import ButtonAddCart from '../ShopingCar/ButtonAddCart.jsx';
 
 const Cards = (products)=>{
+    // console.log(products.id)
+    let idProduct = products.id
     const {profile} = useSelector(state=>state.userReducer)
-    let history = useHistory()
-    // console.log(profile)
-    const requestOptions = {
-        headers: { 
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-      };
-    async function handleClick(e){
-        e.preventDefault()
-        await clienteAxios.post(`/shoping/${products._id}`,{}, requestOptions)
-        history.push("/shoping-car")
-    }
     
     return (
 
         <div className = 'principalContainer'>  
-        {/* <Link to={`/detail/${products.id}`} className='detailsButton'>    */}
             <div className = 'cardContent'>
-            
                  {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
                     <Fav id={products._id} profile={profile}></Fav>
                 </div>
                 }
-                {
-                    products.list && <button onClick={(e) => products.handleClick(e, products.id_fav)}>X</button>
+                { products.list &&
+                    <div className='buttonX'>
+                    <button className='x' onClick={(e) => products.handleClick(e, products.id_fav)}>x</button>
+                    </div>
                 }
-               <button onClick={handleClick}>Agregar al carrito</button>
+
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
+                <div className='namePro'>
+                    <h3>{products.name}</h3>
+                </div>
                 
                 <div className = 'cardText'>
-                    <h3>{products.name}</h3>
                     <h4>${products.price}.00</h4>
                     <Link to={`/detail/${products.id}`} className='detailsButton'>
+                    <ButtonAddCart {...products}/>
+                    <h2>{products.seller}</h2>
+                    <p>{products.sales} ventas</p>
+                    <Link to={`/detail/${products._id}`} className='detailsButton'>
+
                         <button>ver mas</button>
                     </Link>
                 </div>
             </div>
-            {/* </Link> */}
         </div>
     )
 }

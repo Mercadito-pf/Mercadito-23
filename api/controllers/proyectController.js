@@ -90,7 +90,7 @@ exports.getProduct = async (req, res) => {
   let { id } = req.params;
   console.log(id);
   try {
-    let product = await productModel.findOne({ id }).exec();
+    let product = await productModel.findById(id).exec();
     res.send(product);
   } catch (error) {
     console.log(error);

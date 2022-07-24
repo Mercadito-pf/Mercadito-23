@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
-import './Fav.modules.css'
-import heart_t from '../icons/heart_t.png'
-import heart_a from '../icons/azul.png'
+import './Fav.modules.scss'
+import heart_t from '../icons/wishlist.png'
+import heart_a from '../icons/love.png'
 
 // const {data}= await clienteAxios.get(`/favorites/${idproducto}?user=${profile?.name}`)
 function Fav({id}) {
@@ -14,10 +14,7 @@ function Fav({id}) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem("token")}`
   }
-  };
-
-  console.log(id)
-  
+  };  
   const handleClick = async ()=>{
     console.log('click')
       try{

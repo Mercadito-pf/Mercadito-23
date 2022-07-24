@@ -14,18 +14,31 @@ import ForgotPassword from "./Componentes/ForgotPassword/ForgotPassword";
 import Detail from "./Componentes/detail/Detail";
 import ListFav from "./Componentes/Fav/ListFav";
 import ShopingCar from "./Componentes/ShopingCar/ShopingCar";
+import clienteAxios from "./config/axios";
 import FormBuy from "./Componentes/FormBuy/FormBuy.jsx";
+
 // import Detail from "./Componentes/detail/Detail";
+
+
 
 function App() {
   
   let { pathname } = useLocation();
 
   const dispatch = useDispatch();
-
+ 
   
   useEffect(() => {
+    let id_cart = localStorage.getItem("id_cart")
     dispatch(authenticate());
+    (
+      async function(){
+        if (!id_cart) {
+          let{data} = await clienteAxios.post("/shoping")
+          localStorage.setItem("id_cart", data._id)
+        }
+      }
+    )()
   }, []);
 
   return (
