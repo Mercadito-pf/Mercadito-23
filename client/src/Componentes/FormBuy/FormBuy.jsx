@@ -96,7 +96,7 @@ export default function FormBuy() {
         }))
     }
 
-    const handleSubmit= async ()=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault();
         if( ! input.nombre ||
             ! input.apellido ||
