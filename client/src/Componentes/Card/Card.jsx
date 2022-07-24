@@ -26,7 +26,6 @@ const Cards = (products)=>{
                     </div>
                 }
 
-               <ButtonAddCart {...products}/>
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
@@ -36,7 +35,7 @@ const Cards = (products)=>{
                 
                 <div className = 'cardText'>
                     <h4>${products.price}.00</h4>
-                    <button className='add' onClick={handleClick}>Agregar al carrito</button>
+                    <ButtonAddCart {...products}/>
                     <h2>{products.seller}</h2>
                     <p>{products.sales} ventas</p>
                     <Link to={`/detail/${products._id}`} className='detailsButton'>
