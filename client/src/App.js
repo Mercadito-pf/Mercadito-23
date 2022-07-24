@@ -15,6 +15,8 @@ import Detail from "./Componentes/detail/Detail";
 import ListFav from "./Componentes/Fav/ListFav";
 import ShopingCar from "./Componentes/ShopingCar/ShopingCar";
 import clienteAxios from "./config/axios";
+import FormBuy from "./Componentes/FormBuy/FormBuy.jsx";
+
 // import Detail from "./Componentes/detail/Detail";
 
 
@@ -51,6 +53,7 @@ function App() {
       <Route path="/favorites" component={ListFav} />
       {/* <Route path="/my-shoping" component={Shoping} /> */}
       <Route path="/shoping-car" component={ShopingCar} />
+      <Route path="/FormBuy" component={FormBuy} />
       {/* <Route path="/login" component={Login} /> */}
       <Route path="/create" component={CreateProduct} />
     </div>
