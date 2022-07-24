@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import ButtonAddCart from '../ShopingCar/ButtonAddCart.jsx';
 
 const Cards = (products)=>{
+    // console.log(products.id)
+    let idProduct = products.id
     const {profile} = useSelector(state=>state.userReducer)
     
     return (
@@ -22,7 +24,7 @@ const Cards = (products)=>{
                 {
                     products.list && <button onClick={(e) => products.handleClick(e, products.id_fav)}>X</button>
                 }
-               <ButtonAddCart id={products._id}/>
+               <ButtonAddCart {...products}/>
                 <div className = 'image'>
                     <img src={products.image} alt='img not found' />
                 </div>
@@ -32,7 +34,7 @@ const Cards = (products)=>{
                     <h4>${products.price}.00</h4>
                     <h2>{products.seller}</h2>
                     <p>{products.sales} ventas</p>
-                    <Link to={`/detail/${products.id}`} className='detailsButton'>
+                    <Link to={`/detail/${products._id}`} className='detailsButton'>
                         <button>ver mas</button>
                     </Link>
                 </div>

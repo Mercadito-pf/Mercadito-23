@@ -3,26 +3,15 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import clienteAxios from '../../config/axios';
 
-export default function ButtonAddCart({ id }) {
-    const { profile } = useSelector(state => state.userReducer)
+export default function ButtonAddCart(product) {
+    // const { profile } = useSelector(state => state.userReducer)
     let history = useHistory()
-    const requestOptions = {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-    };
+
     async function handleClick(e) {
         e.preventDefault()
-
-        if (profile._id) {
-            await clienteAxios.post(`/shoping/${id}`, {}, requestOptions)
-            history.push("/shoping-car")
-            return
-        }
-        
-        localStorage.setItem("id_product", id)
-
+        let id_cart = localStorage.getItem("id_cart")
+        await clienteAxios.post(`/shoping/insert-product/${id_cart}`, product)
+        // history.push("/shoping-car")
     }
     return (
         <button onClick={handleClick}>Agregar al carrito</button>

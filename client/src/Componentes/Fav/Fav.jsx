@@ -14,10 +14,7 @@ function Fav({id}) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem("token")}`
   }
-  };
-
-  console.log(id)
-  
+  };  
   const handleClick = async ()=>{
     console.log('click')
       try{

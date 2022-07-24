@@ -1,16 +1,11 @@
 
-const { default: mongoose, Model } = require("mongoose")
 const { calc } = require("../funciones/Calc")
 let { shopingCarModel } = require("../schemas/shopingCar.schema")
 
 // POST http://localhost:3001/shoping/
 exports.agregateToCar = async (req, res) => {
-    let products = req.body
-
     try {
-        let shoping = new shopingCarModel({
-            products
-        })
+        let shoping = new shopingCarModel()
         await shoping.save()
         res.status(201).send(shoping)
     } catch (error) {
@@ -28,8 +23,12 @@ exports.getProductsInCar = async (req, res) => {
         let cartProducts = await shopingCarModel.findById(id)
             .exec()
 
+        if (cartProducts.products.length) {
             let info = calc(cartProducts.products)
-        return res.send({products:cartProducts.products, calc:info})
+            return res.send({products:cartProducts.products, calc:info})
+            
+        }
+        res.send(cartProducts)
         
     } catch (error) {
         console.log(error)
@@ -42,10 +41,7 @@ exports.getProductsInCar = async (req, res) => {
 exports.deleteProductCar = async (req, res) => {
     let {id} = req.params
     let {_id} = req.body
-    console.log(id)
-    // console.log(_id)
     let cart = await shopingCarModel.findById(id)
-    // cart.products.id(_id).remove();
     cart.products.pull(_id)
     await cart.save()
     res.send(cart)
