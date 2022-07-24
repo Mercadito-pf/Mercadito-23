@@ -46,9 +46,11 @@ export default function ShopingCar() {
       <h3>Subtotal: ${shoping.calc.subTotal}</h3>
       <h3>Impuestos (15%) ${shoping.calc.impuestos}</h3>
       <h3>Precio total: ${shoping.calc.totalPrice}</h3>
+      <Link to="/FormBuy"> checkout</Link>
     </div>:<h1>no tienes productos en tu carrito</h1>
+    
    }
-   <Link to="/FormBuy"> checkout</Link>
+  
    </>
   )
 }
