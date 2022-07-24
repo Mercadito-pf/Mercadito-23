@@ -14,7 +14,6 @@ const Cards = (products)=>{
 
         <div className = 'principalContainer'>  
             <div className = 'cardContent'>
-            
                  {
                 profile?._id &&  !products.list &&
                 <div className="Favorito">
