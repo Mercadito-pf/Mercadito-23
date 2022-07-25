@@ -35,7 +35,6 @@ const Cards = (products)=>{
                 
                 <div className = 'cardText'>
                     <h4>${products.price}.00</h4>
-                    <Link to={`/detail/${products.id}`} className='detailsButton'>
                     <ButtonAddCart {...products}/>
                     <h2>{products.seller}</h2>
                     <p>{products.sales} ventas</p>
