@@ -60,9 +60,9 @@ export default function NavBar() {
           </li>}
 
 
-          {profile?._id &&<li className="item">
+          {/* {profile?._id &&<li className="item">
             <Link to="/create"><img src={bag}/>Vender</Link>
-          </li>}
+          </li>} */}
 
           {profile?.profile_picture ? (
             <>
