@@ -16,9 +16,10 @@ export default function ShopingCar() {
   }
 
   async function updateCantidad(cantidad, id){
-    await clienteAxios.put(`/shoping/${id}`, {
+    let updated =await clienteAxios.put(`/shoping/${id}`, {
       cantidad
   })
+  console.log(updated)
     setRefres(!refres)
   }
 
