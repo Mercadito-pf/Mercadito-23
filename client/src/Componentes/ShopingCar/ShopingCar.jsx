@@ -10,12 +10,12 @@ export default function ShopingCar() {
   let id_cart = localStorage.getItem("id_cart")
 
   async function handleClick(_id){
-    console.log(_id)
     await clienteAxios.delete(`/shoping/delet-product/${id_cart}`,{data: {_id}})
     setRefres(!refres)
   }
 
   async function updateCantidad(cantidad, id){
+    console.log(cantidad)
     let updated =await clienteAxios.put(`/shoping/${id}`, {
       cantidad
   })
@@ -28,8 +28,11 @@ export default function ShopingCar() {
       async function () {
         const { data } = await clienteAxios.get(`/shoping/${id_cart}`)
         setShoping(data)
+        console.log(data)
+
       }
     )()
+
   }, [refres])
   return (
    <>

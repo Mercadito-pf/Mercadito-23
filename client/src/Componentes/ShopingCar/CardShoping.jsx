@@ -2,7 +2,7 @@ import React from 'react'
 import clienteAxios from '../../config/axios'
 
 export default function CardShoping(product) {
-  console.log(product._id)
+  console.log(product.cantidad)
   return (
     <div>
       <button onClick={()=> product.handleClick(product._id)}>eliminar</button>

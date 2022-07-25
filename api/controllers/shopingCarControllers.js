@@ -22,12 +22,13 @@ exports.getProductsInCar = async (req, res) => {
     try {
         let cartProducts = await shopingCarModel.findById(id)
             .exec()
-
+            console.log(cartProducts)
         if (cartProducts.products.length) {
             let info = calc(cartProducts.products)
             return res.send({products:cartProducts.products, calc:info})
             
         }
+        
         res.send(cartProducts)
         
     } catch (error) {
@@ -52,6 +53,7 @@ exports.updateShopingCar = async (req, res) =>{
     let updated = await shopingCarModel.findOneAndUpdate({"products._id":req.params.id}, 
     {'$set': {"products.$.cantidad": `${req.body.cantidad}`}},
     {new:true})
+    console.log(updated)
    res.send(updated)
 }
 
