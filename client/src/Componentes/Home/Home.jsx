@@ -113,13 +113,13 @@ export default function Home() {
                     return (
                         <Cards 
 
-                        key={p.id} 
-                        id={p.id} 
-                        image={p.image} 
-                        name={p.name} 
-                        seller={p.seller} 
-                        price={p.price}
-                        _id={p._id}
+                        // key={p.id} 
+                        // id={p.id} 
+                        // image={p.image} 
+                        // name={p.name} 
+                        // seller={p.seller} 
+                        // price={p.price}
+                        // _id={p._id}
                         {...product}
                         />
                     )

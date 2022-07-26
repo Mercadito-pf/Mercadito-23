@@ -84,19 +84,19 @@ export default function NavBar() {
           )}
 
 
-          <li className="item">
+          {/* <li className="item">
           <Link to="/shoping-car"><img src={carrito} /></Link>
-          </li>
+          </li> */}
           
-
+{/* 
          {profile?._id&& <li className="item">
             <Link to="/favorites">Favoritos</Link>
-          </li>}
+          </li>} */}
 
 
-          {profile?._id &&<li className="item">
+          {/* {profile?._id &&<li className="item">
             <Link to="/create"className="i">Vender</Link>
-          </li>}
+          </li>} */}
 
 
           {/* <li className="item">
