@@ -113,6 +113,7 @@ export default function Home() {
                     return (
                         <Cards 
 
+
                         // key={p.id} 
                         // id={p.id} 
                         // image={p.image} 
@@ -120,6 +121,7 @@ export default function Home() {
                         // seller={p.seller} 
                         // price={p.price}
                         // _id={p._id}
+
                         {...product}
                         />
                     )
