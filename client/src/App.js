@@ -16,6 +16,7 @@ import ListFav from "./Componentes/Fav/ListFav";
 import ShopingCar from "./Componentes/ShopingCar/ShopingCar";
 import clienteAxios from "./config/axios";
 import FormBuy from "./Componentes/FormBuy/FormBuy.jsx";
+import Orden from "./Componentes/Orden/Orden.jsx";
 
 // import Detail from "./Componentes/detail/Detail";
 
@@ -56,6 +57,7 @@ function App() {
       <Route path="/FormBuy" component={FormBuy} />
       {/* <Route path="/login" component={Login} /> */}
       <Route path="/create" component={CreateProduct} />
+      <Route path="/orden" component={Orden} />
     </div>
   );
 }

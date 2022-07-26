@@ -25,7 +25,7 @@ exports.getProductsInCar = async (req, res) => {
             console.log(cartProducts)
         if (cartProducts.products.length) {
             let info = calc(cartProducts.products)
-            return res.send({products:cartProducts.products, calc:info})
+            return res.send({user:cartProducts.user,products:cartProducts.products, calc:info})
             
         }
         
