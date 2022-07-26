@@ -1,5 +1,4 @@
 const {FormBuymodel} = require('../schemas/FormBuy.schema');
-const {shopingCarModel} = require('../schemas/shopingCar.schema');
 
 exports.getFormBuy =async function(req,res){
     try{
@@ -12,13 +11,8 @@ exports.getFormBuy =async function(req,res){
 }
 
 exports.sabeForm = async (req, res) => {
-    try{
-
-        const sabe = await shopingCarModel.findByIdAndUpdate(req.params.id, {user: req.body}, {new:true})
-        res.status(200).send(sabe);
-    }
-    catch(e){
-        console.log(e)
-    }
+    const newFormBuy=new FormBuymodel(req.body)
+    await newFormBuy.save()
+    res.send(newFormBuy);
 }
 

@@ -9,16 +9,7 @@ let shopingCarSchema = mongoose.Schema({
         },
         stock:Number,
         price:Number
-    }],
-    user: { 
-        nombre:String,
-        apellido:String,
-        direccion:String,
-        codigoPostal:String,
-        ciudad:String,
-        pais:String,
-        telefono:String
-    }
+    }]
 })
 
 const shopingCarModel = mongoose.model("ShopingCar", shopingCarSchema)

@@ -89,7 +89,6 @@ export default function FormBuy() {
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        let id = localStorage.getItem("id_cart")
         if( ! input.nombre ||
             ! input.apellido ||
             ! input.direccion ||
@@ -99,8 +98,7 @@ export default function FormBuy() {
             ! input.telefono){
              return  alert("parametros requeridos")
             }
-            await clienteAxios.put(`/FormBuy/${id}`,input)
-            console.log(input,"hola")
+            await clienteAxios.post(`/FormBuy/`,input)
             alert("Publicacion creada con exito")
             setInput({
                 nombre:"",
@@ -174,9 +172,9 @@ export default function FormBuy() {
             placeholder={errors.telefono}
             onChange={e=>handleChange(e)}
             />
-            <Link to="/Orden" >
+            {/* <Link to="/pagaer" > */}
             <button  type="submit">enviar</button>
-            </Link>
+            {/* </Link> */}
          </form>
         </>
     )
