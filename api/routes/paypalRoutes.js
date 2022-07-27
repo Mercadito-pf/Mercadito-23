@@ -3,7 +3,7 @@ const paypalController = require("../controllers/paypalControllers")
 const Auth = require("../middleware/Auth");
 
 router.post("/create-payment/:id", paypalController.createPayment);
-router.get("/execute-payment", paypalController.executePayment)
+// router.get("/execute-payment", paypalController.executePayment)
 
 
 
