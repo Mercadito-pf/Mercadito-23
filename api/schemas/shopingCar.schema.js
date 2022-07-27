@@ -1,32 +1,28 @@
 const mongoose = require('mongoose')
 
-let shopingCarSchema = mongoose.Schema({
-    products: [{
-        name:String, 
-        cantidad:{
-            type:Number,
-            default:1
-        },
-        stock:Number,
-        price:Number
-    }],
-    user: { 
-        nombre:String,
-        apellido:String,
-        direccion:String,
-        codigoPostal:String,
-        ciudad:String,
-        pais:String,
-        telefono:String
+let productSchema = mongoose.Schema({
+    name: String,
+    cantidad: {
+        type: Number,
+        default: 1
     },
-    calc:{
-        subtotal:Number, 
-        total:Number,
-        impuestos:Number, 
-        totalPrice:Number,
+    stock: Number,
+    price: Number
+},{ timestamps: true })
+
+let shopingCarSchema = mongoose.Schema({
+    products: [productSchema],
+    user: {
+        nombre: String,
+        apellido: String,
+        direccion: String,
+        codigoPostal: String,
+        ciudad: String,
+        pais: String,
+        telefono: String
     }
-})
+}, { timestamps: true })
 
 const shopingCarModel = mongoose.model("ShopingCar", shopingCarSchema)
 
-module.exports = {shopingCarModel}
+module.exports = { shopingCarModel }
