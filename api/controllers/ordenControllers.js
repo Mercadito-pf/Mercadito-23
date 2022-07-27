@@ -1,15 +1,21 @@
 const {Orden} = require("../schemas/Orden.schema");
-exports.crearOrden = (req,res)=>{
+const {shopingCarModel} = require("../schemas/shopingCar.schema")
+const { calc } = require("../funciones/Calc")
+exports.crearOrden = async(req,res)=>{
+    console.log(req.body,"body")
     if(!req.body) return res.status(404).send({message:"El cliente no envio los parametros"})
+    const shopingCar = await shopingCarModel.findByIdAndUpdate(req.params.id,{user:req.body},{new:true})
+    const data = calc(shopingCar.products)
+    res.send(data)
 
-    const OrdenCliente = Orden(req.body);
-    OrdenCliente.save()
-     .then((data)=>{
-        res.json(data)
-     })
-     .catch((e)=>{
-        res.json({message:e})
-     })
+    // const OrdenCliente = Orden(req.body);
+    // OrdenCliente.save()
+    //  .then((data)=>{
+    //     res.json(data)
+    //  })
+    //  .catch((e)=>{
+    //     res.json({message:e})
+    //  })
 
 
 }
@@ -25,20 +31,15 @@ exports.traerTodaslasOrdenes = (req,res)=>{
 
 }
 // --------------------------
-exports.getById = (req,res)=>{
+exports.getById = async(req,res)=>{
 
     if(!req.params) return res.status(404).send({message:"Cliente sin parametros"})
 
     const {id} = req.params
 
-    Orden.findById(id)
+   const getId = await shopingCarModel.findById(id)
+   res.send(getId)
 
-    .then((data)=>{
-        res.json(data)
-    })
-    .catch((e)=>{
-        res.json({message:e})
-    });
 }
 //-----------------------------
 exports.modificarOrden = (req,res)=>{

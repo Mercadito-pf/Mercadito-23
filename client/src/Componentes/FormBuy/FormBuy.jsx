@@ -1,12 +1,14 @@
 import React from 'react'
 import clienteAxios from '../../config/axios';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 export var ordenP
 export default function FormBuy() {
+    const history = useHistory();
     // const _id = _id
+    let id_cart = localStorage.getItem("id_cart")
     const [errors , setErrors] = useState(true);
     let [form, setForm]=useState({})
     const [input,setInput]= useState({
@@ -86,10 +88,8 @@ export default function FormBuy() {
     
       };
 
-
-    const handleSubmit= async (e)=>{
-        e.preventDefault();
-        let id = localStorage.getItem("id_cart")
+      const handleSubmit= async function(e){
+        e.preventDefault(e);
         if( ! input.nombre ||
             ! input.apellido ||
             ! input.direccion ||
@@ -97,11 +97,12 @@ export default function FormBuy() {
             ! input.ciudad ||
             ! input.pais ||
             ! input.telefono){
-             return  alert("parametros requeridos")
+                return alert("parametros requeridos")
             }
-            await clienteAxios.put(`/FormBuy/${id}`,input)
-            console.log(input,"hola")
-            alert("Publicacion creada con exito")
+
+            await clienteAxios.put(`/Orden/${id_cart}`,input)
+                history.push("/orden")
+            // console.log(input,"este es el input")
             setInput({
                 nombre:"",
                 apellido:"",
@@ -111,8 +112,9 @@ export default function FormBuy() {
                 pais:"",
                 telefono:""
             })
-        
-    }
+
+      }
+
 
 
     return(
@@ -174,9 +176,9 @@ export default function FormBuy() {
             placeholder={errors.telefono}
             onChange={e=>handleChange(e)}
             />
-            <Link to="/Orden" >
+            {/* <Link to="/Orden" > */}
+            {/* </Link> */}
             <button  type="submit">enviar</button>
-            </Link>
          </form>
         </>
     )
