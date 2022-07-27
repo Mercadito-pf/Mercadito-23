@@ -35,6 +35,7 @@ router.post("/olvide-contrasenia", userController.olvideContrasenia);
 router.post("/nueva-contrasenia/:token", userController.nuevaContrasenia);
 
 router.get("/user-list", userController.getUsers)
-router.delete("/:id", userController.deleteUser)
+router.put("/ban-user/:id", userController.banUser)
+// router.get("/:id", userController.getUserID)
 
 module.exports = router;

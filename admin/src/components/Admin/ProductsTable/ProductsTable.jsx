@@ -2,24 +2,35 @@ import React, { useEffect, useState } from 'react'
 import DataTable from '../DataTable/DataTable';
 import "./datatable.scss";
 import { Link } from 'react-router-dom';
-const columns = [
-    {
-        field: 'name',
-        headerName: 'Nombre',
-        width: 300,
-        renderCell: (params) => {
-            return (
-                <div className="cellWithImg">
-                    <img className="cellImg" src={params.row.image} alt="avatar" />
-                    {params.row.name}
-                </div>
-            );
-        },
-    },
-    { field: 'price', headerName: 'Precio', width: 120 },
-    { field: 'stock', headerName: 'Stock', width: 120 },
-    { field: 'sales', headerName: 'Ventas', width: 120, }
-];
+// const columns = [
+//     {
+//         field: 'name',
+//         headerName: 'Nombre',
+//         width: 300,
+//         renderCell: (params) => {
+//             return (
+//                 <div className="cellWithImg">
+//                     <img className="cellImg" src={params.row.image} alt="avatar" />
+//                     {params.row.name}
+//                 </div>
+//             );
+//         },
+//     },
+//     { field: 'price', headerName: 'Precio', width: 120 },
+//     { field: 'stock', headerName: 'Stock', width: 120 },
+//     { field: 'sales', headerName: 'Ventas', width: 120, },
+//     { 
+//         field: 'action', 
+//         headerName: 'Edit', 
+//         width: 120,
+//         renderCell:(params)=>{
+//             return(
+//                 <button>Edit</button>
+//             )
+//         }
+//     }
+
+// ];
 
 const userTableStyles = {
     height: '650px',
@@ -33,6 +44,7 @@ export default function ProductsTable() {
     const [filter, setFilter] = useState("")
     const [order, setOrder] = useState({ field: "", sort: "" })
 
+
     useEffect(() => {
         fetch(`http://localhost:3001/products/?limit=${pageSize}&page=${page}&name=${filter}&sort=${order.field}&order=${order.sort}`)
             .then((response) => response.json())
@@ -43,6 +55,41 @@ export default function ProductsTable() {
             })
             .catch((e) => console.log(e))
     }, [page, pageSize, filter, order]);
+
+
+    const columns = [
+        {
+            field: 'name',
+            headerName: 'Nombre',
+            width: 300,
+            renderCell: (params) => {
+                return (
+                    <div className="cellWithImg">
+                        <img className="cellImg" src={params.row.image} alt="avatar" />
+                        {params.row.name}
+                    </div>
+                );
+            },
+        },
+        { field: 'price', headerName: 'Precio', width: 120 },
+        { field: 'stock', headerName: 'Stock', width: 120 },
+        { field: 'sales', headerName: 'Ventas', width: 120, },
+        { 
+            field: 'action', 
+            headerName: 'Edit', 
+            width: 120,
+            renderCell:(params)=>{
+                return(
+                    <Link to={`/products/edit/${params.row._id}`}>
+                    <button >Edit</button>
+                    </Link>
+                    
+                )
+            }
+        }
+    
+    ];
+
     return (
         <div className="datatable">
             <div className="datatableTitle">

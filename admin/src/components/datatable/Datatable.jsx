@@ -19,14 +19,14 @@ const Datatable = () => {
         .catch((e) => console.log(e))
 }, [refres]);
 
-  async function handleBan (id){
-     await fetch(`http://localhost:3001/users/ban-user/${id}`,{
+  async function handleBan (user){
+     await fetch(`http://localhost:3001/users/ban-user/${user._id}`,{
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({status:"baned"})
+      body: JSON.stringify({isActive:!user.isActive})
     })
 
     setRefres(!refres)
@@ -45,10 +45,12 @@ const Datatable = () => {
               <div className="viewButton">View</div>
             </Link>
             <div
-              className="deleteButton"
-              onClick={() => handleBan(params.row._id)}
+              className={`${params.row.isActive?"deleteButton":"activeButton"}`}
+              onClick={() => handleBan(params.row)}
             >
-              Ban
+              {
+                params.row.isActive?"Ban":"Active"
+              }
             </div>
           </div>
         );
