@@ -4,6 +4,7 @@ import clienteAxios from '../../config/axios';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import {Link,useParams} from 'react-router-dom';
 import { ordenP } from '../FormBuy/FormBuy';
+import Paypal from '../Paypal/Paypal';
 
 export default function Orden() {
   const[ordernP, setOrdenP] = useState({})
@@ -50,7 +51,7 @@ export default function Orden() {
         total:Number,
         impuestos:Number, 
         totalPrice:Number, */}
-        <button >Pagar</button>
+        <Paypal/>
         </>
 
     )
