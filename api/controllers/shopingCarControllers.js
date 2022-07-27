@@ -22,7 +22,6 @@ exports.getProductsInCar = async (req, res) => {
     try {
         let cartProducts = await shopingCarModel.findById(id)
             .exec()
-            console.log(cartProducts)
         if (cartProducts.products.length) {
             let info = calc(cartProducts.products)
             return res.send({user:cartProducts.user,products:cartProducts.products, calc:info})

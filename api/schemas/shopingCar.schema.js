@@ -18,6 +18,12 @@ let shopingCarSchema = mongoose.Schema({
         ciudad:String,
         pais:String,
         telefono:String
+    },
+    calc:{
+        subtotal:Number, 
+        total:Number,
+        impuestos:Number, 
+        totalPrice:Number,
     }
 })
 

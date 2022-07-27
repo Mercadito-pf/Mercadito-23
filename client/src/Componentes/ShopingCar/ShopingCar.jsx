@@ -28,7 +28,7 @@ export default function ShopingCar() {
       async function () {
         const { data } = await clienteAxios.get(`/shoping/${id_cart}`)
         setShoping(data)
-        console.log(data)
+        // console.log(data)
 
       }
     )()

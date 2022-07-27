@@ -15,11 +15,15 @@ export default function Orden() {
       (
           async function(){
               const {data} = await clienteAxios.get(`/shoping/${id_cart}`)
-              setOrdenP(data)
+              setOrdenP(data,"oo")
+              console.log(data)
           }
       )()
   },[])
-  
+  //  async function handlesubmit(){
+  //   await clienteAxios.post(`/paypal/create-payment`)
+
+  //  }  
     return (
         <>
             {
@@ -39,54 +43,15 @@ export default function Orden() {
           {
            ordernP.calc &&
             <div>
-              <h3>Subtotal: {ordernP.calc.subTotal}<br/>Total Products: {ordernP.calc.totalProducts}<br/> Impuestos: {ordernP.calc.impuestos}<br/> Precio Total: {ordernP.calc.totalPrice}</h3>
+              <h3>Subtotal: {ordernP.calc.subtotal}<br/>Total Products: {ordernP.calc.total}<br/> Impuestos: {ordernP.calc.impuestos}<br/> Precio Total: {ordernP.calc.totalPrice}</h3>
             </div>
           } 
-        
-        <button>Pagar</button>
+                {/* subtotal:Number, 
+        total:Number,
+        impuestos:Number, 
+        totalPrice:Number, */}
+        <button >Pagar</button>
         </>
 
     )
 }
-
-
-// import React, { useEffect, useState } from 'react'
-// import CardShoping from '../ShopingCar/CardShoping';
-// import clienteAxios from '../../config/axios';
-
-// export default function ShopingCar() {
-
-//     const [order, setOrder] = useState({})
-
-//     useEffect(() => {
-//         (
-//       async function () {
-//         const { data } = await clienteAxios.get(`/shoping/${id_cart}`)
-//         setOrder(data)
-//       }
-//     )()
-//   }, [])
-
-// return (
-//     <>
-//     {
-// order.products && order.products.map( product => {
-//     return(
-//         <CardShoping  />
-//     )
-// })
-//     }
-//     {
-//         order.calc?<div>
-//                <h3> Total de productos: {order.calc.totalProducts}</h3>
-//                <h3>Subtotal: ${order.calc.subTotal}</h3>
-//                <h3>Impuestos (15%) ${order.calc.impuestos}</h3>
-//                <h3>Precio total: ${order.calc.totalPrice}</h3>
-//         </div>
-//         :null
-//     }
-
-//     </>
-// )
-
-// }

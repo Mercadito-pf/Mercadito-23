@@ -1,16 +1,23 @@
 require("dotenv").config()
 const request=require("request")
+const {shopingCarModel} = require("../schemas/shopingCar.schema");
+const {calc} = require("../funciones/Calc.js");
 
 let {CLIENT_PAYPAL, SECRET_PAYPAL}= process.env
 const auth = { user: CLIENT_PAYPAL, pass: SECRET_PAYPAL }
-exports.createPayment = (req, res) => {
+
+
+exports.createPayment = async (req, res) => {
     
+    const calcular = await shopingCarModel.findById(req.params.id)    
+    const total = calc(calcular.products)
+    console.log(total)
     const body = {
         intent: 'CAPTURE',
         purchase_units: [{
             amount: {
                 currency_code: 'USD', //https://developer.paypal.com/docs/api/reference/currency-codes/
-                value: '1000'
+                value: total.totalPrice
             }
         }],
         application_context: {
