@@ -63,7 +63,7 @@ exports.getProducts = async (req, res) => {
         promiseLength,
       ]);
       let totalPages = Math.ceil(length / limit);
-      return res.send({ data: { totalPages }, products });
+      return res.send({ data: { totalPages, totalProducts:length }, products });
     }
 
     
@@ -80,7 +80,7 @@ exports.getProducts = async (req, res) => {
       promiseLength,
     ]);
     let totalPages = Math.ceil(length / limit);
-    res.send({ data: { totalPages }, products });
+    res.send({ data: { totalPages, totalProducts:length }, products });
   } catch (error) {
     console.log(error);
   }
@@ -134,3 +134,10 @@ exports.getFeatures = async (req, res) => {
 
   res.send(product);
 };
+
+// PUT http://localhost:3001/products/:id-product
+exports.updateProduct = async(req, res)=>{
+  let update = await productModel.findByIdAndUpdate(req.params.id, req.body, {new:true})
+  console.log(update)
+  res.send(update)
+}

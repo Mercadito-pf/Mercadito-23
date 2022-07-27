@@ -34,7 +34,19 @@ export default function Edit() {
             }
         })
     }
+
+    async function handleSubmit(e){
+        e.preventDefault()
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product)
+        };
+        let update = await fetch(`http://localhost:3001/products/${product._id}`, requestOptions).then(res =>res.json())
+           console.log(update)
+           alert("producto actualizado")
+    }
   return (
-    <FormEdit product={product} labels={labels} handleChange={handleChange}/>
+    <FormEdit handleSubmit={handleSubmit} product={product} labels={labels} handleChange={handleChange}/>
   )
 }

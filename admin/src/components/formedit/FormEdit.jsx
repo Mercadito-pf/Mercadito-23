@@ -61,7 +61,7 @@ import Sidebar from "../sidebar/Sidebar";
 // };
 
 
-export default function FormEdit({product, labels, handleChange}) {
+export default function FormEdit({handleSubmit, product, labels, handleChange}) {
     // const [file, setFile] = useState(product ||{});
     const [file, setFile] = useState("");
 
@@ -106,7 +106,7 @@ export default function FormEdit({product, labels, handleChange}) {
                 />
               </div>
               <div className="right">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="formInput">
                     <label htmlFor="file">
                       Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -123,7 +123,7 @@ export default function FormEdit({product, labels, handleChange}) {
                     <div className="formInput" key={i}>
                       <label>{label}</label>
                       {
-                        label ==="description"?<textarea name={label} value={product[label]} cols="35" rows="5"></textarea>:
+                        label ==="description"?<textarea name={label} value={product[label] } onChange={handleChange} cols="35" rows="5"></textarea>:
                         <input 
                         type="text" 
                         value={product[label]} 
@@ -134,7 +134,7 @@ export default function FormEdit({product, labels, handleChange}) {
                       
                     </div>
                   ))}
-                  <button>Send</button>
+                  <button type="submit">Send</button>
                 </form>
               </div>
             </div>

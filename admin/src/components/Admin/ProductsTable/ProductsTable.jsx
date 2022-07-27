@@ -50,6 +50,7 @@ export default function ProductsTable() {
             .then((response) => response.json())
             .then((json) => {
                 let { products, data } = json
+                console.log(json)
                 setProducts(products)
                 setData(data)
             })
