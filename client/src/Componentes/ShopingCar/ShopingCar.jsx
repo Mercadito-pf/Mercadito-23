@@ -60,17 +60,17 @@ export default function ShopingCar() {
         shoping.calc?
         <div className='containerRes'>
           <h1>Resumen del pedido</h1>
-          <h3> Total de productos: {shoping.calc.totalProducts}</h3>
-          <h3>Subtotal: ${shoping.calc.subTotal}</h3>
-          <h3>Impuestos (15%) ${shoping.calc.impuestos}</h3>
-          <h3>Precio total: ${shoping.calc.totalPrice}</h3>
-          <Link to={profile._id?"/FormBuy":"/login"}> checkout</Link>
+          <h3> Total de productos: <a>{shoping.calc.totalProducts}</a></h3>
+          <h3>Subtotal: <a>${shoping.calc.subTotal}</a></h3>
+          <h3>Impuestos (15%): <a>${shoping.calc.impuestos}</a></h3>
+          <h3>Precio total: <a>${shoping.calc.totalPrice}</a></h3>
+          <div className='buttonContainer'>
+            <Link to={profile._id?"/FormBuy":"/login"}><button>Check Out</button> </Link>
+          </div>
         </div>
         :
-        <h1>no tienes productos en tu carrito</h1>
-        
+        <h1 className='noProducts'>No tienes productos en tu carrito</h1>
       }
-
   
    </div>
   )
