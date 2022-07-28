@@ -39,6 +39,7 @@ const Login = () => {
 
   const handleGoogle = async (responseGoogle) => {
     const decoded = jwt_decode(responseGoogle.credential);
+    // console.log(decoded)
 
     const { email, given_name, family_name, picture } = decoded;
 
@@ -53,7 +54,15 @@ const Login = () => {
         google: true,
         typeUser: "N",
       });
-
+      console.log(data)
+      if (!data.user.isActive) {
+        setAlerta({
+          msg: "Lamentamos informarle que su cuenta ha sido supendida permanentemente por incumplir nuestros reglamentos",
+          categoria: "error",
+        })
+        setCargandoGoogle(false);
+        return navigate.push("/login")
+      }
       localStorage.setItem("token", data.token);
 
       dispatch(loginUser(data.user));

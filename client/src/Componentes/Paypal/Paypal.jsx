@@ -14,9 +14,11 @@ let id_cart = localStorage.getItem("id_cart")
               })
                 .then(res => {
                   if (res.ok) return res.json()
+
                   return res.json().then(json => Promise.reject(json))
                 })
                 .then(({ id }) => {
+                  // localStorage.removeItem("id_cart")
                   return id
                 })
                 .catch(e => {

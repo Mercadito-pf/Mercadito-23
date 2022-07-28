@@ -6,10 +6,12 @@ const Auth = require("../middleware/Auth");
 router.get("/", proyectController.getProducts);
 
 // Create Product
-router.post("/", Auth, proyectController.createProduct);
+router.post("/", proyectController.createProduct);
 
 // Get one product
 router.get("/:id", proyectController.getProduct);
+
+router.put("/:id", proyectController.updateProduct)
 
 
 

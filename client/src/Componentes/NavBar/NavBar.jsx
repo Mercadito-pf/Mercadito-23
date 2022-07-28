@@ -13,6 +13,8 @@ import hamburguesa from '../icons/menu.png';
 import dots from '../icons/dots.png'
 import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
+// import PerfilUsuario from "../PerfilUsuario/PerfilUsuario.jsx"
+import MenuPerfil from "../MenuPerfil/MenuPerfil";
 
 export default function NavBar() {
 
@@ -26,14 +28,14 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
 
-  const logout = () => {
+  function logout() {
 
     googleLogout();
     dispatch(logoutUser());
     if (profile._id) {
       history.push("/")
     }
-  };
+  }
 
   return (
     <div className="containerNavbar">
@@ -51,12 +53,12 @@ export default function NavBar() {
               </li> */}
 
           <li className="item">
-          <Link to="/shoping-car"><img src={carrito} />Carrito</Link>
+            <Link to="/shoping-car"><img src={carrito} />Carrito</Link>
           </li>
-          
 
-         {profile?._id&& <li className="item">
-            <Link to="/favorites"><img src={corazon}/>Favoritos</Link>
+
+          {profile?._id && <li className="item">
+            <Link to="/favorites"><img src={corazon} />Favoritos</Link>
           </li>}
 
 
@@ -67,12 +69,23 @@ export default function NavBar() {
           {profile?.profile_picture ? (
             <>
               <li className="item">
-                <Link onClick={logout}>
+                {/* <Link to="/PerfilUsuario"> */}
+                {/* <PerfilUsuario/> */}
+                {/* </Link> */}
+                {/* <Link onClick={logout}>
                 <img className="profile" src={`${profile?.profile_picture}`}
                 />
                Cerrar Sesion
-              </Link>
+              </Link> */}
+                <MenuPerfil image={profile?.profile_picture} lagout={() => {
+                  googleLogout();
+                  dispatch(logoutUser());
+                  if (profile._id) {
+                    history.push("/")
+                  }
+                }} />
               </li>
+              
             </>
           ) : (
             <li className="item">
@@ -88,8 +101,8 @@ export default function NavBar() {
           {/* <li className="item">
           <Link to="/shoping-car"><img src={carrito} /></Link>
           </li> */}
-          
-{/* 
+
+          {/* 
          {profile?._id&& <li className="item">
             <Link to="/favorites">Favoritos</Link>
           </li>} */}
@@ -122,20 +135,20 @@ export default function NavBar() {
       <div className="categories">
         <ul className="contentCategory">
           <div className="dropdown">
-            <img src={hamburguesa}/>
+            <img src={hamburguesa} />
             <h4 className="categoria">Ver todas las categorias</h4>
-              <div className='dropdown-content' >
-                <Filter />
-              </div>
+            <div className='dropdown-content' >
+              <Filter />
+            </div>
           </div>
           {currentPage > 0 && (
-          <div className='order-category'>
-              <img src={dots}/>
+            <div className='order-category'>
+              <img src={dots} />
               <h2>Ordenar por</h2>
-                <div className='order'>
-                  <Order/>
-                </div>
-          </div>
+              <div className='order'>
+                <Order />
+              </div>
+            </div>
           )}
         </ul>
       </div>

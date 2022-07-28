@@ -49,7 +49,7 @@ export default function Orden() {
               <h3><a>Codigo Postal:</a> {ordernP.user.codigoPostal}</h3>
               <h3><a>Ciudad:</a> {ordernP.user.ciudad}</h3>
               <h3><a>Pais:</a> {ordernP.user.pais}</h3>
-              <h3><a>Telefono:</a> {ordernP.user.telefono}</h3>
+              <h3><a>Telefono:</a> {ordernP.user.telefono}</h3>       
             </div>
           } 
         

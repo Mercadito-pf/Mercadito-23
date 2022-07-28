@@ -20,6 +20,10 @@ let shopingCarSchema = mongoose.Schema({
         ciudad: String,
         pais: String,
         telefono: String
+    },
+    isFactura:{
+        type:Boolean,
+        default:false
     }
 }, { timestamps: true })
 
