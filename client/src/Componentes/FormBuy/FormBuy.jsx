@@ -4,6 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
+
+import './FormBuy.scss'
+
 export var ordenP
 export default function FormBuy() {
     const history = useHistory();
@@ -118,68 +121,70 @@ export default function FormBuy() {
 
 
     return(
-        <>
-         <form onSubmit={e=>handleSubmit(e)}>
-            <h3>Nombre</h3>
-            <input 
-            type="text"
-            value={input.nombre}
-            name="nombre"
-            placeholder={errors.nombre}
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Apellido</h3>
-            <input 
-            type="text"
-            value={input.apellido}
-            placeholder={errors.apellido}
-            name="apellido"
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Direccion</h3>
-            <input
-            type="text"
-            value={input.direccion}
-            placeholder={errors.direccion}
-            name="direccion"
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Codigo Postal</h3>
-            <input 
-            type="number"
-            value={input.codigoPostal}
-            placeholder={errors.codigoPostal}
-            name="codigoPostal"
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Ciudad</h3>
-            <input
-            type="text"
-            value={input.ciudad}
-            placeholder={errors.ciudad}
-            name="ciudad"
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Pais</h3>
-            <input 
-            type="text"
-            value={input.pais}
-            placeholder={errors.pais}
-            name="pais"
-            onChange={e=>handleChange(e)}
-            />
-            <h3>Telefono</h3>
-            <input
-            type="number"
-            input={input.telefono}
-            name="telefono"
-            placeholder={errors.telefono}
-            onChange={e=>handleChange(e)}
-            />
-            {/* <Link to="/Orden" > */}
-            {/* </Link> */}
-            <button  type="submit">enviar</button>
-         </form>
-        </>
+        <div className='formContainer'>
+                <form  className='form' onSubmit={e=>handleSubmit(e)}>
+                    <h3>Nombre:</h3>
+                    <input 
+                    type="text"
+                    value={input.nombre}
+                    name="nombre"
+                    placeholder={errors.nombre}
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Apellido:</h3>
+                    <input 
+                    type="text"
+                    value={input.apellido}
+                    placeholder={errors.apellido}
+                    name="apellido"
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Direccion:</h3>
+                    <input
+                    type="text"
+                    value={input.direccion}
+                    placeholder={errors.direccion}
+                    name="direccion"
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Codigo Postal:</h3>
+                    <input 
+                    type="number"
+                    value={input.codigoPostal}
+                    placeholder={errors.codigoPostal}
+                    name="codigoPostal"
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Ciudad:</h3>
+                    <input
+                    type="text"
+                    value={input.ciudad}
+                    placeholder={errors.ciudad}
+                    name="ciudad"
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Pais:</h3>
+                    <input 
+                    type="text"
+                    value={input.pais}
+                    placeholder={errors.pais}
+                    name="pais"
+                    onChange={e=>handleChange(e)}
+                    />
+                    <h3>Telefono:</h3>
+                    <input
+                    type="number"
+                    input={input.telefono}
+                    name="telefono"
+                    placeholder={errors.telefono}
+                    onChange={e=>handleChange(e)}
+                    />
+                    {/* <Link to="/Orden" > */}
+                    {/* </Link> */}
+                    <div className='buttonContainer'>
+                        <button  type="submit">enviar</button>
+                    </div>
+                </form>
+        </div>
     )
 }
