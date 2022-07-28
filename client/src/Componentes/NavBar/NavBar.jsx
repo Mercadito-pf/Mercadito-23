@@ -13,7 +13,7 @@ import hamburguesa from '../icons/menu.png';
 import dots from '../icons/dots.png'
 import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
-import PerfilUsuario from "../PerfilUsuario/PerfilUsuario.jsx"
+// import PerfilUsuario from "../PerfilUsuario/PerfilUsuario.jsx"
 import MenuPerfil from "../MenuPerfil/MenuPerfil";
 
 export default function NavBar() {
@@ -70,7 +70,7 @@ export default function NavBar() {
             <>
               <li className="item">
                 {/* <Link to="/PerfilUsuario"> */}
-                <PerfilUsuario/>
+                {/* <PerfilUsuario/> */}
                 {/* </Link> */}
                 {/* <Link onClick={logout}>
                 <img className="profile" src={`${profile?.profile_picture}`}
