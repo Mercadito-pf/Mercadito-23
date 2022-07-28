@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import clienteAxios from '../../../config/axios'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
 export default function Moda() {
@@ -10,9 +11,9 @@ export default function Moda() {
     useEffect(() => {
         // se obtienen las categorias de productos
         (async function () {
-            let moda = await fetch('http://localhost:3001/categories').then(res => res.json())
+            let {data} = await clienteAxios.get('/categories')
             // console.log(res[0].tecnologia[0].name)
-            setModa(moda[2].sub)
+            setModa(data[2].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])

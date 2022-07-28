@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import clienteAxios from '../../../config/axios'
 import { update_current_page, update_querys_filter, update_url } from '../../../redux/actions'
 
 import './Category.scss'
@@ -12,9 +13,9 @@ export default function Electrodomesticos() {
     useEffect(() => {
         // se obtienen las categorias de productos
         (async function () {
-            let electrodomesticos = await fetch('http://localhost:3001/categories').then(res => res.json())
+            let {data} = await clienteAxios.get('/categories')
             // console.log(res[0].tecnologia[0].name)
-            setElectrodomesticos(electrodomesticos[1].sub)
+            setElectrodomesticos(data[1].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
