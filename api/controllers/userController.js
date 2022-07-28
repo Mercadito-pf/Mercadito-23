@@ -306,6 +306,16 @@ exports.banUser = async (req, res)=>{
 }
 }
 
+// PUT http://localhost:3001/users/update-perfil
+exports.updatePerfil= async function(req, res){
+  let {password}=req.body
+  console.log(password)
+  let passwordE = await bcrypt.hash(password, 10);
+
+  let userUpdate = await User.findByIdAndUpdate(req.usuario.id, {password:passwordE}, {new:true})
+  res.send(userUpdate)
+}
+
 // // GET http://localhost:3001/users/:id-user
 // exports.getUserID = async(req, res)=>{
 //   res.send(req.params.id)

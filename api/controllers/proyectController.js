@@ -34,6 +34,7 @@ exports.createProduct = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   const { category, sort, order, name } = req.query;
+  // console.log(name)
   let page = req.query.page || 0;
   let limit = req.query.limit || 16;
   let start = page * limit;
@@ -49,6 +50,7 @@ exports.getProducts = async (req, res) => {
 
   try {
     if (name || category) {
+      console.log(sort, " ", order)
       let promiseLength = productModel.find(query).count().exec();
       let promiseProducts = productModel
         .find(query)

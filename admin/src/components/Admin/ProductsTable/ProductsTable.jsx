@@ -2,35 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DataTable from '../DataTable/DataTable';
 import "./datatable.scss";
 import { Link } from 'react-router-dom';
-// const columns = [
-//     {
-//         field: 'name',
-//         headerName: 'Nombre',
-//         width: 300,
-//         renderCell: (params) => {
-//             return (
-//                 <div className="cellWithImg">
-//                     <img className="cellImg" src={params.row.image} alt="avatar" />
-//                     {params.row.name}
-//                 </div>
-//             );
-//         },
-//     },
-//     { field: 'price', headerName: 'Precio', width: 120 },
-//     { field: 'stock', headerName: 'Stock', width: 120 },
-//     { field: 'sales', headerName: 'Ventas', width: 120, },
-//     { 
-//         field: 'action', 
-//         headerName: 'Edit', 
-//         width: 120,
-//         renderCell:(params)=>{
-//             return(
-//                 <button>Edit</button>
-//             )
-//         }
-//     }
 
-// ];
 
 const userTableStyles = {
     height: '650px',
@@ -46,7 +18,8 @@ export default function ProductsTable() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3001/products/?limit=${pageSize}&page=${page}&name=${filter}&sort=${order.field}&order=${order.sort}`)
+        console.log(filter)
+        fetch(`http://localhost:3001/products/?limit=${pageSize}&page=${page}&name=${filter}`)
             .then((response) => response.json())
             .then((json) => {
                 let { products, data } = json

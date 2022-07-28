@@ -36,6 +36,7 @@ router.post("/nueva-contrasenia/:token", userController.nuevaContrasenia);
 
 router.get("/user-list", userController.getUsers)
 router.put("/ban-user/:id", userController.banUser)
+router.put("/update-perfil", Auth, userController.updatePerfil)
 // router.get("/:id", userController.getUserID)
 
 module.exports = router;
