@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import Cards from "../Card/Card";
 import { Link } from "react-router-dom";
 import './Home.scss'
+import clienteAxios from "../../config/axios";
 
 
 export default function Home() {
@@ -38,10 +39,10 @@ export default function Home() {
                 setFetchData(res)
                 return
             }
-            let res = await fetch(`http://localhost:3001/products?page=${0}&limit=${productsPerpage}`).then(res => res.json())
+            let {data} = await clienteAxios(`/products?page=${0}&limit=${productsPerpage}`)
 
 
-            setFetchData(res)
+            setFetchData(data)
             // console.log(products)
         })()
 

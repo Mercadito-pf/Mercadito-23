@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import clienteAxios from '../../config/axios';
 import {get_id} from '../../redux/actions';
 import Footer from "../Footer/Footer.jsx";
 import './Detail.scss'
@@ -15,12 +16,12 @@ export default function Detail () {
     useEffect(()=>{
         (
             async function(){
-                let res = await fetch(` http://localhost:3001/products/${id}`).then(res => res.json())
+                let {data} = await clienteAxios(`/products/${id}`)
 
-                setDetail(res)
+                setDetail(data)
             }
         )()
-    })
+    },[])
   return (
     <div className='containerDetails'>
         {

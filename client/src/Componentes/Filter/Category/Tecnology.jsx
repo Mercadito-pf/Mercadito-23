@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import clienteAxios from '../../../config/axios'
 import { update_querys_filter, update_url } from '../../../redux/actions'
 
 import './Category.scss'
@@ -14,8 +15,8 @@ export default function Tecnology() {
     useEffect(() => {
         // se obtienen las categorias de productos
         (async function () {
-            let tecnologia = await fetch('http://localhost:3001/categories').then(res => res.json())
-            setTecnology(tecnologia[0].sub)
+            let {data} = await clienteAxios.get('/categories')
+            setTecnology(data[0].sub)
             // console.log(tecnology[0].tecnologia[0].name)
         })()
     }, [])
