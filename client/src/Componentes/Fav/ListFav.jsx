@@ -41,7 +41,7 @@ export default function ListFav() {
         { state.length? state.map(p =>{
                 if (p.product) {
                     return(
-                        <Cards id_fav={p._id} list={true} handleClick={handleClick} image={p.product.image} name={p.product.name} seller={p.product.seller} sales={p.product.sales} price={p.product.price} id={p.product.id}/>
+                        <Cards  id_fav={p._id} list={true} handleClick={handleClick} image={p.product.image} name={p.product.name} seller={p.product.seller} sales={p.product.sales} price={p.product.price} id={p.product.id}/>
                     )
                 }
             }): <h1 className='textFav'>No tienes productos en tu seccion de favoritos</h1>

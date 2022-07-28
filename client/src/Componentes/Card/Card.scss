@@ -33,12 +33,14 @@
 .buttonX {
     position: relative;
     height: 0px;
+    padding-top: 10px;
 }
 
 .x {
     width: 35.5px;
     height: 35.5px;
     margin-left: 230px;
+    margin-top: -10px;
     background: #ffffffa3;
     font-size: 1.5em;
     font-weight: bolder;
@@ -49,7 +51,7 @@
 }
 
 .image {
-    width: 60%;
+    width: 55%;
     height: 250px;
     margin: 0 auto;
     text-align: center;
