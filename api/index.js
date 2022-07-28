@@ -23,6 +23,7 @@ app.use("/admin", require("./routes/adminRoutes"))
 app.use("/shoping", require("./routes/shopingCarRoutes"))
 app.use("/paypal", require("./routes/paypalRoutes"))
 app.use("/FormBuy",require("./routes/formbuyRoute"))
+app.use("/Orden",require("./routes/ordenRoute"))
 
 
 // Route Deploy

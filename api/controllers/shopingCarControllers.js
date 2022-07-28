@@ -23,11 +23,22 @@ exports.getProductsInCar = async (req, res) => {
         let cartProducts = await shopingCarModel.findById(id)
             .exec()
 
+            cartProducts.products.sort(function (a, b) {
+                if (a.createdAt < b.createdAt) {
+                  return 1;
+                }
+                if (a.createdAt > b.createdAt) {
+                  return -1;
+                }
+                // a must be equal to b
+                return 0;
+              });
         if (cartProducts.products.length) {
             let info = calc(cartProducts.products)
-            return res.send({products:cartProducts.products, calc:info})
+            return res.send({user:cartProducts.user,products:cartProducts.products, calc:info})
             
         }
+        
         res.send(cartProducts)
         
     } catch (error) {
@@ -52,6 +63,7 @@ exports.updateShopingCar = async (req, res) =>{
     let updated = await shopingCarModel.findOneAndUpdate({"products._id":req.params.id}, 
     {'$set': {"products.$.cantidad": `${req.body.cantidad}`}},
     {new:true})
+    console.log(updated)
    res.send(updated)
 }
 

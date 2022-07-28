@@ -4,7 +4,7 @@ import delet from '../icons/trash.png'
 import './ShopingCard.scss';
 
 export default function CardShoping(product) {
-  console.log(product._id)
+  console.log(product.cantidad)
   return (
     <div className='containerCardShop'>
       <button className='deleteButton' onClick={()=> product.handleClick(product._id)}><img src={delet}/>eliminar</button>

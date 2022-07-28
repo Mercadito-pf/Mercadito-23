@@ -60,9 +60,9 @@ export default function NavBar() {
           </li>}
 
 
-          {profile?._id &&<li className="item">
+          {/* {profile?._id &&<li className="item">
             <Link to="/create"><img src={bag}/>Vender</Link>
-          </li>}
+          </li>} */}
 
           {profile?.profile_picture ? (
             <>
@@ -82,6 +82,25 @@ export default function NavBar() {
               </Link>
             </li>
           )}
+
+
+
+          {/* <li className="item">
+          <Link to="/shoping-car"><img src={carrito} /></Link>
+          </li> */}
+          
+{/* 
+         {profile?._id&& <li className="item">
+            <Link to="/favorites">Favoritos</Link>
+          </li>} */}
+
+
+          {/* {profile?._id &&<li className="item">
+            <Link to="/create"className="i">Vender</Link>
+          </li>} */}
+
+
+
           {/* <li className="item">
             <Link to="/my-shoping">
               <img src={bag} />

@@ -13,7 +13,7 @@ export default function ButtonAddCart(product) {
         e.preventDefault()
         let id_cart = localStorage.getItem("id_cart")
         await clienteAxios.post(`/shoping/insert-product/${id_cart}`, product)
-        // history.push("/shoping-car")
+        history.push("/shoping-car")
     }
     return (
         <div className = 'cardText'>
