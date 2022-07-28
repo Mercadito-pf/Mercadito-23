@@ -17,7 +17,7 @@ import ShopingCar from "./Componentes/ShopingCar/ShopingCar";
 import clienteAxios from "./config/axios";
 import FormBuy from "./Componentes/FormBuy/FormBuy.jsx";
 import Orden from "./Componentes/Orden/Orden.jsx";
-import FormEditPerfil from "./Componentes/FormEditPerfil/FormEditPerfil";
+import Miscompras from "./Componentes/PerfilUsuario/Miscompras";
 
 // import Detail from "./Componentes/detail/Detail";
 
@@ -59,7 +59,7 @@ function App() {
       {/* <Route path="/login" component={Login} /> */}
       <Route path="/create" component={CreateProduct} />
       <Route path="/orden" component={Orden} />
-      <Route path="/edit-perfil" component={FormEditPerfil}/>
+      <Route path="/Miscompras" component={Miscompras} />
     </div>
   );
 }
