@@ -84,14 +84,17 @@ export default function MenuPerfil({lagout, image}) {
           </Link>
         </MenuItem>
         <MenuItem>
-          <Avatar /> Mis compras
+          <Avatar />
+          <Link style={{textDecoration:"none", color:"black"}} to="Miscompras">
+           Mis compras
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={lagout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+            Cerrar sesion
         </MenuItem>
       </Menu>
     </React.Fragment>
