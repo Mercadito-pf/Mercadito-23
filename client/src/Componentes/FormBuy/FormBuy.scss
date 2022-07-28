@@ -9,6 +9,9 @@
     width: 100%;
     justify-content: center;
     text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    
     h3 {
         font-size: 1.3em;
         font-weight: 450;
@@ -20,6 +23,7 @@
         height: 36px;
         border-radius: 50px;
         border-style: none; 
+        font-size: 1.15em;
     }
 }
 

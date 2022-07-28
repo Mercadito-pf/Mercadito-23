@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { update_querys_filter, update_url } from '../../redux/actions'
 import searchButton from '../icons/search.png'
 import './SearchBar.scss'
-
+ 
 export default function SearchBar() {
 
     let [input, setInput] = useState("")
