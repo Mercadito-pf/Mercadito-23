@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import Sidebar from "./components/sidebar/Sidebar";
 import ListProducts from "./pages/listProducts/ListProducts";
+import Edit from "./pages/edit/Edit";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -33,6 +34,7 @@ function App() {
             <Route path="products">
               <Route index element={<ListProducts />} />
               <Route path=":productId" element={<Single />} />
+              <Route path="edit/:id" element={<Edit/>}/>
               <Route
                 path="new"
                 element={<New inputs={productInputs} title="Add New Product" />}

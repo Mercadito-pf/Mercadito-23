@@ -1,0 +1,18 @@
+cuenta comprador 
+
+email
+sb-3hrxl19372878@personal.example.com
+
+contraseña
+fG1iQ_QJ
+
+
+cuenta vendedor
+
+email
+sb-z0x8o18430304@business.example.com
+
+
+contraseña
+ZgO4V#2q
+
