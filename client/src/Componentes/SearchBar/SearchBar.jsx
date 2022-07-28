@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { update_querys_filter, update_url } from '../../redux/actions'
 import searchButton from '../icons/search.png'
 import './SearchBar.scss'
-
+ 
 export default function SearchBar() {
 
     let [input, setInput] = useState("")
     let dispatch = useDispatch()
-
+    let history = useHistory()
     // setea los cada cambio del input en estado local
     function handleChange(e){
         e.preventDefault()
@@ -20,6 +21,7 @@ export default function SearchBar() {
         e.preventDefault()
         dispatch(update_querys_filter(`name=${input}`))
         dispatch(update_url())
+        history.push("/")
     }
     return (
         <div className='containerBar'>

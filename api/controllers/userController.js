@@ -17,6 +17,8 @@ exports.signUp = async (req, res) => {
   try {
     let user = await User.findOne({ email: email });
 
+    
+
     // Iniciar Google
     if (!user && google) {
       // Se crea usuario
@@ -24,6 +26,7 @@ exports.signUp = async (req, res) => {
         ...req.body,
         password: passwordE,
         profile_picture: picture,
+        // admin:true
       });
       await newUser.save()
 
@@ -85,18 +88,25 @@ exports.signUp = async (req, res) => {
   }
 };
 
+// POST http://localhost:3001/users/signin
 // Permite la autenticación de usuarios
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
+  // console.log(password)
 
   try {
     // verificar de la existencia del usuario
     let userLogin = await User.findOne({
       email: email,
     });
+    // console.log(userLogin.password)
 
     if (!userLogin) {
       return res.status(404).json({ msg: "Credenciales inválidas" });
+    }
+
+    if (!userLogin.isActive) {
+      return res.status(404).json({ msg: "Su cuenta esta supendida temporalmente" });
     }
 
     // verificar la contraseña
@@ -278,3 +288,35 @@ exports.nuevaContrasenia = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
+
+
+// GET http://localhost:3001/users/user-list
+exports.getUsers = async (req, res) =>{
+  let users = await User.find().exec()
+  res.send(users)
+}
+
+// PUT http://localhost:3001/users/ban-user/:id-user
+exports.banUser = async (req, res)=>{
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {new:true}).exec();
+    res.send(user)
+} catch (error) {
+    console.log(error)
+}
+}
+
+// PUT http://localhost:3001/users/update-perfil
+exports.updatePerfil= async function(req, res){
+  let {password}=req.body
+  console.log(password)
+  let passwordE = await bcrypt.hash(password, 10);
+
+  let userUpdate = await User.findByIdAndUpdate(req.usuario.id, {password:passwordE}, {new:true})
+  res.send(userUpdate)
+}
+
+// // GET http://localhost:3001/users/:id-user
+// exports.getUserID = async(req, res)=>{
+//   res.send(req.params.id)
+// }

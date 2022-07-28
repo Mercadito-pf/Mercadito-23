@@ -11,6 +11,8 @@ router.post("/", proyectController.createProduct);
 // Get one product
 router.get("/:id", proyectController.getProduct);
 
+router.put("/:id", proyectController.updateProduct)
+
 
 
 module.exports = router;

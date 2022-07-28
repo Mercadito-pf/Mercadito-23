@@ -18,6 +18,13 @@ app.use("/categories", require("./routes/categoryRoutes"));
 app.use("/features", require("./routes/featuresRoutes"));
 app.use("/favorites", require("./routes/favoritesRoutes"));
 app.use("/users", require("./routes/userRoutes"));
+app.use("/lugares", require('./routes/lugaresRoutes'))
+app.use("/admin", require("./routes/adminRoutes"))
+app.use("/shoping", require("./routes/shopingCarRoutes"))
+app.use("/paypal", require("./routes/paypalRoutes"))
+app.use("/FormBuy",require("./routes/formbuyRoute"))
+app.use("/Orden",require("./routes/ordenRoute"))
+
 
 // Route Deploy
 app.get("/api", function (req, res) {

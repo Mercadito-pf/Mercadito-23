@@ -14,7 +14,10 @@ let UserSchema = mongoose.Schema(
     email: String,
     phone: String,
     address: String,
-    isActive: Boolean,
+    isActive: {
+      type: Boolean,
+      default: true
+  }
   },
   { timeStamps: true }
 );

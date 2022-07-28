@@ -3,17 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
 import Order from "../Order/Order";
 import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./NavBar.scss";
 import carrito from "../icons/carrito.png";
 import user from "../icons/user.png";
+import corazon from '../icons/heart_t.png'
 import bag from "../icons/bag.png";
 import hamburguesa from '../icons/menu.png';
 import dots from '../icons/dots.png'
 import { authenticate, logoutUser } from "../../redux/user/userActions";
 import { googleLogout } from "@react-oauth/google";
+// import PerfilUsuario from "../PerfilUsuario/PerfilUsuario.jsx"
+import MenuPerfil from "../MenuPerfil/MenuPerfil";
 
 export default function NavBar() {
+
+  let history = useHistory()
   let { currentPage } = useSelector((state) => state.reducer);
   useEffect(() => {
     dispatch(authenticate());
@@ -23,10 +28,14 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
 
-  const logout = () => {
+  function logout() {
+
     googleLogout();
     dispatch(logoutUser());
-  };
+    if (profile._id) {
+      history.push("/")
+    }
+  }
 
   return (
     <div className="containerNavbar">
@@ -42,23 +51,41 @@ export default function NavBar() {
           {/* <li className='item'>
                 <a href="!#">Crear cuenta</a>
               </li> */}
+
+          <li className="item">
+            <Link to="/shoping-car"><img src={carrito} />Carrito</Link>
+          </li>
+
+
+          {profile?._id && <li className="item">
+            <Link to="/favorites"><img src={corazon} />Favoritos</Link>
+          </li>}
+
+
+          {/* {profile?._id &&<li className="item">
+            <Link to="/create"><img src={bag}/>Vender</Link>
+          </li>} */}
+
           {profile?.profile_picture ? (
             <>
-              <div>
-                <img
-                  className="profile_picture"
-                  src={`${profile?.profile_picture}`}
-                />
-              </div>
               <li className="item">
-                <button onClick={logout}className="btn">
-            <span className="span1"></span>
-            <span className="span2"></span>
-            <span className="span3"></span>
-            <span className="span4"></span>
+                {/* <Link to="/PerfilUsuario"> */}
+                {/* <PerfilUsuario/> */}
+                {/* </Link> */}
+                {/* <Link onClick={logout}>
+                <img className="profile" src={`${profile?.profile_picture}`}
+                />
                Cerrar Sesion
-              </button>
+              </Link> */}
+                <MenuPerfil image={profile?.profile_picture} lagout={() => {
+                  googleLogout();
+                  dispatch(logoutUser());
+                  if (profile._id) {
+                    history.push("/")
+                  }
+                }} />
               </li>
+              
             </>
           ) : (
             <li className="item">
@@ -69,13 +96,23 @@ export default function NavBar() {
             </li>
           )}
 
+
+
           {/* <li className="item">
-            <Link to="/favorites">Favoritos</Link>
+          <Link to="/shoping-car"><img src={carrito} /></Link>
           </li> */}
 
-          {profile?._id &&<li className="item">
+          {/* 
+         {profile?._id&& <li className="item">
+            <Link to="/favorites">Favoritos</Link>
+          </li>} */}
+
+
+          {/* {profile?._id &&<li className="item">
             <Link to="/create"className="i">Vender</Link>
-          </li>}
+          </li>} */}
+
+
 
           {/* <li className="item">
             <Link to="/my-shoping">
@@ -83,6 +120,9 @@ export default function NavBar() {
               Mis compras
             </Link>
           </li> */}
+          {/* {profile?._id && <li className="item">
+            <Link to="/carrito"> <img src={carrito} /></Link>
+            </li>} */}
           {/* <li className="item">
             <Link to="/shoping-car">
               <img src={carrito} />
@@ -95,20 +135,20 @@ export default function NavBar() {
       <div className="categories">
         <ul className="contentCategory">
           <div className="dropdown">
-            <img src={hamburguesa}/>
+            <img src={hamburguesa} />
             <h4 className="categoria">Ver todas las categorias</h4>
-              <div className='dropdown-content' >
-                <Filter />
-              </div>
+            <div className='dropdown-content' >
+              <Filter />
+            </div>
           </div>
           {currentPage > 0 && (
-          <div className='order-category'>
-              <img src={dots}/>
+            <div className='order-category'>
+              <img src={dots} />
               <h2>Ordenar por</h2>
-                <div className='order'>
-                  <Order/>
-                </div>
-          </div>
+              <div className='order'>
+                <Order />
+              </div>
+            </div>
           )}
         </ul>
       </div>

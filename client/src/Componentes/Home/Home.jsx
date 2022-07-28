@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import Cards from "../Card/Card";
 import { Link } from "react-router-dom";
 import './Home.scss'
+import clienteAxios from "../../config/axios";
 
 
 export default function Home() {
@@ -38,10 +39,10 @@ export default function Home() {
                 setFetchData(res)
                 return
             }
-            let res = await fetch(`http://localhost:3001/products?page=${0}&limit=${productsPerpage}`).then(res => res.json())
+            let {data} = await clienteAxios(`/products?page=${0}&limit=${productsPerpage}`)
 
 
-            setFetchData(res)
+            setFetchData(data)
             // console.log(products)
         })()
 
@@ -104,14 +105,26 @@ export default function Home() {
 
     return (
         <div>
-            <Slider />
+            {!url.includes("category")&&<Slider />}
 
             <div className='cardGrid'>
                 {/*  se mapea lo que tenga el estado local y se crea una card por cada producto 
                 en el estado local  */}
-                {products && products.map((p) => {
+                {products && products.map((product) => {
                     return (
-                        <Cards key={p.id} id={p.id} image={p.image} name={p.name} seller={p.seller} sales={p.sales} price={p.price} />
+                        <Cards 
+
+
+                        // key={p.id} 
+                        // id={p.id} 
+                        // image={p.image} 
+                        // name={p.name} 
+                        // seller={p.seller} 
+                        // price={p.price}
+                        // _id={p._id}
+
+                        {...product}
+                        />
                     )
                 })
                 }

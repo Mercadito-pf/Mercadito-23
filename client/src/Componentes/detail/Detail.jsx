@@ -2,27 +2,26 @@ import React from 'react';
 import { useEffect, Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import clienteAxios from '../../config/axios';
 import {get_id} from '../../redux/actions';
 import Footer from "../Footer/Footer.jsx";
-
 import './Detail.scss'
 
 export default function Detail () {
     const dispatch = useDispatch();
     // const Detail = useSelector((state)=>state.Detail);
     const {id} = useParams();
-
     let [detail, setDetail] = useState({})
 
     useEffect(()=>{
         (
             async function(){
-                let res = await fetch(` http://localhost:3001/products/${id}`).then(res => res.json())
+                let {data} = await clienteAxios(`/products/${id}`)
 
-                setDetail(res)
+                setDetail(data)
             }
         )()
-    })
+    },[])
   return (
     <div className='containerDetails'>
         {
@@ -37,8 +36,7 @@ export default function Detail () {
                     <p className='description'> {detail.description}</p>
                     <h3><a>Categoria:</a> {detail.category}</h3>
                     <h3><a>En stock:</a> {detail.stock} unidades</h3>
-                    <h3><a>Vendedor:</a> {detail.seller}</h3>
-                    <h3><a>Productos vendidos:</a> {detail.sales}</h3>
+                    {/* <h3><a>Productos vendidos:</a> {detail.sales}</h3> */}
                 </div>
             </div>
 
