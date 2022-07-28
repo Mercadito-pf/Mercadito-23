@@ -122,7 +122,7 @@ export default function FormBuy() {
 
     return(
         <div className='formContainer'>
-                <form  className='form' onSubmit={e=>handleSubmit(e)}>
+                <form  className='formulario' onSubmit={e=>handleSubmit(e)}>
                     <h3>Nombre:</h3>
                     <input 
                     type="text"
