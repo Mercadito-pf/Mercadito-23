@@ -1,3 +1,4 @@
+// ButtonAddCart
 .add{
     position: absolute;
     text-align: right;
@@ -13,3 +14,66 @@
     color: rgb(250, 139, 59);
     cursor: pointer;
 }
+
+//CardShopping
+.containerCardShop {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: aliceblue;
+    border-radius: 11px;
+
+}
+
+.deleteButton {
+    position: absolute;
+    width: 130px;
+    font-size: 0.87rem;
+    font-weight:bold;
+    padding-top: 12px;
+    border: 0;
+    right: 0;
+    text-align: right;
+    cursor: pointer;
+    background: transparent;
+    padding-right: 25px;
+    img {
+        width: 25px;
+        height: 25px;
+        margin: -5px 2px;
+    }
+}
+
+.name {
+    width: 80%;
+    font-size: 1.6em;
+}
+
+
+//ShoppingCar
+.shopContainer {
+    width: 89%;
+    flex: 1;
+    flex-wrap: wrap;
+    display: grid ;
+    grid-gap: 100px;
+    grid-template-columns: 2fr 1fr;
+    margin: 0 auto;
+    padding: 30px 13px 50px 13px;
+}
+
+// .carShop{
+    
+// }
+
+.miCarrito {
+    font-size: 2em;
+    padding-bottom: 20px;
+}
+
+// .containerRes {
+
+// }
