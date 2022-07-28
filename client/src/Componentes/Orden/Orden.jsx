@@ -44,7 +44,7 @@ export default function Orden() {
           {
            ordernP.calc &&
             <div>
-              <h3>Subtotal: {ordernP.calc.subtotal}<br/>Total Products: {ordernP.calc.total}<br/> Impuestos: {ordernP.calc.impuestos}<br/> Precio Total: {ordernP.calc.totalPrice}</h3>
+              <h3>Subtotal: {ordernP.calc.subTotal}<br/>Total Products: {ordernP.calc.totalProducts}<br/> Impuestos: {ordernP.calc.impuestos}<br/> Precio Total: {ordernP.calc.totalPrice}</h3>
             </div>
           } 
                 {/* subtotal:Number, 
